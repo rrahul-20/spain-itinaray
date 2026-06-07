@@ -217,6 +217,35 @@
       cursor: pointer;
       font-family: 'DM Sans', sans-serif;
       transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .sub-toolbar {
+      display: flex;
+      gap: 6px;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border);
+      width: 100%;
+    }
+
+    .ftab-sub {
+      padding: 3px 10px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      background: var(--tag-dash-bg);
+      font-size: 11px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .ftab-sub.active {
+      background: var(--accent-bg);
+      color: var(--accent);
+      border-color: var(--accent-border);
+      font-weight: 500;
     }
 
     .ftab.active,
@@ -518,6 +547,11 @@
         padding: 0.75rem;
         margin-bottom: 0.5rem;
         position: relative;
+        transition: border-left 0.2s;
+      }
+
+      .m-card.type-travel {
+        border-left: 4px solid var(--accent);
       }
 
       .m-time-badge {
@@ -790,111 +824,113 @@
       days: [
         {
           id: 'd01', label: 'Day 1', date: '11 Jun', city: 'tra', rows: [
-            { id: 'r001', time: 'Evening', dur: '', act: 'Depart BLR Terminal 2', loc: 'Bengaluru (BLR)', price: '', hrs: '22:15', status: 'Booked', map: '', notes: 'Etihad via AUH. Terminal 2' },
-            { id: 'r002', time: 'Late Night', dur: '9h 20m total', act: 'Layover — Abu Dhabi (AUH)', loc: 'Abu Dhabi (AUH)', price: '', hrs: '00:35–02:30', status: 'Booked', map: '', notes: '~1h 55m layover' },
+            { id: 'r001', time: 'Evening', dur: '', act: 'Depart BLR Terminal 2', loc: 'Bengaluru (BLR)', price: '', hrs: '22:15', status: 'Booked', type: 'flight', map: '', notes: 'Etihad via AUH. Terminal 2' },
+            { id: 'r002', time: 'Late Night', dur: '9h 20m total', act: 'Layover — Abu Dhabi (AUH)', loc: 'Abu Dhabi (AUH)', price: '', hrs: '00:35–02:30', status: 'Booked', type: 'flight', map: '', notes: '~1h 55m layover' },
           ]
         },
         {
           id: 'd02', label: 'Day 2', date: '12 Jun', city: 'bcn', rows: [
-            { id: 'r003', time: 'Morning', dur: '', act: 'Arrive BCN Terminal 1', loc: 'Barcelona (BCN)', price: '', hrs: '07:35', status: 'Booked', map: 'https://maps.app.goo.gl/barcelona-airport', notes: 'Check in to accommodation' },
-            { id: 'r004', time: 'Afternoon', dur: '', act: 'Rest / explore neighbourhood', loc: 'Barcelona', price: '', hrs: '-', status: '-', map: '', notes: '' },
+            { id: 'r003', time: 'Morning', dur: '', act: 'Arrive BCN Terminal 1', loc: 'Barcelona (BCN)', price: '', hrs: '07:35', status: 'Booked', type: 'flight', map: 'https://maps.app.goo.gl/barcelona-airport', notes: 'Check in to accommodation' },
+            { id: 'r004', time: 'Afternoon', dur: '', act: 'Rest / explore neighbourhood', loc: 'Barcelona', price: '', hrs: '-', status: '-', type: 'place', map: '', notes: '' },
           ]
         },
         {
           id: 'd03', label: 'Day 3', date: '13 Jun', city: 'bcn', rows: [
-            { id: 'r005', time: 'Morning', dur: '3 hrs', act: 'La Sagrada Família', loc: 'Barcelona', price: '3500', hrs: '9am–7pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/SagradaFamilia', notes: 'Book tickets online in advance' },
-            { id: 'r006', time: 'Afternoon', dur: '2 hrs', act: 'Park Güell', loc: 'Barcelona', price: '1500', hrs: '8am–8pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/ParkGuell', notes: '' },
-            { id: 'r007', time: 'Evening', dur: '', act: 'Las Ramblas & Gothic Quarter', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', map: 'https://maps.app.goo.gl/LasRamblas', notes: '' },
+            { id: 'r005', time: 'Morning', dur: '3 hrs', act: 'La Sagrada Família', loc: 'Barcelona', price: '3500', hrs: '9am–7pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/SagradaFamilia', notes: 'Book tickets online in advance' },
+            { id: 'r006', time: 'Afternoon', dur: '2 hrs', act: 'Park Güell', loc: 'Barcelona', price: '1500', hrs: '8am–8pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/ParkGuell', notes: '' },
+            { id: 'r007', time: 'Evening', dur: '', act: 'Las Ramblas & Gothic Quarter', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/LasRamblas', notes: '' },
           ]
         },
         {
           id: 'd04', label: 'Day 4', date: '14 Jun', city: 'bcn', rows: [
-            { id: 'r008', time: 'Morning', dur: '2 hrs', act: 'Camp Nou Stadium Tour', loc: 'Barcelona', price: '2800', hrs: '9:30am–6:30pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/CampNou', notes: '' },
-            { id: 'r009', time: 'Afternoon', dur: '', act: 'Barceloneta Beach', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', map: 'https://maps.app.goo.gl/Barceloneta', notes: '' },
+            { id: 'r008', time: 'Morning', dur: '2 hrs', act: 'Camp Nou Stadium Tour', loc: 'Barcelona', price: '2800', hrs: '9:30am–6:30pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/CampNou', notes: '' },
+            { id: 'r009', time: 'Afternoon', dur: '', act: 'Barceloneta Beach', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/Barceloneta', notes: '' },
           ]
         },
         {
           id: 'd05', label: 'Day 5', date: '15 Jun', city: 'bcn', rows: [
-            { id: 'r010', time: 'All day', dur: '', act: 'Montserrat monastery & mountain', loc: 'Montserrat', price: '2500', hrs: '9am–6pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/Montserrat', notes: 'Train from Plaça Espanya' },
+            { id: 'r010', time: 'All day', dur: '', act: 'Montserrat monastery & mountain', loc: 'Montserrat', price: '2500', hrs: '9am–6pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/Montserrat', notes: 'Train from Plaça Espanya' },
           ]
         },
         {
           id: 'd06', label: 'Day 6', date: '16 Jun', city: 'bcn', rows: [
-            { id: 'r011', time: 'Morning', dur: '2 hrs', act: 'Picasso Museum', loc: 'Barcelona', price: '1400', hrs: '10am–7pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/PicassoMuseum', notes: '' },
-            { id: 'r012', time: 'Afternoon', dur: '', act: 'El Born & Santa Maria del Mar', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', map: 'https://maps.app.goo.gl/ElBorn', notes: '' },
-            { id: 'r013', time: 'Evening', dur: '', act: 'Tapas on Carrer del Parlament', loc: 'Barcelona', price: '2000', hrs: '-', status: '-', map: 'https://maps.app.goo.gl/Parlament', notes: '' },
+            { id: 'r011', time: 'Morning', dur: '2 hrs', act: 'Picasso Museum', loc: 'Barcelona', price: '1400', hrs: '10am–7pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/PicassoMuseum', notes: '' },
+            { id: 'r012', time: 'Afternoon', dur: '', act: 'El Born & Santa Maria del Mar', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/ElBorn', notes: '' },
+            { id: 'r013', time: 'Evening', dur: '', act: 'Tapas on Carrer del Parlament', loc: 'Barcelona', price: '2000', hrs: '-', status: '-', type: 'place', map: 'https://maps.app.goo.gl/Parlament', notes: '' },
           ]
         },
         {
           id: 'd07', label: 'Day 7', date: '17 Jun', city: 'bcn', rows: [
-            { id: 'r014', time: 'Morning', dur: '2 hrs', act: 'Casa Batlló / Casa Milà (La Pedrera)', loc: 'Barcelona', price: '3000', hrs: '9am–9pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/CasaBatllo', notes: 'Pick one or both, Passeig de Gràcia' },
-            { id: 'r015', time: 'Afternoon', dur: '', act: 'Palau de la Música Catalana', loc: 'Barcelona', price: '2000', hrs: '10am–6pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/PalauMusica', notes: '' },
+            { id: 'r014', time: 'Morning', dur: '2 hrs', act: 'Casa Batlló / Casa Milà (La Pedrera)', loc: 'Barcelona', price: '3000', hrs: '9am–9pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/CasaBatllo', notes: 'Pick one or both, Passeig de Gràcia' },
+            { id: 'r015', time: 'Afternoon', dur: '', act: 'Palau de la Música Catalana', loc: 'Barcelona', price: '2000', hrs: '10am–6pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/PalauMusica', notes: '' },
           ]
         },
         {
           id: 'd08', label: 'Day 8', date: '18 Jun', city: 'bcn', rows: [
-            { id: 'r016', time: 'All day', dur: '', act: 'Business / work day', loc: 'Barcelona', price: '', hrs: '-', status: 'Booked', map: '', notes: 'Work commitments' },
+            { id: 'r016', time: 'All day', dur: '', act: 'Business / work day', loc: 'Barcelona', price: '', hrs: '-', status: 'Booked', type: 'place', map: '', notes: 'Work commitments' },
           ]
         },
         {
           id: 'd09', label: 'Day 9', date: '19 Jun', city: 'bcn', rows: [
-            { id: 'r017', time: 'Morning', dur: '', act: 'Tibidabo Amusement Park & views', loc: 'Barcelona', price: '3500', hrs: '10am–8pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/Tibidabo', notes: '' },
-            { id: 'r018', time: 'Evening', dur: '', act: 'Pack & prep for Rome departure', loc: 'Barcelona', price: '', hrs: '-', status: '-', map: '', notes: '' },
-            { id: 'r019', time: 'Night', dur: '1h 55m', act: 'Flight BCN → Rome FCO', loc: 'BCN → FCO', price: '4506', hrs: '21:45 depart', status: 'Not Booked', map: '', notes: 'Arrive FCO 23:40' },
+            { id: 'r017', time: 'Morning', dur: '', act: 'Tibidabo Amusement Park & views', loc: 'Barcelona', price: '3500', hrs: '10am–8pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/Tibidabo', notes: '' },
+            { id: 'r018', time: 'Evening', dur: '', act: 'Pack & prep for Rome departure', loc: 'Barcelona', price: '', hrs: '-', status: '-', type: 'place', map: '', notes: '' },
+            { id: 'r019', time: 'Night', dur: '1h 55m', act: 'Flight BCN → Rome FCO', loc: 'BCN → FCO', price: '4506', hrs: '21:45 depart', status: 'Not Booked', type: 'flight', map: '', notes: 'Arrive FCO 23:40' },
           ]
         },
         {
           id: 'd10', label: 'Day 10', date: '20 Jun', city: 'rom', rows: [
-            { id: 'r020', time: 'Late Night', dur: '', act: 'Arrive Rome FCO & transfer to hotel', loc: 'Rome', price: '', hrs: '23:40 arrival', status: 'Not Booked', map: 'https://maps.app.goo.gl/RomeFCO', notes: 'Check in / drop bags' },
-            { id: 'r021', time: 'Morning', dur: '3 hrs', act: 'Colosseum & Roman Forum', loc: 'Rome', price: '3500', hrs: '9am–7pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/Colosseum', notes: 'Book skip-the-line tickets' },
-            { id: 'r022', time: 'Afternoon', dur: '2 hrs', act: 'Palatine Hill', loc: 'Rome', price: '', hrs: '-', status: 'Free', map: 'https://maps.app.goo.gl/PalatineHill', notes: 'Included with Colosseum ticket' },
-            { id: 'r023', time: 'Evening', dur: '', act: 'Trastevere neighbourhood dinner', loc: 'Rome', price: '2000', hrs: '-', status: '-', map: 'https://maps.app.goo.gl/Trastevere', notes: '' },
+            { id: 'r020', time: 'Late Night', dur: '', act: 'Arrive Rome FCO & transfer to hotel', loc: 'Rome', price: '', hrs: '23:40 arrival', status: 'Not Booked', type: 'flight', map: 'https://maps.app.goo.gl/RomeFCO', notes: 'Check in / drop bags' },
+            { id: 'r021', time: 'Morning', dur: '3 hrs', act: 'Colosseum & Roman Forum', loc: 'Rome', price: '3500', hrs: '9am–7pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/Colosseum', notes: 'Book skip-the-line tickets' },
+            { id: 'r022', time: 'Afternoon', dur: '2 hrs', act: 'Palatine Hill', loc: 'Rome', price: '', hrs: '-', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/PalatineHill', notes: 'Included with Colosseum ticket' },
+            { id: 'r023', time: 'Evening', dur: '', act: 'Trastevere neighbourhood dinner', loc: 'Rome', price: '2000', hrs: '-', status: '-', type: 'place', map: 'https://maps.app.goo.gl/Trastevere', notes: '' },
           ]
         },
         {
           id: 'd11', label: 'Day 11', date: '21 Jun', city: 'rom', rows: [
-            { id: 'r024', time: 'Morning', dur: '3 hrs', act: 'Vatican Museums & Sistine Chapel', loc: 'Vatican City', price: '3000', hrs: '9am–6pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/VaticanMuseums', notes: 'Book months ahead — very busy' },
-            { id: 'r025', time: 'Afternoon', dur: '1 hr', act: "St. Peter's Basilica & Square", loc: 'Vatican City', price: '', hrs: '7am–7pm', status: 'Free', map: 'https://maps.app.goo.gl/StPeters', notes: '' },
-            { id: 'r026', time: 'Evening', dur: '', act: 'Piazza Navona & Pantheon stroll', loc: 'Rome', price: '', hrs: '-', status: 'Free', map: 'https://maps.app.goo.gl/PiazzaNavona', notes: '' },
+            { id: 'r024', time: 'Morning', dur: '3 hrs', act: 'Vatican Museums & Sistine Chapel', loc: 'Vatican City', price: '3000', hrs: '9am–6pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/VaticanMuseums', notes: 'Book months ahead — very busy' },
+            { id: 'r025', time: 'Afternoon', dur: '1 hr', act: "St. Peter's Basilica & Square", loc: 'Vatican City', price: '', hrs: '7am–7pm', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/StPeters', notes: '' },
+            { id: 'r026', time: 'Evening', dur: '', act: 'Piazza Navona & Pantheon stroll', loc: 'Rome', price: '', hrs: '-', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/PiazzaNavona', notes: '' },
           ]
         },
         {
           id: 'd12', label: 'Day 12', date: '22 Jun', city: 'rom', rows: [
-            { id: 'r027', time: 'Morning', dur: '', act: 'Trevi Fountain & Spanish Steps', loc: 'Rome', price: '', hrs: '24hrs', status: 'Free', map: 'https://maps.app.goo.gl/TreviFountain', notes: 'Go early to avoid crowds' },
-            { id: 'r028', time: 'Afternoon', dur: '', act: 'Borghese Gallery', loc: 'Rome', price: '2500', hrs: '9am–7pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/BorgheseGallery', notes: 'Strictly timed entry — must pre-book' },
-            { id: 'r029', time: 'Night', dur: '7h 45m overnight', act: 'Overnight train Rome → Venice', loc: 'Rome → Venice', price: '4246', hrs: '22:35 depart', status: 'Not Booked', map: '', notes: 'Arrives Venice 06:20' },
+            { id: 'r027', time: 'Morning', dur: '', act: 'Trevi Fountain & Spanish Steps', loc: 'Rome', price: '', hrs: '24hrs', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/TreviFountain', notes: 'Go early to avoid crowds' },
+            { id: 'r028', time: 'Afternoon', dur: '', act: 'Borghese Gallery', loc: 'Rome', price: '2500', hrs: '9am–7pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/BorgheseGallery', notes: 'Strictly timed entry — must pre-book' },
+            { id: 'r029', time: 'Night', dur: '7h 45m overnight', act: 'Overnight train Rome → Venice', loc: 'Rome → Venice', price: '4246', hrs: '22:35 depart', status: 'Not Booked', type: 'train', map: '', notes: 'Arrives Venice 06:20' },
           ]
         },
         {
           id: 'd13', label: 'Day 13', date: '23 Jun', city: 'ven', rows: [
-            { id: 'r030', time: 'Early Morning', dur: '', act: 'Arrive Venice Santa Lucia & drop bags', loc: 'Venice', price: '', hrs: '06:20 arrival', status: '-', map: 'https://maps.app.goo.gl/VeniceSantaLucia', notes: '' },
-            { id: 'r031', time: 'Morning', dur: '2 hrs', act: "St. Mark's Basilica & Doge's Palace", loc: "St. Mark's Square", price: '2500', hrs: '9am–5pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/StMarksBasilica', notes: 'Book online to skip queues' },
-            { id: 'r032', time: 'Afternoon', dur: '1.5 hrs', act: 'Gondola ride through canals', loc: 'Venice', price: '5000', hrs: '-', status: 'Not Booked', map: 'https://maps.app.goo.gl/VeniceGondola', notes: '~80 EUR shared gondola, 30 min' },
-            { id: 'r033', time: 'Late Afternoon', dur: '', act: 'Rialto Bridge & market area', loc: 'Venice', price: '', hrs: '-', status: 'Free', map: 'https://maps.app.goo.gl/RialtoBridge', notes: '' },
-            { id: 'r034', time: 'Evening', dur: '', act: 'Sunset from Punta della Dogana', loc: 'Venice', price: '', hrs: '-', status: 'Free', map: 'https://maps.app.goo.gl/PuntaDellaDogana', notes: 'Best sunset spot in Venice' },
-            { id: 'r035', time: 'Night', dur: '', act: 'Last dinner — seafood risotto', loc: 'Venice', price: '2500', hrs: '-', status: '-', map: '', notes: '' },
+            { id: 'r030', time: 'Early Morning', dur: '', act: 'Arrive Venice Santa Lucia & drop bags', loc: 'Venice', price: '', hrs: '06:20 arrival', status: '-', type: 'train', map: 'https://maps.app.goo.gl/VeniceSantaLucia', notes: '' },
+            { id: 'r031', time: 'Morning', dur: '2 hrs', act: "St. Mark's Basilica & Doge's Palace", loc: "St. Mark's Square", price: '2500', hrs: '9am–5pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/StMarksBasilica', notes: 'Book online to skip queues' },
+            { id: 'r032', time: 'Afternoon', dur: '1.5 hrs', act: 'Gondola ride through canals', loc: 'Venice', price: '5000', hrs: '-', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/VeniceGondola', notes: '~80 EUR shared gondola, 30 min' },
+            { id: 'r033', time: 'Late Afternoon', dur: '', act: 'Rialto Bridge & market area', loc: 'Venice', price: '', hrs: '-', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/RialtoBridge', notes: '' },
+            { id: 'r034', time: 'Evening', dur: '', act: 'Sunset from Punta della Dogana', loc: 'Venice', price: '', hrs: '-', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/PuntaDellaDogana', notes: 'Best sunset spot in Venice' },
+            { id: 'r035', time: 'Night', dur: '', act: 'Last dinner — seafood risotto', loc: 'Venice', price: '2500', hrs: '-', status: '-', type: 'place', map: '', notes: '' },
           ]
         },
         {
           id: 'd14', label: 'Day 14', date: '24 Jun', city: 'tra', rows: [
-            { id: 'r036', time: 'Morning', dur: '2h', act: 'Flight VCE → BCN', loc: 'Venice → Barcelona', price: '1388', hrs: '09:10 depart', status: 'Not Booked', map: '', notes: 'Arrives BCN 11:10' },
-            { id: 'r037', time: 'Afternoon', dur: '', act: 'BCN layover — rest / explore', loc: 'Barcelona', price: '', hrs: '-', status: '-', map: '', notes: 'Return flight at 22:30' },
-            { id: 'r038', time: 'Night', dur: '', act: 'Depart BCN → AUH → BLR (Etihad)', loc: 'BCN → BLR', price: '', hrs: '22:30 depart', status: 'Booked', map: '', notes: 'Terminal 1. Arrives BLR 25 Jun 14:15' },
+            { id: 'r036', time: 'Morning', dur: '2h', act: 'Flight VCE → BCN', loc: 'Venice → Barcelona', price: '1388', hrs: '09:10 depart', status: 'Not Booked', type: 'flight', map: '', notes: 'Arrives BCN 11:10' },
+            { id: 'r037', time: 'Afternoon', dur: '', act: 'BCN layover — rest / explore', loc: 'Barcelona', price: '', hrs: '-', status: '-', type: 'place', map: '', notes: 'Return flight at 22:30' },
+            { id: 'r038', time: 'Night', dur: '', act: 'Depart BCN → AUH → BLR (Etihad)', loc: 'BCN → BLR', price: '', hrs: '22:30 depart', status: 'Booked', type: 'flight', map: '', notes: 'Terminal 1. Arrives BLR 25 Jun 14:15' },
           ]
         },
         {
           id: 'd15', label: 'Day 15', date: '25 Jun', city: 'tra', rows: [
-            { id: 'r039', time: 'Afternoon', dur: '', act: 'Arrive BLR Terminal 2', loc: 'Bengaluru (BLR)', price: '', hrs: '14:15', status: 'Booked', map: '', notes: 'Layover AUH 07:05–08:40' },
+            { id: 'r039', time: 'Afternoon', dur: '', act: 'Arrive BLR Terminal 2', loc: 'Bengaluru (BLR)', price: '', hrs: '14:15', status: 'Booked', type: 'flight', map: '', notes: 'Layover AUH 07:05–08:40' },
           ]
         },
+
       ]
     };
 
     let DATA = null;
     let saveTimer = null;
-    let currentFilter = 'all';
+    let currentSubFilter = 'all';
 
     const TIME_OPTIONS = ['Early Morning', 'Morning', 'Afternoon', 'Late Afternoon', 'Evening', 'Night', 'Late Night', 'All day', '—'];
+    const TYPE_OPTIONS = ['place', 'flight', 'train', 'bus'];
 
     function moveRow(dayId, rowId, direction) {
       const day = DATA.days.find(d => d.id === dayId);
@@ -927,8 +963,11 @@
           DATA = DEFAULT_DATA;
           await pushToFirebase(false); /* seed the db silently */
         } else {
-          /* Merge: ensure every row has a map field (older saves won't have it) */
-          raw.days.forEach(d => d.rows && d.rows.forEach(r => { if (!r.map) r.map = ''; }));
+          /* Merge: ensure every row has a map and type field */
+          raw.days.forEach(d => d.rows && d.rows.forEach(r => {
+            if (!r.map) r.map = '';
+            if (!r.type) r.type = 'place';
+          }));
           DATA = raw;
         }
         setSyncState('ok', 'Synced — anyone with this link can edit');
@@ -1000,6 +1039,7 @@
     /* ── RENDER ── */
     function render() {
       updateStats();
+      renderSubFilters();
       const root = document.getElementById('root');
       root.innerHTML = '';
       const days = DATA.days.filter(filterMatches);
@@ -1047,7 +1087,21 @@
       const mc = document.getElementById('mc-' + day.id);
       if (tbody) tbody.innerHTML = '';
       if (mc) mc.innerHTML = '';
-      day.rows.forEach(row => {
+
+      const filteredRows = day.rows.filter(row => {
+        if (currentSubFilter === 'all') return true;
+        if (currentFilter === 'tra') {
+          // Transit tab specific sub-filters
+          return row.type === currentSubFilter;
+        } else {
+          // Region specific sub-filters: Places vs Transit
+          if (currentSubFilter === 'place') return row.type === 'place';
+          if (currentSubFilter === 'travel') return row.type !== 'place';
+        }
+        return true;
+      });
+
+      filteredRows.forEach(row => {
         if (tbody) tbody.appendChild(buildDesktopRow(day, row));
         if (mc) mc.appendChild(buildMobileCard(day, row));
       });
@@ -1099,8 +1153,22 @@
       });
       timeSel.addEventListener('change', () => updateField(day.id, row.id, 'time', timeSel.value));
       timeTd.appendChild(timeSel);
-      // Insert time at the beginning (before Activity)
+
+      /* type */
+      const typeTd = document.createElement('td'); typeTd.className = 'ch-status'; // reuse status width
+      const typeSel = document.createElement('select');
+      typeSel.className = 'cell-sel';
+      TYPE_OPTIONS.forEach(t => {
+        const o = document.createElement('option'); o.value = t; o.textContent = t.charAt(0).toUpperCase() + t.slice(1);
+        if (t === row.type) o.selected = true;
+        typeSel.appendChild(o);
+      });
+      typeSel.addEventListener('change', () => updateField(day.id, row.id, 'type', typeSel.value));
+      typeTd.appendChild(typeSel);
+
+      // Insert at beginning: Type, then Time
       tr.insertBefore(timeTd, tr.firstChild);
+      tr.insertBefore(typeTd, tr.firstChild);
 
       /* status */
       const stTd = document.createElement('td'); stTd.className = 'ch-status';
@@ -1136,17 +1204,29 @@
       const sClass = row.status === 'Booked' ? 's-booked' : row.status === 'Not Booked' ? 's-not' : row.status === 'Free' ? 's-free' : 's-dash';
       const card = document.createElement('div');
       card.className = 'm-card';
+      if (row.type !== 'place') card.classList.add('type-travel');
+
       card.innerHTML = `
     <button class="m-del" onclick="deleteRow('${day.id}','${row.id}')">×</button>
     <div class="m-reorder-actions" style="display: flex; gap: 8px; margin-bottom: 4px;">
       <button class="ftab" onclick="moveRow('${day.id}', '${row.id}', -1)" style="padding: 2px 8px; font-size: 11px;">🔼 Up</button>
       <button class="ftab" onclick="moveRow('${day.id}', '${row.id}', 1)" style="padding: 2px 8px; font-size: 11px;">🔽 Down</button>
     </div>
-    <span class="m-label">Time</span>
-    <select class="m-sel" data-field="time" style="font-weight: 500; font-size: 12px; margin-bottom: 4px; color: var(--accent);">
-      ${TIME_OPTIONS.map(t => `<option value="${t}"${t === row.time ? ' selected' : ''}>${t}</option>`).join('')}
-    </select>
-    <input class="m-activity" value="${esc(row.act)}" placeholder="Activity" data-field="act">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+      <div class="m-field">
+        <span class="m-label">Time</span>
+        <select class="m-sel" data-field="time" style="font-weight: 500; font-size: 12px; color: var(--accent);">
+          ${TIME_OPTIONS.map(t => `<option value="${t}"${t === row.time ? ' selected' : ''}>${t}</option>`).join('')}
+        </select>
+      </div>
+      <div class="m-field">
+        <span class="m-label">Type</span>
+        <select class="m-sel" data-field="type" style="font-weight: 500; font-size: 12px; color: var(--text-muted);">
+          ${TYPE_OPTIONS.map(t => `<option value="${t}"${t === row.type ? ' selected' : ''}>${t.charAt(0).toUpperCase() + t.slice(1)}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+    <input class="m-activity" value="${esc(row.act)}" placeholder="Activity" data-field="act" style="margin-top: 4px;">
     <div class="m-meta">
       <div class="m-field"><span class="m-label">Location</span><input class="m-val" value="${esc(row.loc)}" placeholder="Location" data-field="loc"></div>
       <div class="m-field"><span class="m-label">Duration</span><input class="m-val" value="${esc(row.dur)}" placeholder="—" data-field="dur"></div>
@@ -1187,7 +1267,7 @@
 
     function addRow(dayId) {
       const day = DATA.days.find(d => d.id === dayId); if (!day) return;
-      const newRow = { id: uid(), time: '', dur: '', act: '', loc: '', price: '', hrs: '', status: '-', map: '', notes: '' };
+      const newRow = { id: uid(), time: '—', dur: '', act: '', loc: '', price: '', hrs: '', status: '-', type: 'place', map: '', notes: '' };
       day.rows.push(newRow);
       populateRows(day);
       updateStats();
@@ -1222,15 +1302,50 @@
 
     function filterBy(city, btn) {
       currentFilter = city;
+      currentSubFilter = 'all'; // Reset sub-filter
       document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       render();
     }
 
+    function setSubFilter(val) {
+      currentSubFilter = val;
+      render();
+    }
+
+    function renderSubFilters() {
+      const toolbar = document.querySelector('.toolbar');
+      let subWrap = document.querySelector('.sub-toolbar');
+      if (!subWrap) {
+        subWrap = document.createElement('div');
+        subWrap.className = 'sub-toolbar';
+        toolbar.appendChild(subWrap);
+      }
+
+      let html = '';
+      if (currentFilter === 'tra') {
+        const subs = [
+          { id: 'all', lab: 'All Flights' },
+          { id: 'flight', lab: '✈️ Flights' },
+          { id: 'train', lab: '🚂 Trains' },
+          { id: 'bus', lab: '🚌 Bus/Taxi' }
+        ];
+        html = subs.map(s => `<button class="ftab-sub ${currentSubFilter === s.id ? 'active' : ''}" onclick="setSubFilter('${s.id}')">${s.lab}</button>`).join('');
+      } else {
+        const subs = [
+          { id: 'all', lab: 'All' },
+          { id: 'place', lab: '📍 Places Only' },
+          { id: 'travel', lab: '🚇 Transit Only' }
+        ];
+        html = subs.map(s => `<button class="ftab-sub ${currentSubFilter === s.id ? 'active' : ''}" onclick="setSubFilter('${s.id}')">${s.lab}</button>`).join('');
+      }
+      subWrap.innerHTML = html;
+    }
+
     function exportCSV() {
-      const rows = [['Day', 'Date', 'City', 'Time', 'Activity', 'Location', 'Price (INR)', 'Opening Hrs', 'Duration', 'Status', 'Map', 'Notes']];
+      const rows = [['Day', 'Date', 'City', 'Time', 'Type', 'Activity', 'Location', 'Price (INR)', 'Opening Hrs', 'Duration', 'Status', 'Map', 'Notes']];
       DATA.days.forEach(d => d.rows.forEach(r => {
-        rows.push([d.label, d.date, cityLabel(d.city), r.time, r.act, r.loc, r.price, r.hrs, r.dur, r.status, r.map, r.notes]);
+        rows.push([d.label, d.date, cityLabel(d.city), r.time, r.type, r.act, r.loc, r.price, r.hrs, r.dur, r.status, r.map, r.notes]);
       }));
       const csv = rows.map(r => r.map(c => `"${String(c || '').replace(/"/g, '""')}"`).join(',')).join('\n');
       const a = document.createElement('a');
