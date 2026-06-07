@@ -802,15 +802,16 @@
   </div>
 
   <div class="main">
-    <div class="toolbar">
-      <div class="filter-tabs">
-        <button class="ftab active" onclick="filterBy('all',this)">All</button>
-        <button class="ftab" onclick="filterBy('bcn',this)">Barcelona</button>
-        <button class="ftab" onclick="filterBy('rom',this)">Rome</button>
-        <button class="ftab" onclick="filterBy('ven',this)">Venice</button>
-        <button class="ftab" onclick="filterBy('tra',this)">Flights</button>
+    <div class="toolbar" style="flex-direction: column; align-items: flex-start; gap: 0.75rem;">
+      <div style="display: flex; width: 100%; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+        <div class="filter-tabs" id="main-filter-tabs">
+          <button class="ftab active" onclick="setMainFilter('all', this)">All</button>
+          <button class="ftab" onclick="setMainFilter('place', this)">📍 Places</button>
+          <button class="ftab" onclick="setMainFilter('travel', this)">🚇 Travel</button>
+        </div>
+        <button class="export-btn" onclick="exportCSV()">Export CSV</button>
       </div>
-      <button class="export-btn" onclick="exportCSV()">Export CSV</button>
+      <div class="sub-toolbar" id="sub-filter-tabs" style="border-top: none; padding-top: 0; margin-top: 0; display: none;"></div>
     </div>
     <div id="root"></div>
   </div>
@@ -927,7 +928,8 @@
 
     let DATA = null;
     let saveTimer = null;
-    let currentSubFilter = 'all';
+    let mainFilter = 'all';     // 'all', 'place', 'travel'
+    let subFilter = 'all';      // 'all', 'bcn', 'rom', 'ven', 'flight', 'train', 'bus'
 
     const TIME_OPTIONS = ['Early Morning', 'Morning', 'Afternoon', 'Late Afternoon', 'Evening', 'Night', 'Late Night', 'All day', '—'];
     const TYPE_OPTIONS = ['place', 'flight', 'train', 'bus'];
@@ -1039,15 +1041,44 @@
     /* ── RENDER ── */
     function render() {
       updateStats();
-      renderSubFilters();
+
+      const subBar = document.getElementById('sub-filter-tabs');
+      if (mainFilter === 'all') {
+        subBar.style.display = 'none';
+        subBar.innerHTML = '';
+      } else {
+        subBar.style.display = 'flex';
+        let html = '';
+        if (mainFilter === 'place') {
+          const places = [{ id: 'all', l: 'All' }, { id: 'bcn', l: 'Barcelona' }, { id: 'rom', l: 'Rome' }, { id: 'ven', l: 'Venice' }];
+          html = places.map(p => `<button class="ftab-sub ${subFilter === p.id ? 'active' : ''}" onclick="setSubFilter('${p.id}')">${p.l}</button>`).join('');
+        } else if (mainFilter === 'travel') {
+          const transits = [{ id: 'all', l: 'All' }, { id: 'flight', l: '✈️ Flight' }, { id: 'train', l: '🚂 Train' }, { id: 'bus', l: '🚌 Bus/Taxi' }];
+          html = transits.map(t => `<button class="ftab-sub ${subFilter === t.id ? 'active' : ''}" onclick="setSubFilter('${t.id}')">${t.l}</button>`).join('');
+        }
+        subBar.innerHTML = html;
+      }
+
       const root = document.getElementById('root');
       root.innerHTML = '';
-      const days = DATA.days.filter(filterMatches);
-      if (!days.length) { root.innerHTML = '<div class="no-rows">No days match this filter.</div>'; return; }
-      days.forEach(day => {
+
+      DATA.days.forEach(day => {
+        // Filter rows using the new matching rule
+        const matchedRows = day.rows.filter(row => filterMatchesRow(row, day.city));
+        if (matchedRows.length === 0 && mainFilter !== 'all') return; // hide empty day sections when actively filtering
+
         const sec = buildDayShell(day);
-        root.appendChild(sec);       /* append FIRST so IDs exist in DOM */
-        populateRows(day);           /* then fill rows */
+        root.appendChild(sec);
+
+        const tbody = document.getElementById('tb-' + day.id);
+        const mc = document.getElementById('mc-' + day.id);
+        if (tbody) tbody.innerHTML = '';
+        if (mc) mc.innerHTML = '';
+
+        matchedRows.forEach(row => {
+          if (tbody) tbody.appendChild(buildDesktopRow(day, row));
+          if (mc) mc.appendChild(buildMobileCard(day, row));
+        });
       });
     }
 
@@ -1269,7 +1300,7 @@
       const day = DATA.days.find(d => d.id === dayId); if (!day) return;
       const newRow = { id: uid(), time: '—', dur: '', act: '', loc: '', price: '', hrs: '', status: '-', type: 'place', map: '', notes: '' };
       day.rows.push(newRow);
-      populateRows(day);
+      render();
       updateStats();
       scheduleSave();
       const mc = document.getElementById('mc-' + dayId);
@@ -1280,7 +1311,7 @@
       const day = DATA.days.find(d => d.id === dayId); if (!day) return;
       if (day.rows.length <= 1) { alert('A day needs at least one entry.'); return; }
       day.rows = day.rows.filter(r => r.id !== rowId);
-      populateRows(day);
+      render();
       updateStats();
       scheduleSave();
     }
@@ -1300,46 +1331,33 @@
       document.getElementById('total-nb').textContent = nb;
     }
 
-    function filterBy(city, btn) {
-      currentFilter = city;
-      currentSubFilter = 'all'; // Reset sub-filter
-      document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+    function setMainFilter(val, btn) {
+      mainFilter = val;
+      subFilter = 'all'; // reset sub-tier
+      document.querySelectorAll('#main-filter-tabs .ftab').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       render();
     }
 
     function setSubFilter(val) {
-      currentSubFilter = val;
+      subFilter = val;
       render();
     }
 
-    function renderSubFilters() {
-      const toolbar = document.querySelector('.toolbar');
-      let subWrap = document.querySelector('.sub-toolbar');
-      if (!subWrap) {
-        subWrap = document.createElement('div');
-        subWrap.className = 'sub-toolbar';
-        toolbar.appendChild(subWrap);
-      }
+    function filterMatchesRow(row, dayCity) {
+      // Tier 1 Check
+      if (mainFilter === 'place' && row.type !== 'place') return false;
+      if (mainFilter === 'travel' && row.type === 'place') return false;
 
-      let html = '';
-      if (currentFilter === 'tra') {
-        const subs = [
-          { id: 'all', lab: 'All Flights' },
-          { id: 'flight', lab: '✈️ Flights' },
-          { id: 'train', lab: '🚂 Trains' },
-          { id: 'bus', lab: '🚌 Bus/Taxi' }
-        ];
-        html = subs.map(s => `<button class="ftab-sub ${currentSubFilter === s.id ? 'active' : ''}" onclick="setSubFilter('${s.id}')">${s.lab}</button>`).join('');
-      } else {
-        const subs = [
-          { id: 'all', lab: 'All' },
-          { id: 'place', lab: '📍 Places Only' },
-          { id: 'travel', lab: '🚇 Transit Only' }
-        ];
-        html = subs.map(s => `<button class="ftab-sub ${currentSubFilter === s.id ? 'active' : ''}" onclick="setSubFilter('${s.id}')">${s.lab}</button>`).join('');
+      // Tier 2 Check
+      if (subFilter === 'all') return true;
+      if (mainFilter === 'place') {
+        return dayCity === subFilter;
       }
-      subWrap.innerHTML = html;
+      if (mainFilter === 'travel') {
+        return row.type === subFilter;
+      }
+      return true;
     }
 
     function exportCSV() {
