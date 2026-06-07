@@ -383,9 +383,20 @@
   }
 
   @media (max-width: 600px) {
-    .col-dur, .col-travel, .col-hours { display: none; }
+    .col-dur, .col-travel, .col-hours, .col-gmap, .col-time { display: none !important; }
     .col-notes { width: 80px; }
     .col-price { width: 70px; }
+    .mobile-badge {
+      display: inline-block;
+      font-size: 10px;
+      padding: 1px 5px;
+      border-radius: 4px;
+      margin-right: 4px;
+      background: var(--accent-bg);
+      color: var(--accent);
+      border: 1px solid var(--accent-border);
+      vertical-align: middle;
+    }
   }
 </style>
 </head>
@@ -570,7 +581,7 @@ const JSONBIN_REAL_KEY = '$2a$10$g5NisBs8yQWHrCHHY9cPce5bW1Wh9hlfpPVm2jj5nkUDkMo
 async function loadData() {
   setSyncState('syncing', 'Connecting…');
   try {
-    const res = await fetch(`${JSONBIN_URL}/${BIN_REAL_ID}/latest?meta=false`, {
+    const res = await fetch(`${JSONBIN_URL}/${BIN_REAL_ID}/latest?meta=false&nocache=${Date.now()}`, {
       headers: { 'X-Master-Key': JSONBIN_REAL_KEY }
     });
     if (!res.ok) throw new Error('Fetch failed');
@@ -591,7 +602,7 @@ async function saveData() {
   showBanner('Saving…');
   try {
     setSyncState('syncing', 'Saving…');
-    const res = await fetch(`${JSONBIN_URL}/${BIN_REAL_ID}?meta=false`, {
+    const res = await fetch(`${JSONBIN_URL}/${BIN_REAL_ID}?meta=false&nocache=${Date.now()}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -719,19 +730,28 @@ function renderRows(day) {
     ).join('');
 
     tr.innerHTML = `
-      <td><input class="cell-input" value="${esc(row.time)}" data-field="time" placeholder="Morning"></td>
-      <td><input class="cell-input" value="${esc(row.duration)}" data-field="duration" placeholder="—"></td>
-      <td><input class="cell-input" value="${esc(row.travel)}" data-field="travel" placeholder="—"></td>
-      <td><input class="cell-input" value="${esc(row.activity)}" data-field="activity" placeholder="Activity"></td>
+      <td class="col-time"><input class="cell-input" value="${esc(row.time)}" data-field="time" placeholder="Morning"></td>
+      <td class="col-dur"><input class="cell-input" value="${esc(row.duration)}" data-field="duration" placeholder="—"></td>
+      <td class="col-travel"><input class="cell-input" value="${esc(row.travel)}" data-field="travel" placeholder="—"></td>
+      <td>
+        ${row.time ? `<span class="mobile-badge" style="display:none;" id="mb-time-${row.id}">${esc(row.time)}</span>` : ''}
+        <input class="cell-input" value="${esc(row.activity)}" data-field="activity" placeholder="Activity">
+        ${row.gmap && row.gmap.startsWith('http') ? `<a href="${row.gmap}" target="_blank" class="mobile-badge" style="display:none; text-decoration:none; margin-top:0;" id="mb-map-${row.id}">📍 Map</a>` : ''}
+        <style>
+          @media (max-width: 600px) {
+            #mb-time-${row.id}, #mb-map-${row.id} { display: inline-block !important; }
+          }
+        </style>
+      </td>
       <td><input class="cell-input" value="${esc(row.location)}" data-field="location" placeholder="Location"></td>
       <td><input class="cell-input" value="${esc(row.price)}" data-field="price" placeholder="0" type="text"></td>
-      <td><input class="cell-input" value="${esc(row.hours)}" data-field="hours" placeholder="—"></td>
+      <td class="col-hours"><input class="cell-input" value="${esc(row.hours)}" data-field="hours" placeholder="—"></td>
       <td>
         <select class="cell-input status-select" data-field="status" style="color: inherit;">
           ${statusOpts}
         </select>
       </td>
-      <td>
+      <td class="col-gmap">
         <input class="cell-input" value="${esc(row.gmap)}" data-field="gmap" placeholder="Paste link...">
         ${row.gmap && row.gmap.startsWith('http') ? `<a href="${row.gmap}" target="_blank" style="font-size:11px; color:var(--accent); text-decoration:none; display:block; margin-top:2px;">📍 View Map</a>` : ''}
       </td>
