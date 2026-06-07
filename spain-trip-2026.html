@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spain Trip 2026 — Rahul</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #faf8f4;
+    --card: #ffffff;
+    --border: #e8e2d9;
+    --border-strong: #c8bfb0;
+    --text: #1a1714;
+    --text-muted: #6b6158;
+    --text-faint: #a09589;
+    --accent: #c2401a;
+    --accent-bg: #fdf0ec;
+    --accent-border: #f5c4b0;
+    --tag-booked-bg: #eaf3de; --tag-booked: #3b6d11;
+    --tag-not-bg: #faeeda; --tag-not: #854f0b;
+    --tag-free-bg: #e6f1fb; --tag-free: #185fa5;
+    --tag-dash-bg: #f1efe8; --tag-dash: #5f5e5a;
+    --day-barcelona: #e6f1fb; --day-rome: #fff0e8; --day-venice: #edf7ed; --day-transit: #f5f0fa;
+    --shadow: 0 1px 4px rgba(0,0,0,0.06);
+    --radius: 10px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1714; --card: #242018; --border: #3a342c; --border-strong: #5a5047;
+      --text: #f0ebe3; --text-muted: #a89e92; --text-faint: #6b6158;
+      --accent: #e8673a; --accent-bg: #2a1a12; --accent-border: #6a3020;
+      --tag-booked-bg: #173404; --tag-booked: #97c459;
+      --tag-not-bg: #412402; --tag-not: #fac775;
+      --tag-free-bg: #042c53; --tag-free: #85b7eb;
+      --tag-dash-bg: #2c2c2a; --tag-dash: #b4b2a9;
+      --day-barcelona: #0c1a2a; --day-rome: #2a1a0a; --day-venice: #0a1e0a; --day-transit: #1a1224;
+    }
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .hero {
+    background: var(--accent-bg);
+    border-bottom: 1px solid var(--accent-border);
+    padding: 2rem 1.5rem 1.5rem;
+  }
+
+  .hero-inner { max-width: 900px; margin: 0 auto; }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    font-weight: 300;
+  }
+
+  .cost-strip {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .cost-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.6rem 1rem;
+    min-width: 140px;
+  }
+
+  .cost-card .label {
+    font-size: 11px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  .cost-card .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-top: 1px;
+  }
+
+  .sync-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-faint);
+    margin-top: 0.75rem;
+  }
+
+  .sync-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #97c459;
+    flex-shrink: 0;
+  }
+
+  .sync-dot.syncing { background: #fac775; animation: pulse 1s infinite; }
+  .sync-dot.error { background: #e24b4a; }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  .main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+
+  .legend {
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .legend-item {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 12px; color: var(--text-muted);
+  }
+
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 3px;
+  }
+
+  .day-section { margin-bottom: 2rem; }
+
+  .day-header {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .day-badge {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .day-date {
+    font-size: 12px; color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .day-city {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-left: auto;
+  }
+
+  .city-barcelona { background: var(--day-barcelona); color: #185fa5; }
+  .city-rome      { background: var(--day-rome);      color: #993c1d; }
+  .city-venice    { background: var(--day-venice);    color: #3b6d11; }
+  .city-transit   { background: var(--day-transit);   color: #534ab7; }
+
+  @media (prefers-color-scheme: dark) {
+    .city-barcelona { color: #85b7eb; }
+    .city-rome      { color: #f0997b; }
+    .city-venice    { color: #97c459; }
+    .city-transit   { color: #afa9ec; }
+  }
+
+  .add-row-btn {
+    display: flex; align-items: center; gap: 6px;
+    background: transparent;
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius);
+    padding: 0.5rem 1rem;
+    font-size: 12px;
+    color: var(--text-faint);
+    cursor: pointer;
+    width: 100%;
+    margin-top: 0.4rem;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .add-row-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  thead th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-faint);
+    font-weight: 500;
+    padding: 0 8px 6px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  /* col widths */
+  .col-time    { width: 90px; }
+  .col-dur     { width: 70px; }
+  .col-travel  { width: 70px; }
+  .col-act     { width: auto; }
+  .col-loc     { width: 120px; }
+  .col-price   { width: 85px; }
+  .col-hours   { width: 90px; }
+  .col-status  { width: 100px; }
+  .col-notes   { width: 140px; }
+  .col-del     { width: 30px; }
+
+  tr.entry {
+    border-radius: var(--radius);
+    transition: background 0.1s;
+  }
+
+  tr.entry:hover td { background: var(--accent-bg); }
+
+  td {
+    padding: 4px 8px;
+    vertical-align: top;
+  }
+
+  td:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+  td:last-child  { border-radius: 0 var(--radius) var(--radius) 0; }
+
+  .cell-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    padding: 3px 0;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+  }
+
+  .cell-input:focus {
+    background: var(--card);
+    border-radius: 4px;
+    padding: 3px 5px;
+    box-shadow: 0 0 0 2px var(--accent-border);
+  }
+
+  .status-select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    outline: none;
+    padding: 2px 0;
+    color: var(--text);
+  }
+
+  .status-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .s-booked   { background: var(--tag-booked-bg); color: var(--tag-booked); }
+  .s-not      { background: var(--tag-not-bg);    color: var(--tag-not);    }
+  .s-free     { background: var(--tag-free-bg);   color: var(--tag-free);   }
+  .s-dash     { background: var(--tag-dash-bg);   color: var(--tag-dash);   }
+
+  .del-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-faint);
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1;
+    transition: color 0.1s;
+  }
+  .del-btn:hover { color: #e24b4a; }
+
+  .save-banner {
+    position: fixed;
+    bottom: 1.5rem; right: 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.5rem 1rem;
+    font-size: 13px;
+    color: var(--text-muted);
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.2s;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .save-banner.show { opacity: 1; transform: translateY(0); }
+
+  .toolbar {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .filter-tabs {
+    display: flex; gap: 4px;
+  }
+
+  .ftab {
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: transparent;
+    font-size: 12px;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+  }
+
+  .ftab.active, .ftab:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .export-btn {
+    padding: 5px 14px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: transparent;
+    font-size: 12px;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+  }
+  .export-btn:hover { border-color: var(--border-strong); color: var(--text); }
+
+  .section-toggle {
+    display: flex; align-items: center; gap: 6px;
+    background: transparent; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .no-rows {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 13px;
+    color: var(--text-faint);
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .col-dur, .col-travel, .col-hours { display: none; }
+    .col-notes { width: 80px; }
+    .col-price { width: 70px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>✈ Spain Trip 2026</h1>
+    <div class="hero-sub">Jun 11 – Jun 25 &nbsp;·&nbsp; BLR → BCN → Rome → Venice → BCN → BLR</div>
+    <div class="cost-strip">
+      <div class="cost-card">
+        <div class="label">Total logged (INR)</div>
+        <div class="value" id="total-cost">₹0</div>
+      </div>
+      <div class="cost-card">
+        <div class="label">Activities</div>
+        <div class="value" id="total-acts">0</div>
+      </div>
+      <div class="cost-card">
+        <div class="label">Booked</div>
+        <div class="value" id="total-booked">0</div>
+      </div>
+      <div class="cost-card">
+        <div class="label">Not booked</div>
+        <div class="value" id="total-notbooked">0</div>
+      </div>
+    </div>
+    <div class="sync-status">
+      <div class="sync-dot" id="sync-dot"></div>
+      <span id="sync-label">Loading data…</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="toolbar">
+    <div class="filter-tabs">
+      <button class="ftab active" onclick="filterBy('all', this)">All</button>
+      <button class="ftab" onclick="filterBy('Barcelona', this)">Barcelona</button>
+      <button class="ftab" onclick="filterBy('Rome', this)">Rome</button>
+      <button class="ftab" onclick="filterBy('Venice', this)">Venice</button>
+      <button class="ftab" onclick="filterBy('transit', this)">Flights/Trains</button>
+    </div>
+    <button class="export-btn" onclick="exportCSV()">Export CSV</button>
+  </div>
+
+  <div id="itinerary-root"></div>
+</div>
+
+<div class="save-banner" id="save-banner">Saving…</div>
+
+<script>
+const BIN_ID = 'spain-trip-2026-rahul-v1';
+const JSONBIN_URL = 'https://api.jsonbin.io/v3/b';
+const JSONBIN_KEY = '$2a$10$placeholder_will_be_set';
+
+const DEFAULT_DATA = {
+  days: [
+    {
+      id: 'd01', label: 'Day 1', date: '11 Jun', city: 'transit',
+      rows: [
+        { id: 'r001', time: 'Evening', duration: '', travel: '', activity: 'Depart BLR Terminal 2', location: 'Bengaluru (BLR)', price: '', hours: '22:15', status: 'Booked', notes: 'Etihad via AUH. T2.' },
+        { id: 'r002', time: 'Late Night', duration: '9h 20m total', travel: '1h 55m layover', activity: 'Layover — Abu Dhabi (AUH)', location: 'Abu Dhabi (AUH)', price: '', hours: '00:35–02:30', status: 'Booked', notes: '' },
+      ]
+    },
+    {
+      id: 'd02', label: 'Day 2', date: '12 Jun', city: 'Barcelona',
+      rows: [
+        { id: 'r003', time: 'Morning', duration: '', travel: '', activity: 'Arrive BCN Terminal 1', location: 'Barcelona (BCN)', price: '', hours: '07:35', status: 'Booked', notes: 'Check in to accommodation' },
+        { id: 'r004', time: 'Afternoon', duration: '', travel: '', activity: 'Rest / explore neighbourhood', location: 'Barcelona', price: '', hours: '-', status: '-', notes: '' },
+      ]
+    },
+    {
+      id: 'd03', label: 'Day 3', date: '13 Jun', city: 'Barcelona',
+      rows: [
+        { id: 'r005', time: 'Morning', duration: '3 hours', travel: '', activity: 'La Sagrada Família', location: 'Barcelona', price: '3500', hours: '9am–7pm', status: 'Not Booked', notes: 'Book tickets online in advance' },
+        { id: 'r006', time: 'Afternoon', duration: '2 hours', travel: '', activity: 'Park Güell', location: 'Barcelona', price: '1500', hours: '8am–8pm', status: 'Not Booked', notes: '' },
+        { id: 'r007', time: 'Evening', duration: '', travel: '', activity: 'Las Ramblas & Gothic Quarter stroll', location: 'Barcelona', price: '', hours: '-', status: 'Free', notes: '' },
+      ]
+    },
+    {
+      id: 'd04', label: 'Day 4', date: '14 Jun', city: 'Barcelona',
+      rows: [
+        { id: 'r008', time: 'Morning', duration: '2 hours', travel: '', activity: 'Camp Nou Stadium Tour', location: 'Barcelona', price: '2800', hours: '9:30am–6:30pm', status: 'Not Booked', notes: '' },
+        { id: 'r009', time: 'Afternoon', duration: '', travel: '', activity: 'Barceloneta Beach', location: 'Barcelona', price: '', hours: '-', status: 'Free', notes: '' },
+      ]
+    },
+    {
+      id: 'd05', label: 'Day 5', date: '15 Jun', city: 'Barcelona',
+      rows: [
+        { id: 'r010', time: 'All day', duration: '', travel: '', activity: 'Day trip — Montserrat monastery & mountain', location: 'Montserrat', price: '2500', hours: '9am–6pm', status: 'Not Booked', notes: 'Train from Plaça Espanya' },
+      ]
+    },
+    {
+      id: 'd06', label: 'Day 6', date: '16 Jun', city: 'Barcelona',
+      rows: [
+        { id: 'r011', time: 'Morning', duration: '2 hours', travel: '', activity: 'Picasso Museum', location: 'Barcelona', price: '1400', hours: '10am–7pm', status: 'Not Booked', notes: '' },
+        { id: 'r012', time: 'Afternoon', duration: '', travel: '', activity: 'El Born neighbourhood & Santa Maria del Mar', location: 'Barcelona', price: '', hours: '-', status: 'Free', notes: '' },
+        { id: 'r013', time: 'Evening', duration: '', travel: '', activity: 'Tapas dinner on Carrer del Parlament', location: 'Barcelona', price: '2000', hours: '-', status: '-', notes: '' },
+      ]
+    },
+    {
+      id: 'd07', label: 'Day 7', date: '17 Jun', city: 'Barcelona',
+      rows: [
+        { id: 'r014', time: 'Morning', duration: '2 hours', travel: '', activity: 'Casa Batlló / Casa Milà (La Pedrera)', location: 'Barcelona', price: '3000', hours: '9am–9pm', status: 'Not Booked', notes: 'Pick one or both on Passeig de Gràcia' },
+        { id: 'r015', time: 'Afternoon', duration: '', travel: '', activity: 'Palau de la Música Catalana', location: 'Barcelona', price: '2000', hours: '10am–6pm', status: 'Not Booked', notes: '' },
+      ]
+    },
+    {
+      id: 'd08', label: 'Day 8', date: '18 Jun', city: 'Barcelona',
+      rows: [
+        { id: 'r016', time: 'All day', duration: '', travel: '', activity: 'Business / work day', location: 'Barcelona', price: '', hours: '-', status: 'Booked', notes: 'Work commitments' },
+      ]
+    },
+    {
+      id: 'd09', label: 'Day 9', date: '19 Jun', city: 'Barcelona',
+      rows: [
+        { id: 'r017', time: 'Morning', duration: '', travel: '', activity: 'Tibidabo Amusement Park & views', location: 'Barcelona', price: '3500', hours: '10am–8pm', status: 'Not Booked', notes: '' },
+        { id: 'r018', time: 'Evening', duration: '', travel: '', activity: 'Pack & prep for Rome departure', location: 'Barcelona', price: '', hours: '-', status: '-', notes: '' },
+        { id: 'r019', time: 'Night', duration: '1h 55m', travel: '', activity: 'Flight BCN → Rome FCO', location: 'BCN → FCO', price: '4506', hours: '21:45 depart', status: 'Not Booked', notes: 'Arrive 23:40. Option 2a from plan.txt' },
+      ]
+    },
+    {
+      id: 'd10', label: 'Day 10', date: '20 Jun', city: 'Rome',
+      rows: [
+        { id: 'r020', time: 'Early Morning', duration: '', travel: '', activity: 'Arrive Rome Fiumicino (FCO) & transfer to hotel', location: 'Rome', price: '', hours: '23:40 arrival', status: 'Not Booked', notes: 'Check in / drop bags' },
+        { id: 'r021', time: 'Morning', duration: '3 hours', travel: '', activity: 'Colosseum & Roman Forum', location: 'Rome', price: '3500', hours: '9am–7pm', status: 'Not Booked', notes: 'Book skip-the-line tickets' },
+        { id: 'r022', time: 'Afternoon', duration: '2 hours', travel: '', activity: 'Palatine Hill', location: 'Rome', price: '', hours: '-', status: 'Free', notes: 'Included with Colosseum ticket' },
+        { id: 'r023', time: 'Evening', duration: '', travel: '', activity: 'Trastevere neighbourhood dinner', location: 'Rome', price: '2000', hours: '-', status: '-', notes: '' },
+      ]
+    },
+    {
+      id: 'd11', label: 'Day 11', date: '21 Jun', city: 'Rome',
+      rows: [
+        { id: 'r024', time: 'Morning', duration: '3 hours', travel: '', activity: 'Vatican Museums & Sistine Chapel', location: 'Vatican City', price: '3000', hours: '9am–6pm', status: 'Not Booked', notes: 'Book months ahead — very busy' },
+        { id: 'r025', time: 'Afternoon', duration: '1 hour', travel: '', activity: "St. Peter's Basilica & Square", location: 'Vatican City', price: '', hours: '7am–7pm', status: 'Free', notes: '' },
+        { id: 'r026', time: 'Evening', duration: '', travel: '', activity: 'Piazza Navona & Pantheon area stroll', location: 'Rome', price: '', hours: '-', status: 'Free', notes: '' },
+      ]
+    },
+    {
+      id: 'd12', label: 'Day 12', date: '22 Jun', city: 'Rome',
+      rows: [
+        { id: 'r027', time: 'Morning', duration: '', travel: '', activity: 'Trevi Fountain & Spanish Steps', location: 'Rome', price: '', hours: '24hrs', status: 'Free', notes: 'Go early to avoid crowds' },
+        { id: 'r028', time: 'Afternoon', duration: '', travel: '', activity: 'Borghese Gallery (pre-book)', location: 'Rome', price: '2500', hours: '9am–7pm', status: 'Not Booked', notes: 'Strictly timed entry — must book' },
+        { id: 'r029', time: 'Night', duration: '7h 45m overnight', travel: '', activity: 'Overnight train Rome → Venice', location: 'Rome → Venice', price: '4246', hours: '22:35 depart', status: 'Not Booked', notes: 'Arrives Venice 06:20. Option 1 from plan.txt' },
+      ]
+    },
+    {
+      id: 'd13', label: 'Day 13', date: '23 Jun', city: 'Venice',
+      rows: [
+        { id: 'r030', time: 'Early Morning', duration: '', travel: '', activity: 'Arrive Venice Santa Lucia & drop bags', location: 'Venice', price: '', hours: '06:20 arrival', status: '-', notes: '' },
+        { id: 'r031', time: 'Morning', duration: '2 hours', travel: '', activity: "St. Mark's Basilica & Doge's Palace", location: "St. Mark's Square", price: '2500', hours: '9am–5pm', status: 'Not Booked', notes: 'Book online to skip queues' },
+        { id: 'r032', time: 'Afternoon', duration: '1.5 hours', travel: '', activity: 'Gondola ride through canals', location: 'Venice', price: '5000', hours: '-', status: 'Not Booked', notes: '~80 EUR for 30 min shared gondola' },
+        { id: 'r033', time: 'Late Afternoon', duration: '', travel: '', activity: 'Rialto Bridge & market area', location: 'Venice', price: '', hours: '-', status: 'Free', notes: '' },
+        { id: 'r034', time: 'Evening', duration: '', travel: '', activity: 'Sunset from Punta della Dogana', location: 'Venice', price: '', hours: '-', status: 'Free', notes: 'Best sunset spot in Venice' },
+        { id: 'r035', time: 'Night', duration: '', travel: '', activity: 'Last dinner in Venice — seafood risotto', location: 'Venice', price: '2500', hours: '-', status: '-', notes: '' },
+      ]
+    },
+    {
+      id: 'd14', label: 'Day 14', date: '24 Jun', city: 'transit',
+      rows: [
+        { id: 'r036', time: 'Morning', duration: '2h', travel: '', activity: 'Flight VCE → BCN', location: 'Venice → Barcelona', price: '1388', hours: '09:10 depart', status: 'Not Booked', notes: 'Arrives BCN 11:10. Option 1 from plan.txt' },
+        { id: 'r037', time: 'Afternoon', duration: '', travel: '', activity: 'BCN layover — rest / city if time allows', location: 'Barcelona', price: '', hours: '-', status: '-', notes: 'Return flight at 22:30' },
+        { id: 'r038', time: 'Night', duration: '', travel: '', activity: 'Depart BCN → AUH → BLR (Etihad)', location: 'BCN → BLR', price: '', hours: '22:30 depart', status: 'Booked', notes: 'Terminal 1. Arrives BLR 25 Jun 14:15' },
+      ]
+    },
+    {
+      id: 'd15', label: 'Day 15', date: '25 Jun', city: 'transit',
+      rows: [
+        { id: 'r039', time: 'Afternoon', duration: '', travel: '', activity: 'Arrive BLR Terminal 2', location: 'Bengaluru (BLR)', price: '', hours: '14:15', status: 'Booked', notes: 'Layover AUH 07:05–08:40' },
+      ]
+    },
+  ]
+};
+
+let DATA = null;
+let BIN_REAL_ID = null;
+let saveTimer = null;
+let currentFilter = 'all';
+
+const JSONBIN_REAL_KEY = '$2a$10$g5NisBs8yQWHrCHHY9cPce5bW1Wh9hlfpPVm2jj5nkUDkMo0N9fRa';
+
+async function loadData() {
+  setSyncState('syncing', 'Connecting…');
+  try {
+    const stored = localStorage.getItem('binId_spain2026');
+    if (stored) BIN_REAL_ID = stored;
+
+    if (!BIN_REAL_ID) {
+      const res = await fetch(`${JSONBIN_URL}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': JSONBIN_REAL_KEY,
+          'X-Bin-Name': 'spain-trip-2026',
+          'X-Bin-Private': 'false'
+        },
+        body: JSON.stringify(DEFAULT_DATA)
+      });
+      if (!res.ok) throw new Error('Create failed');
+      const json = await res.json();
+      BIN_REAL_ID = json.metadata.id;
+      localStorage.setItem('binId_spain2026', BIN_REAL_ID);
+      DATA = DEFAULT_DATA;
+    } else {
+      const res = await fetch(`${JSONBIN_URL}/${BIN_REAL_ID}/latest`, {
+        headers: { 'X-Master-Key': JSONBIN_REAL_KEY }
+      });
+      if (!res.ok) throw new Error('Fetch failed');
+      const json = await res.json();
+      DATA = json.record;
+    }
+    setSyncState('ok', 'Synced · anyone with this link can edit');
+    render();
+  } catch(e) {
+    console.warn('JSONBin failed, using local:', e);
+    const local = localStorage.getItem('spainTrip2026_local');
+    DATA = local ? JSON.parse(local) : DEFAULT_DATA;
+    setSyncState('error', 'Offline mode — data saved locally');
+    render();
+  }
+}
+
+async function saveData() {
+  localStorage.setItem('spainTrip2026_local', JSON.stringify(DATA));
+  showBanner('Saving…');
+  if (!BIN_REAL_ID) { showBanner('Saved locally'); return; }
+  try {
+    setSyncState('syncing', 'Saving…');
+    const res = await fetch(`${JSONBIN_URL}/${BIN_REAL_ID}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_REAL_KEY
+      },
+      body: JSON.stringify(DATA)
+    });
+    if (!res.ok) throw new Error('Save failed');
+    setSyncState('ok', 'Saved · ' + new Date().toLocaleTimeString());
+    showBanner('Saved ✓');
+  } catch(e) {
+    setSyncState('error', 'Save failed — data kept locally');
+    showBanner('Saved locally ✓');
+  }
+}
+
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveData, 1200);
+}
+
+function setSyncState(state, msg) {
+  const dot = document.getElementById('sync-dot');
+  const label = document.getElementById('sync-label');
+  dot.className = 'sync-dot' + (state === 'syncing' ? ' syncing' : state === 'error' ? ' error' : '');
+  label.textContent = msg;
+}
+
+function showBanner(msg) {
+  const b = document.getElementById('save-banner');
+  b.textContent = msg;
+  b.classList.add('show');
+  clearTimeout(b._t);
+  b._t = setTimeout(() => b.classList.remove('show'), 2000);
+}
+
+function uid() { return 'r' + Math.random().toString(36).slice(2, 9); }
+
+function statusClass(s) {
+  if (s === 'Booked') return 's-booked';
+  if (s === 'Not Booked') return 's-not';
+  if (s === 'Free') return 's-free';
+  return 's-dash';
+}
+
+function cityClass(c) {
+  if (c === 'Barcelona') return 'city-barcelona';
+  if (c === 'Rome') return 'city-rome';
+  if (c === 'Venice') return 'city-venice';
+  return 'city-transit';
+}
+
+function cityLabel(c) {
+  if (c === 'Barcelona') return 'Barcelona';
+  if (c === 'Rome') return 'Rome';
+  if (c === 'Venice') return 'Venice';
+  return 'Flight / Transit';
+}
+
+function filterMatches(day) {
+  if (currentFilter === 'all') return true;
+  if (currentFilter === 'transit') return day.city === 'transit';
+  return day.city === currentFilter;
+}
+
+function render() {
+  updateStats();
+  const root = document.getElementById('itinerary-root');
+  root.innerHTML = '';
+
+  const days = DATA.days.filter(filterMatches);
+  if (days.length === 0) {
+    root.innerHTML = '<div class="no-rows">No days match this filter.</div>';
+    return;
+  }
+
+  days.forEach(day => {
+    const sec = document.createElement('div');
+    sec.className = 'day-section';
+    sec.dataset.dayId = day.id;
+
+    sec.innerHTML = `
+      <div class="day-header">
+        <span class="day-badge">${day.label}</span>
+        <span class="day-date">${day.date}</span>
+        <span class="day-city ${cityClass(day.city)}">${cityLabel(day.city)}</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-time">Time</th>
+            <th class="col-dur">Duration</th>
+            <th class="col-travel">Travel time</th>
+            <th class="col-act">Activity</th>
+            <th class="col-loc">Location</th>
+            <th class="col-price">Price (₹)</th>
+            <th class="col-hours">Opening hrs</th>
+            <th class="col-status">Status</th>
+            <th class="col-notes">Notes</th>
+            <th class="col-del"></th>
+          </tr>
+        </thead>
+        <tbody id="tbody-${day.id}"></tbody>
+      </table>
+      <button class="add-row-btn" onclick="addRow('${day.id}')">+ Add activity</button>
+    `;
+    root.appendChild(sec);
+    renderRows(day);
+  });
+}
+
+function renderRows(day) {
+  const tbody = document.getElementById(`tbody-${day.id}`);
+  tbody.innerHTML = '';
+  day.rows.forEach(row => {
+    const tr = document.createElement('tr');
+    tr.className = 'entry';
+    tr.dataset.rowId = row.id;
+    tr.dataset.dayId = day.id;
+
+    const statuses = ['Booked', 'Not Booked', 'Free', '-'];
+    const statusOpts = statuses.map(s =>
+      `<option value="${s}" ${row.status === s ? 'selected' : ''}>${s}</option>`
+    ).join('');
+
+    tr.innerHTML = `
+      <td><input class="cell-input" value="${esc(row.time)}" data-field="time" placeholder="Morning"></td>
+      <td><input class="cell-input" value="${esc(row.duration)}" data-field="duration" placeholder="—"></td>
+      <td><input class="cell-input" value="${esc(row.travel)}" data-field="travel" placeholder="—"></td>
+      <td><input class="cell-input" value="${esc(row.activity)}" data-field="activity" placeholder="Activity"></td>
+      <td><input class="cell-input" value="${esc(row.location)}" data-field="location" placeholder="Location"></td>
+      <td><input class="cell-input" value="${esc(row.price)}" data-field="price" placeholder="0" type="text"></td>
+      <td><input class="cell-input" value="${esc(row.hours)}" data-field="hours" placeholder="—"></td>
+      <td>
+        <select class="cell-input status-select" data-field="status" style="color: inherit;">
+          ${statusOpts}
+        </select>
+      </td>
+      <td><input class="cell-input" value="${esc(row.notes)}" data-field="notes" placeholder="Notes"></td>
+      <td><button class="del-btn" title="Delete row" onclick="deleteRow('${day.id}','${row.id}')">×</button></td>
+    `;
+
+    tr.querySelectorAll('.cell-input').forEach(inp => {
+      inp.addEventListener('input', () => {
+        updateField(day.id, row.id, inp.dataset.field, inp.value);
+      });
+      inp.addEventListener('change', () => {
+        updateField(day.id, row.id, inp.dataset.field, inp.value);
+      });
+    });
+
+    tbody.appendChild(tr);
+  });
+}
+
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function updateField(dayId, rowId, field, value) {
+  const day = DATA.days.find(d => d.id === dayId);
+  if (!day) return;
+  const row = day.rows.find(r => r.id === rowId);
+  if (!row) return;
+  row[field] = value;
+  if (field === 'price') updateStats();
+  scheduleSave();
+}
+
+function addRow(dayId) {
+  const day = DATA.days.find(d => d.id === dayId);
+  if (!day) return;
+  day.rows.push({ id: uid(), time: '', duration: '', travel: '', activity: '', location: '', price: '', hours: '', status: '-', notes: '' });
+  renderRows(day);
+  updateStats();
+  scheduleSave();
+  const tbody = document.getElementById(`tbody-${dayId}`);
+  const lastRow = tbody.lastElementChild;
+  if (lastRow) lastRow.querySelector('input').focus();
+}
+
+function deleteRow(dayId, rowId) {
+  const day = DATA.days.find(d => d.id === dayId);
+  if (!day) return;
+  if (day.rows.length <= 1) { alert('A day must have at least one entry.'); return; }
+  day.rows = day.rows.filter(r => r.id !== rowId);
+  renderRows(day);
+  updateStats();
+  scheduleSave();
+}
+
+function updateStats() {
+  if (!DATA) return;
+  let total = 0, acts = 0, booked = 0, notBooked = 0;
+  DATA.days.forEach(d => d.rows.forEach(r => {
+    acts++;
+    const p = parseFloat(r.price);
+    if (!isNaN(p) && p > 0) total += p;
+    if (r.status === 'Booked') booked++;
+    if (r.status === 'Not Booked') notBooked++;
+  }));
+  document.getElementById('total-cost').textContent = '₹' + total.toLocaleString('en-IN');
+  document.getElementById('total-acts').textContent = acts;
+  document.getElementById('total-booked').textContent = booked;
+  document.getElementById('total-notbooked').textContent = notBooked;
+}
+
+function filterBy(city, btn) {
+  currentFilter = city;
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function exportCSV() {
+  const rows = [['Day','Date','City','Time','Duration','Travel Time','Activity','Location','Price (INR)','Opening Hours','Status','Notes']];
+  DATA.days.forEach(d => {
+    d.rows.forEach(r => {
+      rows.push([d.label, d.date, cityLabel(d.city), r.time, r.duration, r.travel, r.activity, r.location, r.price, r.hours, r.status, r.notes]);
+    });
+  });
+  const csv = rows.map(r => r.map(c => `"${String(c||'').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'spain-trip-2026.csv';
+  a.click();
+}
+
+loadData();
+</script>
+</body>
+</html>
