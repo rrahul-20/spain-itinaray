@@ -561,7 +561,7 @@ const DEFAULT_DATA = {
 };
 
 let DATA = null;
-let BIN_REAL_ID = null;
+let BIN_REAL_ID = '6a3d906de41b4d34e402a46c';
 let saveTimer = null;
 let currentFilter = 'all';
 
@@ -570,33 +570,12 @@ const JSONBIN_REAL_KEY = '$2a$10$g5NisBs8yQWHrCHHY9cPce5bW1Wh9hlfpPVm2jj5nkUDkMo
 async function loadData() {
   setSyncState('syncing', 'Connecting…');
   try {
-    const stored = localStorage.getItem('binId_spain2026');
-    if (stored) BIN_REAL_ID = stored;
-
-    if (!BIN_REAL_ID) {
-      const res = await fetch(`${JSONBIN_URL}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Master-Key': JSONBIN_REAL_KEY,
-          'X-Bin-Name': 'spain-trip-2026',
-          'X-Bin-Private': 'false'
-        },
-        body: JSON.stringify(DEFAULT_DATA)
-      });
-      if (!res.ok) throw new Error('Create failed');
-      const json = await res.json();
-      BIN_REAL_ID = json.metadata.id;
-      localStorage.setItem('binId_spain2026', BIN_REAL_ID);
-      DATA = DEFAULT_DATA;
-    } else {
-      const res = await fetch(`${JSONBIN_URL}/${BIN_REAL_ID}/latest`, {
-        headers: { 'X-Master-Key': JSONBIN_REAL_KEY }
-      });
-      if (!res.ok) throw new Error('Fetch failed');
-      const json = await res.json();
-      DATA = json.record;
-    }
+    const res = await fetch(`${JSONBIN_URL}/${BIN_REAL_ID}/latest`, {
+      headers: { 'X-Master-Key': JSONBIN_REAL_KEY }
+    });
+    if (!res.ok) throw new Error('Fetch failed');
+    const json = await res.json();
+    DATA = json.record;
     setSyncState('ok', 'Synced · anyone with this link can edit');
     render();
   } catch(e) {
@@ -611,7 +590,6 @@ async function loadData() {
 async function saveData() {
   localStorage.setItem('spainTrip2026_local', JSON.stringify(DATA));
   showBanner('Saving…');
-  if (!BIN_REAL_ID) { showBanner('Saved locally'); return; }
   try {
     setSyncState('syncing', 'Saving…');
     const res = await fetch(`${JSONBIN_URL}/${BIN_REAL_ID}`, {
