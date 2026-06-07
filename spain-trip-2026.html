@@ -89,7 +89,6 @@
       line-height: 1.5;
     }
 
-    /* ── HERO ── */
     .hero {
       background: var(--accent-bg);
       border-bottom: 1px solid var(--accent-border);
@@ -97,7 +96,7 @@
     }
 
     .hero-inner {
-      max-width: 960px;
+      max-width: 1100px;
       margin: 0 auto;
     }
 
@@ -149,21 +148,13 @@
       margin-top: 1px;
     }
 
-    .sync-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.75rem;
-    }
-
     .sync-status {
       display: flex;
       align-items: center;
       gap: 6px;
       font-size: 11px;
       color: var(--text-faint);
+      margin-top: 0.75rem;
     }
 
     .sync-dot {
@@ -195,9 +186,8 @@
       }
     }
 
-    /* ── MAIN ── */
     .main {
-      max-width: 960px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 1.25rem 1rem 4rem;
     }
@@ -254,7 +244,6 @@
       color: var(--text);
     }
 
-    /* ── DAY SECTION ── */
     .day-section {
       margin-bottom: 2rem;
     }
@@ -310,7 +299,6 @@
       color: var(--tra-fg);
     }
 
-    /* ── STATUS BADGES ── */
     .sbadge {
       display: inline-block;
       padding: 2px 7px;
@@ -318,7 +306,6 @@
       font-size: 11px;
       font-weight: 500;
       white-space: nowrap;
-      cursor: default;
     }
 
     .s-booked {
@@ -341,7 +328,7 @@
       color: var(--tag-dash);
     }
 
-    /* ── DESKTOP TABLE ── */
+    /* desktop table */
     .tbl-wrap {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
@@ -351,7 +338,7 @@
       width: 100%;
       border-collapse: collapse;
       table-layout: fixed;
-      min-width: 700px;
+      min-width: 860px;
     }
 
     thead th {
@@ -366,7 +353,7 @@
     }
 
     .ch-time {
-      width: 80px;
+      width: 75px;
     }
 
     .ch-act {
@@ -374,31 +361,35 @@
     }
 
     .ch-loc {
-      width: 110px;
+      width: 105px;
     }
 
     .ch-price {
-      width: 75px;
+      width: 68px;
     }
 
     .ch-hrs {
-      width: 85px;
+      width: 82px;
     }
 
     .ch-dur {
-      width: 65px;
+      width: 62px;
     }
 
     .ch-status {
-      width: 95px;
+      width: 90px;
+    }
+
+    .ch-map {
+      width: 72px;
     }
 
     .ch-notes {
-      width: 130px;
+      width: 125px;
     }
 
     .ch-del {
-      width: 28px;
+      width: 26px;
     }
 
     tr.entry {
@@ -452,6 +443,21 @@
       cursor: pointer;
     }
 
+    .map-link {
+      font-size: 11px;
+      color: var(--accent);
+      text-decoration: none;
+      display: block;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .map-link:hover {
+      text-decoration: underline;
+    }
+
     .add-btn {
       display: flex;
       align-items: center;
@@ -491,12 +497,12 @@
       color: #e24b4a;
     }
 
-    /* ── MOBILE CARDS (≤640px) ── */
+    /* mobile cards */
     .mobile-cards {
       display: none;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 700px) {
       .tbl-wrap {
         display: none;
       }
@@ -514,37 +520,27 @@
         position: relative;
       }
 
-      .m-card-top {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 0.5rem;
-        margin-bottom: 0.4rem;
-      }
-
       .m-time-badge {
         font-size: 10px;
         color: var(--text-faint);
         text-transform: uppercase;
         letter-spacing: 0.04em;
         font-weight: 500;
-        white-space: nowrap;
-        margin-top: 2px;
+        margin-bottom: 3px;
       }
 
       .m-activity {
         font-size: 14px;
         font-weight: 500;
         color: var(--text);
-        flex: 1;
-        min-width: 0;
+        width: 100%;
         background: transparent;
         border: none;
         font-family: 'DM Sans', sans-serif;
         padding: 0;
         outline: none;
-        width: 100%;
         line-height: 1.4;
+        padding-right: 24px;
       }
 
       .m-activity:focus {
@@ -555,7 +551,7 @@
       .m-meta {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 0.3rem 0.6rem;
+        gap: 0.35rem 0.75rem;
         margin-top: 0.5rem;
       }
 
@@ -601,6 +597,34 @@
         cursor: pointer;
       }
 
+      .m-map-inp {
+        font-size: 12px;
+        color: var(--text-muted);
+        background: transparent;
+        border: none;
+        font-family: 'DM Sans', sans-serif;
+        padding: 0;
+        outline: none;
+        width: 100%;
+      }
+
+      .m-map-inp:focus {
+        text-decoration: underline;
+        text-decoration-color: var(--accent-border);
+      }
+
+      .m-map-link {
+        font-size: 11px;
+        color: var(--accent);
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 2px;
+      }
+
+      .m-map-link:hover {
+        text-decoration: underline;
+      }
+
       .m-notes-row {
         margin-top: 0.4rem;
       }
@@ -628,26 +652,7 @@
         font-style: italic;
       }
 
-      .m-del {
-        position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        color: var(--text-faint);
-        font-size: 16px;
-        line-height: 1;
-        padding: 2px 4px;
-        border-radius: 4px;
-        transition: color 0.1s;
-      }
-
-      .m-del:hover {
-        color: #e24b4a;
-      }
-
-      .m-status-row {
+      .m-bottom {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -656,7 +661,10 @@
         border-top: 1px solid var(--border);
       }
 
-      .m-price-inline {
+      .m-price-row {
+        display: flex;
+        align-items: center;
+        gap: 3px;
         font-size: 12px;
         color: var(--text-muted);
       }
@@ -669,17 +677,33 @@
         font-family: 'DM Sans', sans-serif;
         padding: 0;
         outline: none;
-        width: 80px;
-        text-align: right;
+        width: 70px;
       }
 
       .m-price-inp:focus {
         text-decoration: underline;
         text-decoration-color: var(--accent-border);
       }
+
+      .m-del {
+        position: absolute;
+        top: 0.6rem;
+        right: 0.6rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: var(--text-faint);
+        font-size: 18px;
+        line-height: 1;
+        padding: 0;
+        transition: color 0.1s;
+      }
+
+      .m-del:hover {
+        color: #e24b4a;
+      }
     }
 
-    /* ── MISC ── */
     .no-rows {
       text-align: center;
       padding: 2rem;
@@ -736,11 +760,9 @@
           <div class="value" id="total-nb">0</div>
         </div>
       </div>
-      <div class="sync-row">
-        <div class="sync-status">
-          <div class="sync-dot" id="sync-dot"></div>
-          <span id="sync-label">Connecting…</span>
-        </div>
+      <div class="sync-status">
+        <div class="sync-dot" id="sync-dot"></div>
+        <span id="sync-label">Connecting…</span>
       </div>
     </div>
   </div>
@@ -762,108 +784,107 @@
   <div class="save-banner" id="save-banner">Saving…</div>
 
   <script>
-    /* ── FIREBASE CONFIG (public project, data visible to anyone with the URL) ── */
     const FB_URL = 'https://spain-trip-2026-rahul-default-rtdb.europe-west1.firebasedatabase.app/itinerary.json';
 
     const DEFAULT_DATA = {
       days: [
         {
           id: 'd01', label: 'Day 1', date: '11 Jun', city: 'tra', rows: [
-            { id: 'r001', time: 'Evening', dur: '', act: 'Depart BLR Terminal 2', loc: 'Bengaluru (BLR)', price: '', hrs: '22:15', status: 'Booked', notes: 'Etihad via AUH. Terminal 2' },
-            { id: 'r002', time: 'Late Night', dur: '9h 20m total', act: 'Layover — Abu Dhabi (AUH)', loc: 'Abu Dhabi (AUH)', price: '', hrs: '00:35–02:30', status: 'Booked', notes: '~1h 55m layover' },
+            { id: 'r001', time: 'Evening', dur: '', act: 'Depart BLR Terminal 2', loc: 'Bengaluru (BLR)', price: '', hrs: '22:15', status: 'Booked', map: '', notes: 'Etihad via AUH. Terminal 2' },
+            { id: 'r002', time: 'Late Night', dur: '9h 20m total', act: 'Layover — Abu Dhabi (AUH)', loc: 'Abu Dhabi (AUH)', price: '', hrs: '00:35–02:30', status: 'Booked', map: '', notes: '~1h 55m layover' },
           ]
         },
         {
           id: 'd02', label: 'Day 2', date: '12 Jun', city: 'bcn', rows: [
-            { id: 'r003', time: 'Morning', dur: '', act: 'Arrive BCN Terminal 1', loc: 'Barcelona (BCN)', price: '', hrs: '07:35', status: 'Booked', notes: 'Check in to accommodation' },
-            { id: 'r004', time: 'Afternoon', dur: '', act: 'Rest / explore neighbourhood', loc: 'Barcelona', price: '', hrs: '-', status: '-', notes: '' },
+            { id: 'r003', time: 'Morning', dur: '', act: 'Arrive BCN Terminal 1', loc: 'Barcelona (BCN)', price: '', hrs: '07:35', status: 'Booked', map: 'https://maps.app.goo.gl/barcelona-airport', notes: 'Check in to accommodation' },
+            { id: 'r004', time: 'Afternoon', dur: '', act: 'Rest / explore neighbourhood', loc: 'Barcelona', price: '', hrs: '-', status: '-', map: '', notes: '' },
           ]
         },
         {
           id: 'd03', label: 'Day 3', date: '13 Jun', city: 'bcn', rows: [
-            { id: 'r005', time: 'Morning', dur: '3 hrs', act: 'La Sagrada Família', loc: 'Barcelona', price: '3500', hrs: '9am–7pm', status: 'Not Booked', notes: 'Book tickets online in advance' },
-            { id: 'r006', time: 'Afternoon', dur: '2 hrs', act: 'Park Güell', loc: 'Barcelona', price: '1500', hrs: '8am–8pm', status: 'Not Booked', notes: '' },
-            { id: 'r007', time: 'Evening', dur: '', act: 'Las Ramblas & Gothic Quarter', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', notes: '' },
+            { id: 'r005', time: 'Morning', dur: '3 hrs', act: 'La Sagrada Família', loc: 'Barcelona', price: '3500', hrs: '9am–7pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/SagradaFamilia', notes: 'Book tickets online in advance' },
+            { id: 'r006', time: 'Afternoon', dur: '2 hrs', act: 'Park Güell', loc: 'Barcelona', price: '1500', hrs: '8am–8pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/ParkGuell', notes: '' },
+            { id: 'r007', time: 'Evening', dur: '', act: 'Las Ramblas & Gothic Quarter', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', map: 'https://maps.app.goo.gl/LasRamblas', notes: '' },
           ]
         },
         {
           id: 'd04', label: 'Day 4', date: '14 Jun', city: 'bcn', rows: [
-            { id: 'r008', time: 'Morning', dur: '2 hrs', act: 'Camp Nou Stadium Tour', loc: 'Barcelona', price: '2800', hrs: '9:30am–6:30pm', status: 'Not Booked', notes: '' },
-            { id: 'r009', time: 'Afternoon', dur: '', act: 'Barceloneta Beach', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', notes: '' },
+            { id: 'r008', time: 'Morning', dur: '2 hrs', act: 'Camp Nou Stadium Tour', loc: 'Barcelona', price: '2800', hrs: '9:30am–6:30pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/CampNou', notes: '' },
+            { id: 'r009', time: 'Afternoon', dur: '', act: 'Barceloneta Beach', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', map: 'https://maps.app.goo.gl/Barceloneta', notes: '' },
           ]
         },
         {
           id: 'd05', label: 'Day 5', date: '15 Jun', city: 'bcn', rows: [
-            { id: 'r010', time: 'All day', dur: '', act: 'Montserrat monastery & mountain', loc: 'Montserrat', price: '2500', hrs: '9am–6pm', status: 'Not Booked', notes: 'Train from Plaça Espanya' },
+            { id: 'r010', time: 'All day', dur: '', act: 'Montserrat monastery & mountain', loc: 'Montserrat', price: '2500', hrs: '9am–6pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/Montserrat', notes: 'Train from Plaça Espanya' },
           ]
         },
         {
           id: 'd06', label: 'Day 6', date: '16 Jun', city: 'bcn', rows: [
-            { id: 'r011', time: 'Morning', dur: '2 hrs', act: 'Picasso Museum', loc: 'Barcelona', price: '1400', hrs: '10am–7pm', status: 'Not Booked', notes: '' },
-            { id: 'r012', time: 'Afternoon', dur: '', act: 'El Born & Santa Maria del Mar', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', notes: '' },
-            { id: 'r013', time: 'Evening', dur: '', act: 'Tapas on Carrer del Parlament', loc: 'Barcelona', price: '2000', hrs: '-', status: '-', notes: '' },
+            { id: 'r011', time: 'Morning', dur: '2 hrs', act: 'Picasso Museum', loc: 'Barcelona', price: '1400', hrs: '10am–7pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/PicassoMuseum', notes: '' },
+            { id: 'r012', time: 'Afternoon', dur: '', act: 'El Born & Santa Maria del Mar', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', map: 'https://maps.app.goo.gl/ElBorn', notes: '' },
+            { id: 'r013', time: 'Evening', dur: '', act: 'Tapas on Carrer del Parlament', loc: 'Barcelona', price: '2000', hrs: '-', status: '-', map: 'https://maps.app.goo.gl/Parlament', notes: '' },
           ]
         },
         {
           id: 'd07', label: 'Day 7', date: '17 Jun', city: 'bcn', rows: [
-            { id: 'r014', time: 'Morning', dur: '2 hrs', act: 'Casa Batlló / Casa Milà (La Pedrera)', loc: 'Barcelona', price: '3000', hrs: '9am–9pm', status: 'Not Booked', notes: 'Pick one or both, Passeig de Gràcia' },
-            { id: 'r015', time: 'Afternoon', dur: '', act: 'Palau de la Música Catalana', loc: 'Barcelona', price: '2000', hrs: '10am–6pm', status: 'Not Booked', notes: '' },
+            { id: 'r014', time: 'Morning', dur: '2 hrs', act: 'Casa Batlló / Casa Milà (La Pedrera)', loc: 'Barcelona', price: '3000', hrs: '9am–9pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/CasaBatllo', notes: 'Pick one or both, Passeig de Gràcia' },
+            { id: 'r015', time: 'Afternoon', dur: '', act: 'Palau de la Música Catalana', loc: 'Barcelona', price: '2000', hrs: '10am–6pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/PalauMusica', notes: '' },
           ]
         },
         {
           id: 'd08', label: 'Day 8', date: '18 Jun', city: 'bcn', rows: [
-            { id: 'r016', time: 'All day', dur: '', act: 'Business / work day', loc: 'Barcelona', price: '', hrs: '-', status: 'Booked', notes: 'Work commitments' },
+            { id: 'r016', time: 'All day', dur: '', act: 'Business / work day', loc: 'Barcelona', price: '', hrs: '-', status: 'Booked', map: '', notes: 'Work commitments' },
           ]
         },
         {
           id: 'd09', label: 'Day 9', date: '19 Jun', city: 'bcn', rows: [
-            { id: 'r017', time: 'Morning', dur: '', act: 'Tibidabo Amusement Park & views', loc: 'Barcelona', price: '3500', hrs: '10am–8pm', status: 'Not Booked', notes: '' },
-            { id: 'r018', time: 'Evening', dur: '', act: 'Pack & prep for Rome departure', loc: 'Barcelona', price: '', hrs: '-', status: '-', notes: '' },
-            { id: 'r019', time: 'Night', dur: '1h 55m', act: 'Flight BCN → Rome FCO', loc: 'BCN → FCO', price: '4506', hrs: '21:45 depart', status: 'Not Booked', notes: 'Arrive FCO 23:40' },
+            { id: 'r017', time: 'Morning', dur: '', act: 'Tibidabo Amusement Park & views', loc: 'Barcelona', price: '3500', hrs: '10am–8pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/Tibidabo', notes: '' },
+            { id: 'r018', time: 'Evening', dur: '', act: 'Pack & prep for Rome departure', loc: 'Barcelona', price: '', hrs: '-', status: '-', map: '', notes: '' },
+            { id: 'r019', time: 'Night', dur: '1h 55m', act: 'Flight BCN → Rome FCO', loc: 'BCN → FCO', price: '4506', hrs: '21:45 depart', status: 'Not Booked', map: '', notes: 'Arrive FCO 23:40' },
           ]
         },
         {
           id: 'd10', label: 'Day 10', date: '20 Jun', city: 'rom', rows: [
-            { id: 'r020', time: 'Late Night', dur: '', act: 'Arrive Rome FCO & transfer to hotel', loc: 'Rome', price: '', hrs: '23:40 arrival', status: 'Not Booked', notes: 'Check in / drop bags' },
-            { id: 'r021', time: 'Morning', dur: '3 hrs', act: 'Colosseum & Roman Forum', loc: 'Rome', price: '3500', hrs: '9am–7pm', status: 'Not Booked', notes: 'Book skip-the-line tickets' },
-            { id: 'r022', time: 'Afternoon', dur: '2 hrs', act: 'Palatine Hill', loc: 'Rome', price: '', hrs: '-', status: 'Free', notes: 'Included with Colosseum ticket' },
-            { id: 'r023', time: 'Evening', dur: '', act: 'Trastevere neighbourhood dinner', loc: 'Rome', price: '2000', hrs: '-', status: '-', notes: '' },
+            { id: 'r020', time: 'Late Night', dur: '', act: 'Arrive Rome FCO & transfer to hotel', loc: 'Rome', price: '', hrs: '23:40 arrival', status: 'Not Booked', map: 'https://maps.app.goo.gl/RomeFCO', notes: 'Check in / drop bags' },
+            { id: 'r021', time: 'Morning', dur: '3 hrs', act: 'Colosseum & Roman Forum', loc: 'Rome', price: '3500', hrs: '9am–7pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/Colosseum', notes: 'Book skip-the-line tickets' },
+            { id: 'r022', time: 'Afternoon', dur: '2 hrs', act: 'Palatine Hill', loc: 'Rome', price: '', hrs: '-', status: 'Free', map: 'https://maps.app.goo.gl/PalatineHill', notes: 'Included with Colosseum ticket' },
+            { id: 'r023', time: 'Evening', dur: '', act: 'Trastevere neighbourhood dinner', loc: 'Rome', price: '2000', hrs: '-', status: '-', map: 'https://maps.app.goo.gl/Trastevere', notes: '' },
           ]
         },
         {
           id: 'd11', label: 'Day 11', date: '21 Jun', city: 'rom', rows: [
-            { id: 'r024', time: 'Morning', dur: '3 hrs', act: 'Vatican Museums & Sistine Chapel', loc: 'Vatican City', price: '3000', hrs: '9am–6pm', status: 'Not Booked', notes: 'Book months ahead — very busy' },
-            { id: 'r025', time: 'Afternoon', dur: '1 hr', act: "St. Peter's Basilica & Square", loc: 'Vatican City', price: '', hrs: '7am–7pm', status: 'Free', notes: '' },
-            { id: 'r026', time: 'Evening', dur: '', act: 'Piazza Navona & Pantheon stroll', loc: 'Rome', price: '', hrs: '-', status: 'Free', notes: '' },
+            { id: 'r024', time: 'Morning', dur: '3 hrs', act: 'Vatican Museums & Sistine Chapel', loc: 'Vatican City', price: '3000', hrs: '9am–6pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/VaticanMuseums', notes: 'Book months ahead — very busy' },
+            { id: 'r025', time: 'Afternoon', dur: '1 hr', act: "St. Peter's Basilica & Square", loc: 'Vatican City', price: '', hrs: '7am–7pm', status: 'Free', map: 'https://maps.app.goo.gl/StPeters', notes: '' },
+            { id: 'r026', time: 'Evening', dur: '', act: 'Piazza Navona & Pantheon stroll', loc: 'Rome', price: '', hrs: '-', status: 'Free', map: 'https://maps.app.goo.gl/PiazzaNavona', notes: '' },
           ]
         },
         {
           id: 'd12', label: 'Day 12', date: '22 Jun', city: 'rom', rows: [
-            { id: 'r027', time: 'Morning', dur: '', act: 'Trevi Fountain & Spanish Steps', loc: 'Rome', price: '', hrs: '24hrs', status: 'Free', notes: 'Go early to avoid crowds' },
-            { id: 'r028', time: 'Afternoon', dur: '', act: 'Borghese Gallery', loc: 'Rome', price: '2500', hrs: '9am–7pm', status: 'Not Booked', notes: 'Strictly timed entry — must pre-book' },
-            { id: 'r029', time: 'Night', dur: '7h 45m overnight', act: 'Overnight train Rome → Venice', loc: 'Rome → Venice', price: '4246', hrs: '22:35 depart', status: 'Not Booked', notes: 'Arrives Venice 06:20' },
+            { id: 'r027', time: 'Morning', dur: '', act: 'Trevi Fountain & Spanish Steps', loc: 'Rome', price: '', hrs: '24hrs', status: 'Free', map: 'https://maps.app.goo.gl/TreviFountain', notes: 'Go early to avoid crowds' },
+            { id: 'r028', time: 'Afternoon', dur: '', act: 'Borghese Gallery', loc: 'Rome', price: '2500', hrs: '9am–7pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/BorgheseGallery', notes: 'Strictly timed entry — must pre-book' },
+            { id: 'r029', time: 'Night', dur: '7h 45m overnight', act: 'Overnight train Rome → Venice', loc: 'Rome → Venice', price: '4246', hrs: '22:35 depart', status: 'Not Booked', map: '', notes: 'Arrives Venice 06:20' },
           ]
         },
         {
           id: 'd13', label: 'Day 13', date: '23 Jun', city: 'ven', rows: [
-            { id: 'r030', time: 'Early Morning', dur: '', act: 'Arrive Venice Santa Lucia & drop bags', loc: 'Venice', price: '', hrs: '06:20 arrival', status: '-', notes: '' },
-            { id: 'r031', time: 'Morning', dur: '2 hrs', act: "St. Mark's Basilica & Doge's Palace", loc: "St. Mark's Square", price: '2500', hrs: '9am–5pm', status: 'Not Booked', notes: 'Book online to skip queues' },
-            { id: 'r032', time: 'Afternoon', dur: '1.5 hrs', act: 'Gondola ride through canals', loc: 'Venice', price: '5000', hrs: '-', status: 'Not Booked', notes: '~80 EUR shared gondola, 30 min' },
-            { id: 'r033', time: 'Late Afternoon', dur: '', act: 'Rialto Bridge & market area', loc: 'Venice', price: '', hrs: '-', status: 'Free', notes: '' },
-            { id: 'r034', time: 'Evening', dur: '', act: 'Sunset from Punta della Dogana', loc: 'Venice', price: '', hrs: '-', status: 'Free', notes: 'Best sunset spot in Venice' },
-            { id: 'r035', time: 'Night', dur: '', act: 'Last dinner — seafood risotto', loc: 'Venice', price: '2500', hrs: '-', status: '-', notes: '' },
+            { id: 'r030', time: 'Early Morning', dur: '', act: 'Arrive Venice Santa Lucia & drop bags', loc: 'Venice', price: '', hrs: '06:20 arrival', status: '-', map: 'https://maps.app.goo.gl/VeniceSantaLucia', notes: '' },
+            { id: 'r031', time: 'Morning', dur: '2 hrs', act: "St. Mark's Basilica & Doge's Palace", loc: "St. Mark's Square", price: '2500', hrs: '9am–5pm', status: 'Not Booked', map: 'https://maps.app.goo.gl/StMarksBasilica', notes: 'Book online to skip queues' },
+            { id: 'r032', time: 'Afternoon', dur: '1.5 hrs', act: 'Gondola ride through canals', loc: 'Venice', price: '5000', hrs: '-', status: 'Not Booked', map: 'https://maps.app.goo.gl/VeniceGondola', notes: '~80 EUR shared gondola, 30 min' },
+            { id: 'r033', time: 'Late Afternoon', dur: '', act: 'Rialto Bridge & market area', loc: 'Venice', price: '', hrs: '-', status: 'Free', map: 'https://maps.app.goo.gl/RialtoBridge', notes: '' },
+            { id: 'r034', time: 'Evening', dur: '', act: 'Sunset from Punta della Dogana', loc: 'Venice', price: '', hrs: '-', status: 'Free', map: 'https://maps.app.goo.gl/PuntaDellaDogana', notes: 'Best sunset spot in Venice' },
+            { id: 'r035', time: 'Night', dur: '', act: 'Last dinner — seafood risotto', loc: 'Venice', price: '2500', hrs: '-', status: '-', map: '', notes: '' },
           ]
         },
         {
           id: 'd14', label: 'Day 14', date: '24 Jun', city: 'tra', rows: [
-            { id: 'r036', time: 'Morning', dur: '2h', act: 'Flight VCE → BCN', loc: 'Venice → Barcelona', price: '1388', hrs: '09:10 depart', status: 'Not Booked', notes: 'Arrives BCN 11:10' },
-            { id: 'r037', time: 'Afternoon', dur: '', act: 'BCN layover — rest / explore', loc: 'Barcelona', price: '', hrs: '-', status: '-', notes: 'Return flight at 22:30' },
-            { id: 'r038', time: 'Night', dur: '', act: 'Depart BCN → AUH → BLR (Etihad)', loc: 'BCN → BLR', price: '', hrs: '22:30 depart', status: 'Booked', notes: 'Terminal 1. Arrives BLR 25 Jun 14:15' },
+            { id: 'r036', time: 'Morning', dur: '2h', act: 'Flight VCE → BCN', loc: 'Venice → Barcelona', price: '1388', hrs: '09:10 depart', status: 'Not Booked', map: '', notes: 'Arrives BCN 11:10' },
+            { id: 'r037', time: 'Afternoon', dur: '', act: 'BCN layover — rest / explore', loc: 'Barcelona', price: '', hrs: '-', status: '-', map: '', notes: 'Return flight at 22:30' },
+            { id: 'r038', time: 'Night', dur: '', act: 'Depart BCN → AUH → BLR (Etihad)', loc: 'BCN → BLR', price: '', hrs: '22:30 depart', status: 'Booked', map: '', notes: 'Terminal 1. Arrives BLR 25 Jun 14:15' },
           ]
         },
         {
           id: 'd15', label: 'Day 15', date: '25 Jun', city: 'tra', rows: [
-            { id: 'r039', time: 'Afternoon', dur: '', act: 'Arrive BLR Terminal 2', loc: 'Bengaluru (BLR)', price: '', hrs: '14:15', status: 'Booked', notes: 'Layover AUH 07:05–08:40' },
+            { id: 'r039', time: 'Afternoon', dur: '', act: 'Arrive BLR Terminal 2', loc: 'Bengaluru (BLR)', price: '', hrs: '14:15', status: 'Booked', map: '', notes: 'Layover AUH 07:05–08:40' },
           ]
         },
       ]
@@ -872,49 +893,70 @@
     let DATA = null;
     let saveTimer = null;
     let currentFilter = 'all';
-    let isSaving = false;
 
-    /* ── FIREBASE SYNC ── */
+    /* ── FIREBASE ── */
     async function loadData() {
       setSyncState('syncing', 'Connecting…');
       try {
-        const res = await fetch(FB_URL, { cache: 'no-store' });
-        if (!res.ok) throw new Error('fetch failed');
-        const remote = await res.json();
-        if (remote && remote.days && remote.days.length > 0) {
-          DATA = remote;
-        } else {
+        const res = await fetch(FB_URL + '?t=' + Date.now());
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const raw = await res.json();
+
+        /* Firebase returns null when the path is empty */
+        if (raw === null || !raw.days || !Array.isArray(raw.days) || raw.days.length === 0) {
           DATA = DEFAULT_DATA;
-          await pushToFirebase();
+          await pushToFirebase(false); /* seed the db silently */
+        } else {
+          /* Merge: ensure every row has a map field (older saves won't have it) */
+          raw.days.forEach(d => d.rows && d.rows.forEach(r => { if (!r.map) r.map = ''; }));
+          DATA = raw;
         }
         setSyncState('ok', 'Synced — anyone with this link can edit');
       } catch (e) {
-        console.warn('Firebase load failed:', e);
+        console.warn('Firebase load error:', e);
         DATA = DEFAULT_DATA;
-        setSyncState('error', 'Offline — showing default data');
+        setSyncState('error', 'Could not reach database — showing default data');
       }
       render();
     }
 
-    async function pushToFirebase() {
+    async function pushToFirebase(showBannerMsg = true) {
+      if (showBannerMsg) showBanner('Saving…');
       try {
-        await fetch(FB_URL, {
+        const res = await fetch(FB_URL, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(DATA)
         });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
         setSyncState('ok', 'Saved · ' + new Date().toLocaleTimeString());
-        showBanner('Saved ✓');
+        if (showBannerMsg) showBanner('Saved ✓');
       } catch (e) {
-        setSyncState('error', 'Save failed');
-        showBanner('Save failed ✗');
+        setSyncState('error', 'Save failed — try refreshing');
+        if (showBannerMsg) showBanner('Save failed ✗');
       }
     }
 
     function scheduleSave() {
       clearTimeout(saveTimer);
-      saveTimer = setTimeout(pushToFirebase, 1000);
+      saveTimer = setTimeout(() => pushToFirebase(true), 1000);
     }
+
+    /* Poll every 30s so other devices see updates */
+    setInterval(async () => {
+      if (document.hidden || saveTimer) return;
+      try {
+        const res = await fetch(FB_URL + '?t=' + Date.now());
+        if (!res.ok) return;
+        const raw = await res.json();
+        if (raw && raw.days && raw.days.length > 0) {
+          raw.days.forEach(d => d.rows && d.rows.forEach(r => { if (!r.map) r.map = ''; }));
+          DATA = raw;
+          render();
+          setSyncState('ok', 'Synced · ' + new Date().toLocaleTimeString());
+        }
+      } catch (e) { }
+    }, 30000);
 
     function setSyncState(state, msg) {
       const dot = document.getElementById('sync-dot');
@@ -922,101 +964,82 @@
       dot.className = 'sync-dot' + (state === 'syncing' ? ' syncing' : state === 'error' ? ' error' : '');
       lbl.textContent = msg;
     }
-
     function showBanner(msg) {
       const b = document.getElementById('save-banner');
       b.textContent = msg; b.classList.add('show');
       clearTimeout(b._t); b._t = setTimeout(() => b.classList.remove('show'), 2000);
     }
 
-    /* ── RENDER ── */
+    /* ── HELPERS ── */
     function cityClass(c) { return 'city-' + c; }
     function cityLabel(c) { return { bcn: 'Barcelona', rom: 'Rome', ven: 'Venice', tra: 'Flight / Transit' }[c] || c; }
-    function sBadge(s) {
-      const cls = s === 'Booked' ? 's-booked' : s === 'Not Booked' ? 's-not' : s === 'Free' ? 's-free' : 's-dash';
-      return `<span class="sbadge ${cls}">${s}</span>`;
-    }
     function esc(s) { return String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
     function uid() { return 'r' + Math.random().toString(36).slice(2, 9); }
+    function filterMatches(d) { return currentFilter === 'all' || d.city === currentFilter; }
 
-    function filterMatches(d) {
-      if (currentFilter === 'all') return true;
-      return d.city === currentFilter;
-    }
-
+    /* ── RENDER ── */
     function render() {
       updateStats();
       const root = document.getElementById('root');
       root.innerHTML = '';
       const days = DATA.days.filter(filterMatches);
       if (!days.length) { root.innerHTML = '<div class="no-rows">No days match this filter.</div>'; return; }
-      days.forEach(day => root.appendChild(buildDay(day)));
+      days.forEach(day => {
+        const sec = buildDayShell(day);
+        root.appendChild(sec);       /* append FIRST so IDs exist in DOM */
+        populateRows(day);           /* then fill rows */
+      });
     }
 
-    function buildDay(day) {
+    function buildDayShell(day) {
       const sec = document.createElement('div');
       sec.className = 'day-section';
-
-      /* header */
-      const hdr = document.createElement('div');
-      hdr.className = 'day-header';
-      hdr.innerHTML = `
-    <span class="day-badge">${day.label}</span>
-    <span class="day-date">${day.date}</span>
-    <span class="day-city ${cityClass(day.city)}">${cityLabel(day.city)}</span>`;
-      sec.appendChild(hdr);
-
-      /* desktop table */
-      const wrap = document.createElement('div');
-      wrap.className = 'tbl-wrap';
-      const tbl = document.createElement('table');
-      tbl.innerHTML = `<thead><tr>
-    <th class="ch-time">Time</th>
-    <th class="ch-act">Activity</th>
-    <th class="ch-loc">Location</th>
-    <th class="ch-price">Price (₹)</th>
-    <th class="ch-hrs">Opening hrs</th>
-    <th class="ch-dur">Duration</th>
-    <th class="ch-status">Status</th>
-    <th class="ch-notes">Notes</th>
-    <th class="ch-del"></th>
-  </tr></thead>`;
-      const tbody = document.createElement('tbody');
-      tbody.id = 'tb-' + day.id;
-      tbl.appendChild(tbody);
-      wrap.appendChild(tbl);
-      sec.appendChild(wrap);
-
-      /* mobile cards container */
-      const mCards = document.createElement('div');
-      mCards.className = 'mobile-cards';
-      mCards.id = 'mc-' + day.id;
-      sec.appendChild(mCards);
-
-      /* add button */
-      const addBtn = document.createElement('button');
-      addBtn.className = 'add-btn';
-      addBtn.textContent = '+ Add activity';
-      addBtn.onclick = () => addRow(day.id);
-      sec.appendChild(addBtn);
-
-      renderRows(day);
+      sec.innerHTML = `
+    <div class="day-header">
+      <span class="day-badge">${day.label}</span>
+      <span class="day-date">${day.date}</span>
+      <span class="day-city ${cityClass(day.city)}">${cityLabel(day.city)}</span>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th class="ch-time">Time</th>
+          <th class="ch-act">Activity</th>
+          <th class="ch-loc">Location</th>
+          <th class="ch-price">Price (₹)</th>
+          <th class="ch-hrs">Opening hrs</th>
+          <th class="ch-dur">Duration</th>
+          <th class="ch-status">Status</th>
+          <th class="ch-map">Map</th>
+          <th class="ch-notes">Notes</th>
+          <th class="ch-del"></th>
+        </tr></thead>
+        <tbody id="tb-${day.id}"></tbody>
+      </table>
+    </div>
+    <div class="mobile-cards" id="mc-${day.id}"></div>
+    <button class="add-btn" onclick="addRow('${day.id}')">+ Add activity</button>`;
       return sec;
     }
 
-    function renderRows(day) {
-      /* desktop */
+    function populateRows(day) {
       const tbody = document.getElementById('tb-' + day.id);
-      if (tbody) { tbody.innerHTML = ''; day.rows.forEach(r => tbody.appendChild(buildDesktopRow(day, r))); }
-      /* mobile */
       const mc = document.getElementById('mc-' + day.id);
-      if (mc) { mc.innerHTML = ''; day.rows.forEach(r => mc.appendChild(buildMobileCard(day, r))); }
+      if (tbody) tbody.innerHTML = '';
+      if (mc) mc.innerHTML = '';
+      day.rows.forEach(row => {
+        if (tbody) tbody.appendChild(buildDesktopRow(day, row));
+        if (mc) mc.appendChild(buildMobileCard(day, row));
+      });
     }
 
-    function makeInp(val, field, dayId, rowId, placeholder) {
+    function makeInp(val, field, dayId, rowId, ph) {
       const inp = document.createElement('input');
-      inp.className = 'cell-inp'; inp.value = val || ''; inp.placeholder = placeholder || '';
-      inp.addEventListener('input', () => { updateField(dayId, rowId, field, inp.value); });
+      inp.className = 'cell-inp';
+      inp.value = val || '';
+      inp.placeholder = ph || '';
+      inp.addEventListener('input', () => updateField(dayId, rowId, field, inp.value));
+      inp.addEventListener('change', () => updateField(dayId, rowId, field, inp.value));
       return inp;
     }
 
@@ -1024,121 +1047,119 @@
       const sel = document.createElement('select');
       sel.className = 'cell-sel';
       ['Booked', 'Not Booked', 'Free', '-'].forEach(s => {
-        const o = document.createElement('option'); o.value = s; o.textContent = s;
+        const o = document.createElement('option');
+        o.value = s; o.textContent = s;
         if (s === val) o.selected = true;
         sel.appendChild(o);
       });
-      sel.addEventListener('change', () => { updateField(dayId, rowId, 'status', sel.value); });
+      sel.addEventListener('change', () => updateField(dayId, rowId, 'status', sel.value));
       return sel;
     }
 
     function buildDesktopRow(day, row) {
       const tr = document.createElement('tr');
       tr.className = 'entry';
-      const fields = [
-        ['ch-time', 'time', 'Morning'], ['ch-act', 'act', 'Activity'], ['ch-loc', 'loc', 'Location'],
-        ['ch-price', 'price', '0'], ['ch-hrs', 'hrs', '9am–5pm'], ['ch-dur', 'dur', '2 hrs'],
-      ];
-      fields.forEach(([cls, f, ph]) => {
+
+      [['ch-time', 'time', 'Morning'], ['ch-act', 'act', 'Activity'], ['ch-loc', 'loc', 'Location'],
+      ['ch-price', 'price', '0'], ['ch-hrs', 'hrs', '9am–5pm'], ['ch-dur', 'dur', '2 hrs']
+      ].forEach(([cls, f, ph]) => {
         const td = document.createElement('td'); td.className = cls;
         td.appendChild(makeInp(row[f], f, day.id, row.id, ph));
         tr.appendChild(td);
       });
+
       /* status */
       const stTd = document.createElement('td'); stTd.className = 'ch-status';
       stTd.appendChild(makeSel(row.status, day.id, row.id));
       tr.appendChild(stTd);
+
+      /* map */
+      const mapTd = document.createElement('td'); mapTd.className = 'ch-map';
+      const mapInp = makeInp(row.map, 'map', day.id, row.id, 'Paste link');
+      mapTd.appendChild(mapInp);
+      if (row.map && row.map.startsWith('http')) {
+        const a = document.createElement('a');
+        a.href = row.map; a.target = '_blank'; a.className = 'map-link'; a.textContent = '📍 Open';
+        mapTd.appendChild(a);
+      }
+      tr.appendChild(mapTd);
+
       /* notes */
       const nTd = document.createElement('td'); nTd.className = 'ch-notes';
       nTd.appendChild(makeInp(row.notes, 'notes', day.id, row.id, 'Notes…'));
       tr.appendChild(nTd);
+
       /* del */
       const dTd = document.createElement('td'); dTd.className = 'ch-del';
       const delBtn = document.createElement('button'); delBtn.className = 'del-btn'; delBtn.textContent = '×';
       delBtn.onclick = () => deleteRow(day.id, row.id);
       dTd.appendChild(delBtn); tr.appendChild(dTd);
+
       return tr;
     }
 
     function buildMobileCard(day, row) {
+      const sClass = row.status === 'Booked' ? 's-booked' : row.status === 'Not Booked' ? 's-not' : row.status === 'Free' ? 's-free' : 's-dash';
       const card = document.createElement('div');
       card.className = 'm-card';
-
-      const sClass = row.status === 'Booked' ? 's-booked' : row.status === 'Not Booked' ? 's-not' : row.status === 'Free' ? 's-free' : 's-dash';
-
       card.innerHTML = `
     <button class="m-del" onclick="deleteRow('${day.id}','${row.id}')">×</button>
     <div class="m-time-badge">${esc(row.time) || '—'}</div>
-    <div class="m-card-top">
-      <input class="m-activity" value="${esc(row.act)}" placeholder="Activity" data-field="act">
-    </div>
+    <input class="m-activity" value="${esc(row.act)}" placeholder="Activity" data-field="act">
     <div class="m-meta">
-      <div class="m-field">
-        <span class="m-label">Location</span>
-        <input class="m-val" value="${esc(row.loc)}" placeholder="Location" data-field="loc">
-      </div>
-      <div class="m-field">
-        <span class="m-label">Duration</span>
-        <input class="m-val" value="${esc(row.dur)}" placeholder="—" data-field="dur">
-      </div>
-      <div class="m-field">
-        <span class="m-label">Opening hrs</span>
-        <input class="m-val" value="${esc(row.hrs)}" placeholder="—" data-field="hrs">
-      </div>
-      <div class="m-field">
-        <span class="m-label">Status</span>
+      <div class="m-field"><span class="m-label">Location</span><input class="m-val" value="${esc(row.loc)}" placeholder="Location" data-field="loc"></div>
+      <div class="m-field"><span class="m-label">Duration</span><input class="m-val" value="${esc(row.dur)}" placeholder="—" data-field="dur"></div>
+      <div class="m-field"><span class="m-label">Opening hrs</span><input class="m-val" value="${esc(row.hrs)}" placeholder="—" data-field="hrs"></div>
+      <div class="m-field"><span class="m-label">Status</span>
         <select class="m-sel" data-field="status">
           ${['Booked', 'Not Booked', 'Free', '-'].map(s => `<option value="${s}"${s === row.status ? ' selected' : ''}>${s}</option>`).join('')}
         </select>
+      </div>
+      <div class="m-field" style="grid-column:span 2">
+        <span class="m-label">Google Maps link</span>
+        <input class="m-map-inp" value="${esc(row.map)}" placeholder="Paste maps.app.goo.gl link" data-field="map">
+        ${row.map && row.map.startsWith('http') ? `<a href="${esc(row.map)}" target="_blank" class="m-map-link">📍 Open map</a>` : ''}
       </div>
     </div>
     <div class="m-notes-row">
       <input class="m-notes" value="${esc(row.notes)}" placeholder="Notes…" data-field="notes">
     </div>
-    <div class="m-status-row">
-      <span class="sbadge ${sClass}" id="mbadge-${row.id}">${row.status}</span>
-      <span class="m-price-inline">₹&nbsp;<input class="m-price-inp" value="${esc(row.price)}" placeholder="0" data-field="price"></span>
+    <div class="m-bottom">
+      <span class="sbadge ${sClass}">${row.status}</span>
+      <span class="m-price-row">₹ <input class="m-price-inp" value="${esc(row.price)}" placeholder="0" data-field="price"></span>
     </div>`;
 
-      /* bind all inputs */
       card.querySelectorAll('[data-field]').forEach(el => {
-        const field = el.dataset.field;
-        el.addEventListener('input', () => { updateField(day.id, row.id, field, el.value); });
-        el.addEventListener('change', () => { updateField(day.id, row.id, field, el.value); });
+        el.addEventListener('input', () => updateField(day.id, row.id, el.dataset.field, el.value));
+        el.addEventListener('change', () => updateField(day.id, row.id, el.dataset.field, el.value));
       });
-
       return card;
     }
 
     function updateField(dayId, rowId, field, value) {
-      const day = DATA.days.find(d => d.id === dayId);
-      if (!day) return;
-      const row = day.rows.find(r => r.id === rowId);
-      if (!row) return;
+      const day = DATA.days.find(d => d.id === dayId); if (!day) return;
+      const row = day.rows.find(r => r.id === rowId); if (!row) return;
       row[field] = value;
       if (field === 'price' || field === 'status') updateStats();
       scheduleSave();
     }
 
     function addRow(dayId) {
-      const day = DATA.days.find(d => d.id === dayId);
-      if (!day) return;
-      const newRow = { id: uid(), time: '', dur: '', act: '', loc: '', price: '', hrs: '', status: '-', notes: '' };
+      const day = DATA.days.find(d => d.id === dayId); if (!day) return;
+      const newRow = { id: uid(), time: '', dur: '', act: '', loc: '', price: '', hrs: '', status: '-', map: '', notes: '' };
       day.rows.push(newRow);
-      renderRows(day);
+      populateRows(day);
       updateStats();
       scheduleSave();
-      /* focus first input of new mobile card */
       const mc = document.getElementById('mc-' + dayId);
-      if (mc) { const inp = mc.lastElementChild && mc.lastElementChild.querySelector('input'); if (inp) inp.focus(); }
+      if (mc && mc.lastElementChild) mc.lastElementChild.querySelector('input').focus();
     }
 
     function deleteRow(dayId, rowId) {
-      const day = DATA.days.find(d => d.id === dayId);
-      if (!day) return;
+      const day = DATA.days.find(d => d.id === dayId); if (!day) return;
       if (day.rows.length <= 1) { alert('A day needs at least one entry.'); return; }
       day.rows = day.rows.filter(r => r.id !== rowId);
-      renderRows(day);
+      populateRows(day);
       updateStats();
       scheduleSave();
     }
@@ -1166,9 +1187,9 @@
     }
 
     function exportCSV() {
-      const rows = [['Day', 'Date', 'City', 'Time', 'Activity', 'Location', 'Price (INR)', 'Opening Hrs', 'Duration', 'Status', 'Notes']];
+      const rows = [['Day', 'Date', 'City', 'Time', 'Activity', 'Location', 'Price (INR)', 'Opening Hrs', 'Duration', 'Status', 'Map', 'Notes']];
       DATA.days.forEach(d => d.rows.forEach(r => {
-        rows.push([d.label, d.date, cityLabel(d.city), r.time, r.act, r.loc, r.price, r.hrs, r.dur, r.status, r.notes]);
+        rows.push([d.label, d.date, cityLabel(d.city), r.time, r.act, r.loc, r.price, r.hrs, r.dur, r.status, r.map, r.notes]);
       }));
       const csv = rows.map(r => r.map(c => `"${String(c || '').replace(/"/g, '""')}"`).join(',')).join('\n');
       const a = document.createElement('a');
@@ -1177,20 +1198,6 @@
     }
 
     loadData();
-
-    /* ── Poll every 30s so other devices see edits ── */
-    setInterval(async () => {
-      if (document.hidden) return;
-      try {
-        const res = await fetch(FB_URL, { cache: 'no-store' });
-        if (!res.ok) return;
-        const remote = await res.json();
-        if (remote && remote.days) {
-          DATA = remote; render();
-          setSyncState('ok', 'Synced · ' + new Date().toLocaleTimeString());
-        }
-      } catch (e) { }
-    }, 30000);
   </script>
 </body>
 
