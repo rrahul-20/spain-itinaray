@@ -894,6 +894,26 @@
     let saveTimer = null;
     let currentFilter = 'all';
 
+    const TIME_OPTIONS = ['Early Morning', 'Morning', 'Afternoon', 'Late Afternoon', 'Evening', 'Night', 'Late Night', 'All day', '—'];
+
+    function moveRow(dayId, rowId, direction) {
+      const day = DATA.days.find(d => d.id === dayId);
+      if (!day) return;
+      const index = day.rows.findIndex(r => r.id === rowId);
+      if (index === -1) return;
+
+      const newIndex = index + direction;
+      if (newIndex < 0 || newIndex >= day.rows.length) return; // Boundary check
+
+      // Swap the items in place
+      const temp = day.rows[index];
+      day.rows[index] = day.rows[newIndex];
+      day.rows[newIndex] = temp;
+
+      render();
+      scheduleSave();
+    }
+
     /* ── FIREBASE ── */
     async function loadData() {
       setSyncState('syncing', 'Connecting…');
@@ -1060,13 +1080,27 @@
       const tr = document.createElement('tr');
       tr.className = 'entry';
 
-      [['ch-time', 'time', 'Morning'], ['ch-act', 'act', 'Activity'], ['ch-loc', 'loc', 'Location'],
+      [['ch-act', 'act', 'Activity'], ['ch-loc', 'loc', 'Location'],
       ['ch-price', 'price', '0'], ['ch-hrs', 'hrs', '9am–5pm'], ['ch-dur', 'dur', '2 hrs']
       ].forEach(([cls, f, ph]) => {
         const td = document.createElement('td'); td.className = cls;
         td.appendChild(makeInp(row[f], f, day.id, row.id, ph));
         tr.appendChild(td);
       });
+
+      /* time */
+      const timeTd = document.createElement('td'); timeTd.className = 'ch-time';
+      const timeSel = document.createElement('select');
+      timeSel.className = 'cell-sel';
+      TIME_OPTIONS.forEach(t => {
+        const o = document.createElement('option'); o.value = t; o.textContent = t;
+        if (t === row.time) o.selected = true;
+        timeSel.appendChild(o);
+      });
+      timeSel.addEventListener('change', () => updateField(day.id, row.id, 'time', timeSel.value));
+      timeTd.appendChild(timeSel);
+      // Insert time at the beginning (before Activity)
+      tr.insertBefore(timeTd, tr.firstChild);
 
       /* status */
       const stTd = document.createElement('td'); stTd.className = 'ch-status';
@@ -1104,7 +1138,14 @@
       card.className = 'm-card';
       card.innerHTML = `
     <button class="m-del" onclick="deleteRow('${day.id}','${row.id}')">×</button>
-    <div class="m-time-badge">${esc(row.time) || '—'}</div>
+    <div class="m-reorder-actions" style="display: flex; gap: 8px; margin-bottom: 4px;">
+      <button class="ftab" onclick="moveRow('${day.id}', '${row.id}', -1)" style="padding: 2px 8px; font-size: 11px;">🔼 Up</button>
+      <button class="ftab" onclick="moveRow('${day.id}', '${row.id}', 1)" style="padding: 2px 8px; font-size: 11px;">🔽 Down</button>
+    </div>
+    <span class="m-label">Time</span>
+    <select class="m-sel" data-field="time" style="font-weight: 500; font-size: 12px; margin-bottom: 4px; color: var(--accent);">
+      ${TIME_OPTIONS.map(t => `<option value="${t}"${t === row.time ? ' selected' : ''}>${t}</option>`).join('')}
+    </select>
     <input class="m-activity" value="${esc(row.act)}" placeholder="Activity" data-field="act">
     <div class="m-meta">
       <div class="m-field"><span class="m-label">Location</span><input class="m-val" value="${esc(row.loc)}" placeholder="Location" data-field="loc"></div>
