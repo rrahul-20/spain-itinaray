@@ -1165,15 +1165,7 @@
       const tr = document.createElement('tr');
       tr.className = 'entry';
 
-      [['ch-act', 'act', 'Activity'], ['ch-loc', 'loc', 'Location'],
-      ['ch-price', 'price', '0'], ['ch-hrs', 'hrs', '9am–5pm'], ['ch-dur', 'dur', '2 hrs']
-      ].forEach(([cls, f, ph]) => {
-        const td = document.createElement('td'); td.className = cls;
-        td.appendChild(makeInp(row[f], f, day.id, row.id, ph));
-        tr.appendChild(td);
-      });
-
-      /* time */
+      /* 1. Time Column */
       const timeTd = document.createElement('td'); timeTd.className = 'ch-time';
       const timeSel = document.createElement('select');
       timeSel.className = 'cell-sel';
@@ -1184,29 +1176,39 @@
       });
       timeSel.addEventListener('change', () => updateField(day.id, row.id, 'time', timeSel.value));
       timeTd.appendChild(timeSel);
+      tr.appendChild(timeTd);
 
-      /* type */
-      const typeTd = document.createElement('td'); typeTd.className = 'ch-status'; // reuse status width
-      const typeSel = document.createElement('select');
-      typeSel.className = 'cell-sel';
-      TYPE_OPTIONS.forEach(t => {
-        const o = document.createElement('option'); o.value = t; o.textContent = t.charAt(0).toUpperCase() + t.slice(1);
-        if (t === row.type) o.selected = true;
-        typeSel.appendChild(o);
-      });
-      typeSel.addEventListener('change', () => updateField(day.id, row.id, 'type', typeSel.value));
-      typeTd.appendChild(typeSel);
+      /* 2. Activity Column */
+      const actTd = document.createElement('td'); actTd.className = 'ch-act';
+      actTd.appendChild(makeInp(row.act, 'act', day.id, row.id, 'Activity'));
+      tr.appendChild(actTd);
 
-      // Insert at beginning: Type, then Time
-      tr.insertBefore(timeTd, tr.firstChild);
-      tr.insertBefore(typeTd, tr.firstChild);
+      /* 3. Location Column */
+      const locTd = document.createElement('td'); locTd.className = 'ch-loc';
+      locTd.appendChild(makeInp(row.loc, 'loc', day.id, row.id, 'Location'));
+      tr.appendChild(locTd);
 
-      /* status */
+      /* 4. Price Column */
+      const priceTd = document.createElement('td'); priceTd.className = 'ch-price';
+      priceTd.appendChild(makeInp(row.price, 'price', day.id, row.id, '0'));
+      tr.appendChild(priceTd);
+
+      /* 5. Opening Hrs Column */
+      const hrsTd = document.createElement('td'); hrsTd.className = 'ch-hrs';
+      hrsTd.appendChild(makeInp(row.hrs, 'hrs', day.id, row.id, '9am–5pm'));
+      tr.appendChild(hrsTd);
+
+      /* 6. Duration Column */
+      const durTd = document.createElement('td'); durTd.className = 'ch-dur';
+      durTd.appendChild(makeInp(row.dur, 'dur', day.id, row.id, '2 hrs'));
+      tr.appendChild(durTd);
+
+      /* 7. Status Column */
       const stTd = document.createElement('td'); stTd.className = 'ch-status';
       stTd.appendChild(makeSel(row.status, day.id, row.id));
       tr.appendChild(stTd);
 
-      /* map */
+      /* 8. Map Column */
       const mapTd = document.createElement('td'); mapTd.className = 'ch-map';
       const mapInp = makeInp(row.map, 'map', day.id, row.id, 'Paste link');
       mapTd.appendChild(mapInp);
@@ -1217,16 +1219,17 @@
       }
       tr.appendChild(mapTd);
 
-      /* notes */
+      /* 9. Notes Column */
       const nTd = document.createElement('td'); nTd.className = 'ch-notes';
       nTd.appendChild(makeInp(row.notes, 'notes', day.id, row.id, 'Notes…'));
       tr.appendChild(nTd);
 
-      /* del */
+      /* 10. Del Column */
       const dTd = document.createElement('td'); dTd.className = 'ch-del';
       const delBtn = document.createElement('button'); delBtn.className = 'del-btn'; delBtn.textContent = '×';
       delBtn.onclick = () => deleteRow(day.id, row.id);
-      dTd.appendChild(delBtn); tr.appendChild(dTd);
+      dTd.appendChild(delBtn);
+      tr.appendChild(dTd);
 
       return tr;
     }
