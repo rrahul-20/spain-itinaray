@@ -1,853 +1,1197 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spain Trip 2026 — Rahul</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spain Trip 2026 — Rahul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  :root {
-    --bg: #faf8f4;
-    --card: #ffffff;
-    --border: #e8e2d9;
-    --border-strong: #c8bfb0;
-    --text: #1a1714;
-    --text-muted: #6b6158;
-    --text-faint: #a09589;
-    --accent: #c2401a;
-    --accent-bg: #fdf0ec;
-    --accent-border: #f5c4b0;
-    --tag-booked-bg: #eaf3de; --tag-booked: #3b6d11;
-    --tag-not-bg: #faeeda; --tag-not: #854f0b;
-    --tag-free-bg: #e6f1fb; --tag-free: #185fa5;
-    --tag-dash-bg: #f1efe8; --tag-dash: #5f5e5a;
-    --day-barcelona: #e6f1fb; --day-rome: #fff0e8; --day-venice: #edf7ed; --day-transit: #f5f0fa;
-    --shadow: 0 1px 4px rgba(0,0,0,0.06);
-    --radius: 10px;
-  }
-
-  @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1a1714; --card: #242018; --border: #3a342c; --border-strong: #5a5047;
-      --text: #f0ebe3; --text-muted: #a89e92; --text-faint: #6b6158;
-      --accent: #e8673a; --accent-bg: #2a1a12; --accent-border: #6a3020;
-      --tag-booked-bg: #173404; --tag-booked: #97c459;
-      --tag-not-bg: #412402; --tag-not: #fac775;
-      --tag-free-bg: #042c53; --tag-free: #85b7eb;
-      --tag-dash-bg: #2c2c2a; --tag-dash: #b4b2a9;
-      --day-barcelona: #0c1a2a; --day-rome: #2a1a0a; --day-venice: #0a1e0a; --day-transit: #1a1224;
+      --bg: #faf8f4;
+      --card: #ffffff;
+      --border: #e8e2d9;
+      --border-strong: #c8bfb0;
+      --text: #1a1714;
+      --text-muted: #6b6158;
+      --text-faint: #a09589;
+      --accent: #c2401a;
+      --accent-bg: #fdf0ec;
+      --accent-border: #f5c4b0;
+      --tag-booked-bg: #eaf3de;
+      --tag-booked: #3b6d11;
+      --tag-not-bg: #faeeda;
+      --tag-not: #854f0b;
+      --tag-free-bg: #e6f1fb;
+      --tag-free: #185fa5;
+      --tag-dash-bg: #f1efe8;
+      --tag-dash: #5f5e5a;
+      --bcn-bg: #e6f1fb;
+      --bcn-fg: #185fa5;
+      --rom-bg: #fff0e8;
+      --rom-fg: #993c1d;
+      --ven-bg: #edf7ed;
+      --ven-fg: #3b6d11;
+      --tra-bg: #f5f0fa;
+      --tra-fg: #534ab7;
+      --radius: 10px;
     }
-  }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    font-size: 14px;
-    line-height: 1.5;
-  }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1714;
+        --card: #242018;
+        --border: #3a342c;
+        --border-strong: #5a5047;
+        --text: #f0ebe3;
+        --text-muted: #a89e92;
+        --text-faint: #6b6158;
+        --accent: #e8673a;
+        --accent-bg: #2a1a12;
+        --accent-border: #6a3020;
+        --tag-booked-bg: #173404;
+        --tag-booked: #97c459;
+        --tag-not-bg: #412402;
+        --tag-not: #fac775;
+        --tag-free-bg: #042c53;
+        --tag-free: #85b7eb;
+        --tag-dash-bg: #2c2c2a;
+        --tag-dash: #b4b2a9;
+        --bcn-bg: #0c1a2a;
+        --bcn-fg: #85b7eb;
+        --rom-bg: #2a1a0a;
+        --rom-fg: #f0997b;
+        --ven-bg: #0a1e0a;
+        --ven-fg: #97c459;
+        --tra-bg: #1a1224;
+        --tra-fg: #afa9ec;
+      }
+    }
 
-  .hero {
-    background: var(--accent-bg);
-    border-bottom: 1px solid var(--accent-border);
-    padding: 2rem 1.5rem 1.5rem;
-  }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      font-size: 14px;
+      line-height: 1.5;
+    }
 
-  .hero-inner { max-width: 900px; margin: 0 auto; }
-
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-  }
-
-  .hero-sub {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-top: 4px;
-    font-weight: 300;
-  }
-
-  .cost-strip {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.25rem;
-    flex-wrap: wrap;
-  }
-
-  .cost-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 0.6rem 1rem;
-    min-width: 140px;
-  }
-
-  .cost-card .label {
-    font-size: 11px;
-    color: var(--text-faint);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 500;
-  }
-
-  .cost-card .value {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    color: var(--accent);
-    font-weight: 600;
-    margin-top: 1px;
-  }
-
-  .sync-status {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    color: var(--text-faint);
-    margin-top: 0.75rem;
-  }
-
-  .sync-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: #97c459;
-    flex-shrink: 0;
-  }
-
-  .sync-dot.syncing { background: #fac775; animation: pulse 1s infinite; }
-  .sync-dot.error { background: #e24b4a; }
-
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
-  .main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
-
-  .legend {
-    display: flex; gap: 0.75rem; flex-wrap: wrap;
-    margin-bottom: 1.5rem;
-  }
-
-  .legend-item {
-    display: flex; align-items: center; gap: 5px;
-    font-size: 12px; color: var(--text-muted);
-  }
-
-  .legend-dot {
-    width: 10px; height: 10px; border-radius: 3px;
-  }
-
-  .day-section { margin-bottom: 2rem; }
-
-  .day-header {
-    display: flex; align-items: center; gap: 0.75rem;
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .day-badge {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  .day-date {
-    font-size: 12px; color: var(--text-muted);
-    font-weight: 300;
-  }
-
-  .day-city {
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 20px;
-    font-weight: 500;
-    margin-left: auto;
-  }
-
-  .city-barcelona { background: var(--day-barcelona); color: #185fa5; }
-  .city-rome      { background: var(--day-rome);      color: #993c1d; }
-  .city-venice    { background: var(--day-venice);    color: #3b6d11; }
-  .city-transit   { background: var(--day-transit);   color: #534ab7; }
-
-  @media (prefers-color-scheme: dark) {
-    .city-barcelona { color: #85b7eb; }
-    .city-rome      { color: #f0997b; }
-    .city-venice    { color: #97c459; }
-    .city-transit   { color: #afa9ec; }
-  }
-
-  .add-row-btn {
-    display: flex; align-items: center; gap: 6px;
-    background: transparent;
-    border: 1px dashed var(--border-strong);
-    border-radius: var(--radius);
-    padding: 0.5rem 1rem;
-    font-size: 12px;
-    color: var(--text-faint);
-    cursor: pointer;
-    width: 100%;
-    margin-top: 0.4rem;
-    transition: all 0.15s;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .add-row-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-  }
-
-  thead th {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-faint);
-    font-weight: 500;
-    padding: 0 8px 6px;
-    text-align: left;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  /* col widths */
-  .col-time    { width: 90px; }
-  .col-dur     { width: 70px; }
-  .col-travel  { width: 70px; }
-  .col-act     { width: auto; }
-  .col-loc     { width: 120px; }
-  .col-price   { width: 85px; }
-  .col-hours   { width: 90px; }
-  .col-status  { width: 100px; }
-  .col-gmap    { width: 110px; }
-  .col-notes   { width: 140px; }
-  .col-del     { width: 30px; }
-
-  tr.entry {
-    border-radius: var(--radius);
-    transition: background 0.1s;
-  }
-
-  tr.entry:hover td { background: var(--accent-bg); }
-
-  td {
-    padding: 4px 8px;
-    vertical-align: top;
-  }
-
-  td:first-child { border-radius: var(--radius) 0 0 var(--radius); }
-  td:last-child  { border-radius: 0 var(--radius) var(--radius) 0; }
-
-  .cell-input {
-    width: 100%;
-    background: transparent;
-    border: none;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    color: var(--text);
-    padding: 3px 0;
-    outline: none;
-    resize: none;
-    overflow: hidden;
-  }
-
-  .cell-input:focus {
-    background: var(--card);
-    border-radius: 4px;
-    padding: 3px 5px;
-    box-shadow: 0 0 0 2px var(--accent-border);
-  }
-
-  .status-select {
-    width: 100%;
-    background: transparent;
-    border: none;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    cursor: pointer;
-    outline: none;
-    padding: 2px 0;
-    color: var(--text);
-  }
-
-  .status-badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 500;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-
-  .s-booked   { background: var(--tag-booked-bg); color: var(--tag-booked); }
-  .s-not      { background: var(--tag-not-bg);    color: var(--tag-not);    }
-  .s-free     { background: var(--tag-free-bg);   color: var(--tag-free);   }
-  .s-dash     { background: var(--tag-dash-bg);   color: var(--tag-dash);   }
-
-  .del-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: var(--text-faint);
-    padding: 2px 4px;
-    border-radius: 4px;
-    font-size: 14px;
-    line-height: 1;
-    transition: color 0.1s;
-  }
-  .del-btn:hover { color: #e24b4a; }
-
-  .save-banner {
-    position: fixed;
-    bottom: 1.5rem; right: 1.5rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 0.5rem 1rem;
-    font-size: 13px;
-    color: var(--text-muted);
-    box-shadow: var(--shadow);
-    opacity: 0;
-    transform: translateY(8px);
-    transition: all 0.2s;
-    pointer-events: none;
-    z-index: 100;
-  }
-
-  .save-banner.show { opacity: 1; transform: translateY(0); }
-
-  .toolbar {
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 0.5rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .filter-tabs {
-    display: flex; gap: 4px;
-  }
-
-  .ftab {
-    padding: 5px 12px;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    background: transparent;
-    font-size: 12px;
-    color: var(--text-muted);
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.15s;
-  }
-
-  .ftab.active, .ftab:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #fff;
-  }
-
-  .export-btn {
-    padding: 5px 14px;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    background: transparent;
-    font-size: 12px;
-    color: var(--text-muted);
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.15s;
-  }
-  .export-btn:hover { border-color: var(--border-strong); color: var(--text); }
-
-  .section-toggle {
-    display: flex; align-items: center; gap: 6px;
-    background: transparent; border: none; cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .no-rows {
-    text-align: center;
-    padding: 1.5rem;
-    font-size: 13px;
-    color: var(--text-faint);
-    font-style: italic;
-  }
-
-  @media (max-width: 600px) {
-    .col-dur, .col-travel, .col-hours, .col-gmap, .col-time { display: none !important; }
-    .col-notes { width: 80px; }
-    .col-price { width: 70px; }
-    .mobile-badge {
-      display: inline-block;
-      font-size: 10px;
-      padding: 1px 5px;
-      border-radius: 4px;
-      margin-right: 4px;
+    /* ── HERO ── */
+    .hero {
       background: var(--accent-bg);
-      color: var(--accent);
-      border: 1px solid var(--accent-border);
-      vertical-align: middle;
+      border-bottom: 1px solid var(--accent-border);
+      padding: 1.5rem 1rem 1.25rem;
     }
-  }
-</style>
+
+    .hero-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 5vw, 2rem);
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .hero-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 3px;
+      font-weight: 300;
+    }
+
+    .cost-strip {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .cost-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.5rem 0.85rem;
+      min-width: 110px;
+      flex: 1;
+    }
+
+    .cost-card .label {
+      font-size: 10px;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+    }
+
+    .cost-card .value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 1px;
+    }
+
+    .sync-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .sync-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-faint);
+    }
+
+    .sync-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #97c459;
+      flex-shrink: 0;
+    }
+
+    .sync-dot.syncing {
+      background: #fac775;
+      animation: pulse 1s infinite;
+    }
+
+    .sync-dot.error {
+      background: #e24b4a;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.4
+      }
+    }
+
+    /* ── MAIN ── */
+    .main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 4rem;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .ftab {
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: transparent;
+      font-size: 12px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.15s;
+    }
+
+    .ftab.active,
+    .ftab:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .export-btn {
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: transparent;
+      font-size: 12px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .export-btn:hover {
+      border-color: var(--border-strong);
+      color: var(--text);
+    }
+
+    /* ── DAY SECTION ── */
+    .day-section {
+      margin-bottom: 2rem;
+    }
+
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .day-badge {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .day-date {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .day-city {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 500;
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    .city-bcn {
+      background: var(--bcn-bg);
+      color: var(--bcn-fg);
+    }
+
+    .city-rom {
+      background: var(--rom-bg);
+      color: var(--rom-fg);
+    }
+
+    .city-ven {
+      background: var(--ven-bg);
+      color: var(--ven-fg);
+    }
+
+    .city-tra {
+      background: var(--tra-bg);
+      color: var(--tra-fg);
+    }
+
+    /* ── STATUS BADGES ── */
+    .sbadge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 500;
+      white-space: nowrap;
+      cursor: default;
+    }
+
+    .s-booked {
+      background: var(--tag-booked-bg);
+      color: var(--tag-booked);
+    }
+
+    .s-not {
+      background: var(--tag-not-bg);
+      color: var(--tag-not);
+    }
+
+    .s-free {
+      background: var(--tag-free-bg);
+      color: var(--tag-free);
+    }
+
+    .s-dash {
+      background: var(--tag-dash-bg);
+      color: var(--tag-dash);
+    }
+
+    /* ── DESKTOP TABLE ── */
+    .tbl-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      min-width: 700px;
+    }
+
+    thead th {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-faint);
+      font-weight: 500;
+      padding: 0 6px 5px;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .ch-time {
+      width: 80px;
+    }
+
+    .ch-act {
+      width: auto;
+    }
+
+    .ch-loc {
+      width: 110px;
+    }
+
+    .ch-price {
+      width: 75px;
+    }
+
+    .ch-hrs {
+      width: 85px;
+    }
+
+    .ch-dur {
+      width: 65px;
+    }
+
+    .ch-status {
+      width: 95px;
+    }
+
+    .ch-notes {
+      width: 130px;
+    }
+
+    .ch-del {
+      width: 28px;
+    }
+
+    tr.entry {
+      transition: background 0.1s;
+    }
+
+    tr.entry:hover td {
+      background: var(--accent-bg);
+    }
+
+    td {
+      padding: 4px 6px;
+      vertical-align: top;
+    }
+
+    td:first-child {
+      border-radius: var(--radius) 0 0 var(--radius);
+    }
+
+    td:last-child {
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    .cell-inp {
+      width: 100%;
+      background: transparent;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--text);
+      padding: 2px 0;
+      outline: none;
+    }
+
+    .cell-inp:focus {
+      background: var(--card);
+      border-radius: 4px;
+      padding: 2px 4px;
+      box-shadow: 0 0 0 2px var(--accent-border);
+    }
+
+    .cell-sel {
+      width: 100%;
+      background: transparent;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--text);
+      padding: 2px 0;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .add-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius);
+      padding: 0.4rem 1rem;
+      font-size: 12px;
+      color: var(--text-faint);
+      cursor: pointer;
+      width: 100%;
+      margin-top: 0.35rem;
+      transition: all 0.15s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .add-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-bg);
+    }
+
+    .del-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--text-faint);
+      padding: 2px 3px;
+      border-radius: 4px;
+      font-size: 14px;
+      line-height: 1;
+      transition: color 0.1s;
+    }
+
+    .del-btn:hover {
+      color: #e24b4a;
+    }
+
+    /* ── MOBILE CARDS (≤640px) ── */
+    .mobile-cards {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      .tbl-wrap {
+        display: none;
+      }
+
+      .mobile-cards {
+        display: block;
+      }
+
+      .m-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        position: relative;
+      }
+
+      .m-card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .m-time-badge {
+        font-size: 10px;
+        color: var(--text-faint);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-weight: 500;
+        white-space: nowrap;
+        margin-top: 2px;
+      }
+
+      .m-activity {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text);
+        flex: 1;
+        min-width: 0;
+        background: transparent;
+        border: none;
+        font-family: 'DM Sans', sans-serif;
+        padding: 0;
+        outline: none;
+        width: 100%;
+        line-height: 1.4;
+      }
+
+      .m-activity:focus {
+        text-decoration: underline;
+        text-decoration-color: var(--accent-border);
+      }
+
+      .m-meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.3rem 0.6rem;
+        margin-top: 0.5rem;
+      }
+
+      .m-field {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+
+      .m-label {
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-faint);
+        font-weight: 500;
+      }
+
+      .m-val {
+        font-size: 12px;
+        color: var(--text);
+        background: transparent;
+        border: none;
+        font-family: 'DM Sans', sans-serif;
+        padding: 0;
+        outline: none;
+        width: 100%;
+      }
+
+      .m-val:focus {
+        text-decoration: underline;
+        text-decoration-color: var(--accent-border);
+      }
+
+      .m-sel {
+        font-size: 12px;
+        color: var(--text);
+        background: transparent;
+        border: none;
+        font-family: 'DM Sans', sans-serif;
+        padding: 0;
+        outline: none;
+        width: 100%;
+        cursor: pointer;
+      }
+
+      .m-notes-row {
+        margin-top: 0.4rem;
+      }
+
+      .m-notes {
+        font-size: 12px;
+        color: var(--text-muted);
+        background: transparent;
+        border: none;
+        font-family: 'DM Sans', sans-serif;
+        padding: 0;
+        outline: none;
+        width: 100%;
+        font-style: italic;
+      }
+
+      .m-notes:focus {
+        font-style: normal;
+        text-decoration: underline;
+        text-decoration-color: var(--accent-border);
+      }
+
+      .m-notes::placeholder {
+        color: var(--text-faint);
+        font-style: italic;
+      }
+
+      .m-del {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: var(--text-faint);
+        font-size: 16px;
+        line-height: 1;
+        padding: 2px 4px;
+        border-radius: 4px;
+        transition: color 0.1s;
+      }
+
+      .m-del:hover {
+        color: #e24b4a;
+      }
+
+      .m-status-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 0.5rem;
+        padding-top: 0.4rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .m-price-inline {
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      .m-price-inp {
+        font-size: 12px;
+        color: var(--text-muted);
+        background: transparent;
+        border: none;
+        font-family: 'DM Sans', sans-serif;
+        padding: 0;
+        outline: none;
+        width: 80px;
+        text-align: right;
+      }
+
+      .m-price-inp:focus {
+        text-decoration: underline;
+        text-decoration-color: var(--accent-border);
+      }
+    }
+
+    /* ── MISC ── */
+    .no-rows {
+      text-align: center;
+      padding: 2rem;
+      font-size: 13px;
+      color: var(--text-faint);
+      font-style: italic;
+    }
+
+    .save-banner {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.4rem 0.9rem;
+      font-size: 12px;
+      color: var(--text-muted);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all 0.2s;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .save-banner.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="hero">
-  <div class="hero-inner">
-    <h1>✈ Spain Trip 2026</h1>
-    <div class="hero-sub">Jun 11 – Jun 25 &nbsp;·&nbsp; BLR → BCN → Rome → Venice → BCN → BLR</div>
-    <div class="cost-strip">
-      <div class="cost-card">
-        <div class="label">Total logged (INR)</div>
-        <div class="value" id="total-cost">₹0</div>
+  <div class="hero">
+    <div class="hero-inner">
+      <h1>✈ Spain Trip 2026</h1>
+      <div class="hero-sub">Jun 11 – Jun 25 &nbsp;·&nbsp; BLR → BCN → Rome → Venice → BCN → BLR</div>
+      <div class="cost-strip">
+        <div class="cost-card">
+          <div class="label">Total (INR)</div>
+          <div class="value" id="total-cost">₹0</div>
+        </div>
+        <div class="cost-card">
+          <div class="label">Activities</div>
+          <div class="value" id="total-acts">0</div>
+        </div>
+        <div class="cost-card">
+          <div class="label">Booked</div>
+          <div class="value" id="total-booked">0</div>
+        </div>
+        <div class="cost-card">
+          <div class="label">Not booked</div>
+          <div class="value" id="total-nb">0</div>
+        </div>
       </div>
-      <div class="cost-card">
-        <div class="label">Activities</div>
-        <div class="value" id="total-acts">0</div>
+      <div class="sync-row">
+        <div class="sync-status">
+          <div class="sync-dot" id="sync-dot"></div>
+          <span id="sync-label">Connecting…</span>
+        </div>
       </div>
-      <div class="cost-card">
-        <div class="label">Booked</div>
-        <div class="value" id="total-booked">0</div>
-      </div>
-      <div class="cost-card">
-        <div class="label">Not booked</div>
-        <div class="value" id="total-notbooked">0</div>
-      </div>
-    </div>
-    <div class="sync-status">
-      <div class="sync-dot" id="sync-dot"></div>
-      <span id="sync-label">Loading data…</span>
     </div>
   </div>
-</div>
 
-<div class="main">
-  <div class="toolbar">
-    <div class="filter-tabs">
-      <button class="ftab active" onclick="filterBy('all', this)">All</button>
-      <button class="ftab" onclick="filterBy('Barcelona', this)">Barcelona</button>
-      <button class="ftab" onclick="filterBy('Rome', this)">Rome</button>
-      <button class="ftab" onclick="filterBy('Venice', this)">Venice</button>
-      <button class="ftab" onclick="filterBy('transit', this)">Flights/Trains</button>
+  <div class="main">
+    <div class="toolbar">
+      <div class="filter-tabs">
+        <button class="ftab active" onclick="filterBy('all',this)">All</button>
+        <button class="ftab" onclick="filterBy('bcn',this)">Barcelona</button>
+        <button class="ftab" onclick="filterBy('rom',this)">Rome</button>
+        <button class="ftab" onclick="filterBy('ven',this)">Venice</button>
+        <button class="ftab" onclick="filterBy('tra',this)">Flights</button>
+      </div>
+      <button class="export-btn" onclick="exportCSV()">Export CSV</button>
     </div>
-    <button class="export-btn" onclick="exportCSV()">Export CSV</button>
+    <div id="root"></div>
   </div>
 
-  <div id="itinerary-root"></div>
-</div>
+  <div class="save-banner" id="save-banner">Saving…</div>
 
-<div class="save-banner" id="save-banner">Saving…</div>
+  <script>
+    /* ── FIREBASE CONFIG (public project, data visible to anyone with the URL) ── */
+    const FB_URL = 'https://spain-trip-2026-rahul-default-rtdb.europe-west1.firebasedatabase.app/itinerary.json';
 
-<script>
-const BIN_ID = 'spain-trip-2026-rahul-v1';
-const JSONBIN_URL = 'https://api.jsonbin.io/v3/b';
-
-const DEFAULT_DATA = {
-  days: [
-    {
-      id: 'd01', label: 'Day 1', date: '11 Jun', city: 'transit',
-      rows: [
-        { id: 'r001', time: 'Evening', duration: '', travel: '', activity: 'Depart BLR Terminal 2', location: 'Bengaluru (BLR)', price: '', hours: '22:15', status: 'Booked', notes: 'Etihad via AUH. T2.', gmap: '' },
-        { id: 'r002', time: 'Late Night', duration: '9h 20m total', travel: '1h 55m layover', activity: 'Layover — Abu Dhabi (AUH)', location: 'Abu Dhabi (AUH)', price: '', hours: '00:35–02:30', status: 'Booked', notes: '', gmap: '' },
+    const DEFAULT_DATA = {
+      days: [
+        {
+          id: 'd01', label: 'Day 1', date: '11 Jun', city: 'tra', rows: [
+            { id: 'r001', time: 'Evening', dur: '', act: 'Depart BLR Terminal 2', loc: 'Bengaluru (BLR)', price: '', hrs: '22:15', status: 'Booked', notes: 'Etihad via AUH. Terminal 2' },
+            { id: 'r002', time: 'Late Night', dur: '9h 20m total', act: 'Layover — Abu Dhabi (AUH)', loc: 'Abu Dhabi (AUH)', price: '', hrs: '00:35–02:30', status: 'Booked', notes: '~1h 55m layover' },
+          ]
+        },
+        {
+          id: 'd02', label: 'Day 2', date: '12 Jun', city: 'bcn', rows: [
+            { id: 'r003', time: 'Morning', dur: '', act: 'Arrive BCN Terminal 1', loc: 'Barcelona (BCN)', price: '', hrs: '07:35', status: 'Booked', notes: 'Check in to accommodation' },
+            { id: 'r004', time: 'Afternoon', dur: '', act: 'Rest / explore neighbourhood', loc: 'Barcelona', price: '', hrs: '-', status: '-', notes: '' },
+          ]
+        },
+        {
+          id: 'd03', label: 'Day 3', date: '13 Jun', city: 'bcn', rows: [
+            { id: 'r005', time: 'Morning', dur: '3 hrs', act: 'La Sagrada Família', loc: 'Barcelona', price: '3500', hrs: '9am–7pm', status: 'Not Booked', notes: 'Book tickets online in advance' },
+            { id: 'r006', time: 'Afternoon', dur: '2 hrs', act: 'Park Güell', loc: 'Barcelona', price: '1500', hrs: '8am–8pm', status: 'Not Booked', notes: '' },
+            { id: 'r007', time: 'Evening', dur: '', act: 'Las Ramblas & Gothic Quarter', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', notes: '' },
+          ]
+        },
+        {
+          id: 'd04', label: 'Day 4', date: '14 Jun', city: 'bcn', rows: [
+            { id: 'r008', time: 'Morning', dur: '2 hrs', act: 'Camp Nou Stadium Tour', loc: 'Barcelona', price: '2800', hrs: '9:30am–6:30pm', status: 'Not Booked', notes: '' },
+            { id: 'r009', time: 'Afternoon', dur: '', act: 'Barceloneta Beach', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', notes: '' },
+          ]
+        },
+        {
+          id: 'd05', label: 'Day 5', date: '15 Jun', city: 'bcn', rows: [
+            { id: 'r010', time: 'All day', dur: '', act: 'Montserrat monastery & mountain', loc: 'Montserrat', price: '2500', hrs: '9am–6pm', status: 'Not Booked', notes: 'Train from Plaça Espanya' },
+          ]
+        },
+        {
+          id: 'd06', label: 'Day 6', date: '16 Jun', city: 'bcn', rows: [
+            { id: 'r011', time: 'Morning', dur: '2 hrs', act: 'Picasso Museum', loc: 'Barcelona', price: '1400', hrs: '10am–7pm', status: 'Not Booked', notes: '' },
+            { id: 'r012', time: 'Afternoon', dur: '', act: 'El Born & Santa Maria del Mar', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', notes: '' },
+            { id: 'r013', time: 'Evening', dur: '', act: 'Tapas on Carrer del Parlament', loc: 'Barcelona', price: '2000', hrs: '-', status: '-', notes: '' },
+          ]
+        },
+        {
+          id: 'd07', label: 'Day 7', date: '17 Jun', city: 'bcn', rows: [
+            { id: 'r014', time: 'Morning', dur: '2 hrs', act: 'Casa Batlló / Casa Milà (La Pedrera)', loc: 'Barcelona', price: '3000', hrs: '9am–9pm', status: 'Not Booked', notes: 'Pick one or both, Passeig de Gràcia' },
+            { id: 'r015', time: 'Afternoon', dur: '', act: 'Palau de la Música Catalana', loc: 'Barcelona', price: '2000', hrs: '10am–6pm', status: 'Not Booked', notes: '' },
+          ]
+        },
+        {
+          id: 'd08', label: 'Day 8', date: '18 Jun', city: 'bcn', rows: [
+            { id: 'r016', time: 'All day', dur: '', act: 'Business / work day', loc: 'Barcelona', price: '', hrs: '-', status: 'Booked', notes: 'Work commitments' },
+          ]
+        },
+        {
+          id: 'd09', label: 'Day 9', date: '19 Jun', city: 'bcn', rows: [
+            { id: 'r017', time: 'Morning', dur: '', act: 'Tibidabo Amusement Park & views', loc: 'Barcelona', price: '3500', hrs: '10am–8pm', status: 'Not Booked', notes: '' },
+            { id: 'r018', time: 'Evening', dur: '', act: 'Pack & prep for Rome departure', loc: 'Barcelona', price: '', hrs: '-', status: '-', notes: '' },
+            { id: 'r019', time: 'Night', dur: '1h 55m', act: 'Flight BCN → Rome FCO', loc: 'BCN → FCO', price: '4506', hrs: '21:45 depart', status: 'Not Booked', notes: 'Arrive FCO 23:40' },
+          ]
+        },
+        {
+          id: 'd10', label: 'Day 10', date: '20 Jun', city: 'rom', rows: [
+            { id: 'r020', time: 'Late Night', dur: '', act: 'Arrive Rome FCO & transfer to hotel', loc: 'Rome', price: '', hrs: '23:40 arrival', status: 'Not Booked', notes: 'Check in / drop bags' },
+            { id: 'r021', time: 'Morning', dur: '3 hrs', act: 'Colosseum & Roman Forum', loc: 'Rome', price: '3500', hrs: '9am–7pm', status: 'Not Booked', notes: 'Book skip-the-line tickets' },
+            { id: 'r022', time: 'Afternoon', dur: '2 hrs', act: 'Palatine Hill', loc: 'Rome', price: '', hrs: '-', status: 'Free', notes: 'Included with Colosseum ticket' },
+            { id: 'r023', time: 'Evening', dur: '', act: 'Trastevere neighbourhood dinner', loc: 'Rome', price: '2000', hrs: '-', status: '-', notes: '' },
+          ]
+        },
+        {
+          id: 'd11', label: 'Day 11', date: '21 Jun', city: 'rom', rows: [
+            { id: 'r024', time: 'Morning', dur: '3 hrs', act: 'Vatican Museums & Sistine Chapel', loc: 'Vatican City', price: '3000', hrs: '9am–6pm', status: 'Not Booked', notes: 'Book months ahead — very busy' },
+            { id: 'r025', time: 'Afternoon', dur: '1 hr', act: "St. Peter's Basilica & Square", loc: 'Vatican City', price: '', hrs: '7am–7pm', status: 'Free', notes: '' },
+            { id: 'r026', time: 'Evening', dur: '', act: 'Piazza Navona & Pantheon stroll', loc: 'Rome', price: '', hrs: '-', status: 'Free', notes: '' },
+          ]
+        },
+        {
+          id: 'd12', label: 'Day 12', date: '22 Jun', city: 'rom', rows: [
+            { id: 'r027', time: 'Morning', dur: '', act: 'Trevi Fountain & Spanish Steps', loc: 'Rome', price: '', hrs: '24hrs', status: 'Free', notes: 'Go early to avoid crowds' },
+            { id: 'r028', time: 'Afternoon', dur: '', act: 'Borghese Gallery', loc: 'Rome', price: '2500', hrs: '9am–7pm', status: 'Not Booked', notes: 'Strictly timed entry — must pre-book' },
+            { id: 'r029', time: 'Night', dur: '7h 45m overnight', act: 'Overnight train Rome → Venice', loc: 'Rome → Venice', price: '4246', hrs: '22:35 depart', status: 'Not Booked', notes: 'Arrives Venice 06:20' },
+          ]
+        },
+        {
+          id: 'd13', label: 'Day 13', date: '23 Jun', city: 'ven', rows: [
+            { id: 'r030', time: 'Early Morning', dur: '', act: 'Arrive Venice Santa Lucia & drop bags', loc: 'Venice', price: '', hrs: '06:20 arrival', status: '-', notes: '' },
+            { id: 'r031', time: 'Morning', dur: '2 hrs', act: "St. Mark's Basilica & Doge's Palace", loc: "St. Mark's Square", price: '2500', hrs: '9am–5pm', status: 'Not Booked', notes: 'Book online to skip queues' },
+            { id: 'r032', time: 'Afternoon', dur: '1.5 hrs', act: 'Gondola ride through canals', loc: 'Venice', price: '5000', hrs: '-', status: 'Not Booked', notes: '~80 EUR shared gondola, 30 min' },
+            { id: 'r033', time: 'Late Afternoon', dur: '', act: 'Rialto Bridge & market area', loc: 'Venice', price: '', hrs: '-', status: 'Free', notes: '' },
+            { id: 'r034', time: 'Evening', dur: '', act: 'Sunset from Punta della Dogana', loc: 'Venice', price: '', hrs: '-', status: 'Free', notes: 'Best sunset spot in Venice' },
+            { id: 'r035', time: 'Night', dur: '', act: 'Last dinner — seafood risotto', loc: 'Venice', price: '2500', hrs: '-', status: '-', notes: '' },
+          ]
+        },
+        {
+          id: 'd14', label: 'Day 14', date: '24 Jun', city: 'tra', rows: [
+            { id: 'r036', time: 'Morning', dur: '2h', act: 'Flight VCE → BCN', loc: 'Venice → Barcelona', price: '1388', hrs: '09:10 depart', status: 'Not Booked', notes: 'Arrives BCN 11:10' },
+            { id: 'r037', time: 'Afternoon', dur: '', act: 'BCN layover — rest / explore', loc: 'Barcelona', price: '', hrs: '-', status: '-', notes: 'Return flight at 22:30' },
+            { id: 'r038', time: 'Night', dur: '', act: 'Depart BCN → AUH → BLR (Etihad)', loc: 'BCN → BLR', price: '', hrs: '22:30 depart', status: 'Booked', notes: 'Terminal 1. Arrives BLR 25 Jun 14:15' },
+          ]
+        },
+        {
+          id: 'd15', label: 'Day 15', date: '25 Jun', city: 'tra', rows: [
+            { id: 'r039', time: 'Afternoon', dur: '', act: 'Arrive BLR Terminal 2', loc: 'Bengaluru (BLR)', price: '', hrs: '14:15', status: 'Booked', notes: 'Layover AUH 07:05–08:40' },
+          ]
+        },
       ]
-    },
-    {
-      id: 'd02', label: 'Day 2', date: '12 Jun', city: 'Barcelona',
-      rows: [
-        { id: 'r003', time: 'Morning', duration: '', travel: '', activity: 'Arrive BCN Terminal 1', location: 'Barcelona (BCN)', price: '', hours: '07:35', status: 'Booked', notes: 'Check in to accommodation', gmap: '' },
-        { id: 'r004', time: 'Afternoon', duration: '', travel: '', activity: 'Rest / explore neighbourhood', location: 'Barcelona', price: '', hours: '-', status: '-', notes: '', gmap: '' },
-      ]
-    },
-    {
-      id: 'd03', label: 'Day 3', date: '13 Jun', city: 'Barcelona',
-      rows: [
-        { id: 'r005', time: 'Morning', duration: '3 hours', travel: '', activity: 'La Sagrada Família', location: 'Barcelona', price: '3500', hours: '9am–7pm', status: 'Not Booked', notes: 'Book tickets online in advance', gmap: '' },
-        { id: 'r006', time: 'Afternoon', duration: '2 hours', travel: '', activity: 'Park Güell', location: 'Barcelona', price: '1500', hours: '8am–8pm', status: 'Not Booked', notes: '' },
-        { id: 'r007', time: 'Evening', duration: '', travel: '', activity: 'Las Ramblas & Gothic Quarter stroll', location: 'Barcelona', price: '', hours: '-', status: 'Free', notes: '', gmap: '' },
-      ]
-    },
-    {
-      id: 'd04', label: 'Day 4', date: '14 Jun', city: 'Barcelona',
-      rows: [
-        { id: 'r008', time: 'Morning', duration: '2 hours', travel: '', activity: 'Camp Nou Stadium Tour', location: 'Barcelona', price: '2800', hours: '9:30am–6:30pm', status: 'Not Booked', notes: '', gmap: '' },
-        { id: 'r009', time: 'Afternoon', duration: '', travel: '', activity: 'Barceloneta Beach', location: 'Barcelona', price: '', hours: '-', status: 'Free', notes: '', gmap: '' },
-      ]
-    },
-    {
-      id: 'd05', label: 'Day 5', date: '15 Jun', city: 'Barcelona',
-      rows: [
-        { id: 'r010', time: 'All day', duration: '', travel: '', activity: 'Day trip — Montserrat monastery & mountain', location: 'Montserrat', price: '2500', hours: '9am–6pm', status: 'Not Booked', notes: 'Train from Plaça Espanya', gmap: '' },
-      ]
-    },
-    {
-      id: 'd06', label: 'Day 6', date: '16 Jun', city: 'Barcelona',
-      rows: [
-        { id: 'r011', time: 'Morning', duration: '2 hours', travel: '', activity: 'Picasso Museum', location: 'Barcelona', price: '1400', hours: '10am–7pm', status: 'Not Booked', notes: '', gmap: '' },
-        { id: 'r012', time: 'Afternoon', duration: '', travel: '', activity: 'El Born neighbourhood & Santa Maria del Mar', location: 'Barcelona', price: '', hours: '-', status: 'Free', notes: '', gmap: '' },
-        { id: 'r013', time: 'Evening', duration: '', travel: '', activity: 'Tapas dinner on Carrer del Parlament', location: 'Barcelona', price: '2000', hours: '-', status: '-', notes: '', gmap: '' },
-      ]
-    },
-    {
-      id: 'd07', label: 'Day 7', date: '17 Jun', city: 'Barcelona',
-      rows: [
-        { id: 'r014', time: 'Morning', duration: '2 hours', travel: '', activity: 'Casa Batlló / Casa Milà (La Pedrera)', location: 'Barcelona', price: '3000', hours: '9am–9pm', status: 'Not Booked', notes: 'Pick one or both on Passeig de Gràcia', gmap: '' },
-        { id: 'r015', time: 'Afternoon', duration: '', travel: '', activity: 'Palau de la Música Catalana', location: 'Barcelona', price: '2000', hours: '10am–6pm', status: 'Not Booked', notes: '', gmap: '' },
-      ]
-    },
-    {
-      id: 'd08', label: 'Day 8', date: '18 Jun', city: 'Barcelona',
-      rows: [
-        { id: 'r016', time: 'All day', duration: '', travel: '', activity: 'Business / work day', location: 'Barcelona', price: '', hours: '-', status: 'Booked', notes: 'Work commitments', gmap: '' },
-      ]
-    },
-    {
-      id: 'd09', label: 'Day 9', date: '19 Jun', city: 'Barcelona',
-      rows: [
-        { id: 'r017', time: 'Morning', duration: '', travel: '', activity: 'Tibidabo Amusement Park & views', location: 'Barcelona', price: '3500', hours: '10am–8pm', status: 'Not Booked', notes: '', gmap: '' },
-        { id: 'r018', time: 'Evening', duration: '', travel: '', activity: 'Pack & prep for Rome departure', location: 'Barcelona', price: '', hours: '-', status: '-', notes: '', gmap: '' },
-        { id: 'r019', time: 'Night', duration: '1h 55m', travel: '', activity: 'Flight BCN → Rome FCO', location: 'BCN → FCO', price: '4506', hours: '21:45 depart', status: 'Not Booked', notes: 'Arrive 23:40. Option 2a from plan.txt', gmap: '' },
-      ]
-    },
-    {
-      id: 'd10', label: 'Day 10', date: '20 Jun', city: 'Rome',
-      rows: [
-        { id: 'r020', time: 'Early Morning', duration: '', travel: '', activity: 'Arrive Rome Fiumicino (FCO) & transfer to hotel', location: 'Rome', price: '', hours: '23:40 arrival', status: 'Not Booked', notes: 'Check in / drop bags', gmap: '' },
-        { id: 'r021', time: 'Morning', duration: '3 hours', travel: '', activity: 'Colosseum & Roman Forum', location: 'Rome', price: '3500', hours: '9am–7pm', status: 'Not Booked', notes: 'Book skip-the-line tickets', gmap: '' },
-        { id: 'r022', time: 'Afternoon', duration: '2 hours', travel: '', activity: 'Palatine Hill', location: 'Rome', price: '', hours: '-', status: 'Free', notes: 'Included with Colosseum ticket', gmap: '' },
-        { id: 'r023', time: 'Evening', duration: '', travel: '', activity: 'Trastevere neighbourhood dinner', location: 'Rome', price: '2000', hours: '-', status: '-', notes: '', gmap: '' },
-      ]
-    },
-    {
-      id: 'd11', label: 'Day 11', date: '21 Jun', city: 'Rome',
-      rows: [
-        { id: 'r024', time: 'Morning', duration: '3 hours', travel: '', activity: 'Vatican Museums & Sistine Chapel', location: 'Vatican City', price: '3000', hours: '9am–6pm', status: 'Not Booked', notes: 'Book months ahead — very busy', gmap: '' },
-        { id: 'r025', time: 'Afternoon', duration: '1 hour', travel: '', activity: "St. Peter's Basilica & Square", location: 'Vatican City', price: '', hours: '7am–7pm', status: 'Free', notes: '', gmap: '' },
-        { id: 'r026', time: 'Evening', duration: '', travel: '', activity: 'Piazza Navona & Pantheon area stroll', location: 'Rome', price: '', hours: '-', status: 'Free', notes: '', gmap: '' },
-      ]
-    },
-    {
-      id: 'd12', label: 'Day 12', date: '22 Jun', city: 'Rome',
-      rows: [
-        { id: 'r027', time: 'Morning', duration: '', travel: '', activity: 'Trevi Fountain & Spanish Steps', location: 'Rome', price: '', hours: '24hrs', status: 'Free', notes: 'Go early to avoid crowds', gmap: '' },
-        { id: 'r028', time: 'Afternoon', duration: '', travel: '', activity: 'Borghese Gallery (pre-book)', location: 'Rome', price: '2500', hours: '9am–7pm', status: 'Not Booked', notes: 'Strictly timed entry — must book', gmap: '' },
-        { id: 'r029', time: 'Night', duration: '7h 45m overnight', travel: '', activity: 'Overnight train Rome → Venice', location: 'Rome → Venice', price: '4246', hours: '22:35 depart', status: 'Not Booked', notes: 'Arrives Venice 06:20. Option 1 from plan.txt', gmap: '' },
-      ]
-    },
-    {
-      id: 'd13', label: 'Day 13', date: '23 Jun', city: 'Venice',
-      rows: [
-        { id: 'r030', time: 'Early Morning', duration: '', travel: '', activity: 'Arrive Venice Santa Lucia & drop bags', location: 'Venice', price: '', hours: '06:20 arrival', status: '-', notes: '', gmap: '' },
-        { id: 'r031', time: 'Morning', duration: '2 hours', travel: '', activity: "St. Mark's Basilica & Doge's Palace", location: "St. Mark's Square", price: '2500', hours: '9am–5pm', status: 'Not Booked', notes: 'Book online to skip queues', gmap: '' },
-        { id: 'r032', time: 'Afternoon', duration: '1.5 hours', travel: '', activity: 'Gondola ride through canals', location: 'Venice', price: '5000', hours: '-', status: 'Not Booked', notes: '~80 EUR for 30 min shared gondola', gmap: '' },
-        { id: 'r033', time: 'Late Afternoon', duration: '', travel: '', activity: 'Rialto Bridge & market area', location: 'Venice', price: '', hours: '-', status: 'Free', notes: '', gmap: '' },
-        { id: 'r034', time: 'Evening', duration: '', travel: '', activity: 'Sunset from Punta della Dogana', location: 'Venice', price: '', hours: '-', status: 'Free', notes: 'Best sunset spot in Venice', gmap: '' },
-        { id: 'r035', time: 'Night', duration: '', travel: '', activity: 'Last dinner in Venice — seafood risotto', location: 'Venice', price: '2500', hours: '-', status: '-', notes: '', gmap: '' },
-      ]
-    },
-    {
-      id: 'd14', label: 'Day 14', date: '24 Jun', city: 'transit',
-      rows: [
-        { id: 'r036', time: 'Morning', duration: '2h', travel: '', activity: 'Flight VCE → BCN', location: 'Venice → Barcelona', price: '1388', hours: '09:10 depart', status: 'Not Booked', notes: 'Arrives BCN 11:10. Option 1 from plan.txt', gmap: '' },
-        { id: 'r037', time: 'Afternoon', duration: '', travel: '', activity: 'BCN layover — rest / city if time allows', location: 'Barcelona', price: '', hours: '-', status: '-', notes: 'Return flight at 22:30', gmap: '' },
-        { id: 'r038', time: 'Night', duration: '', travel: '', activity: 'Depart BCN → AUH → BLR (Etihad)', location: 'BCN → BLR', price: '', hours: '22:30 depart', status: 'Booked', notes: 'Terminal 1. Arrives BLR 25 Jun 14:15', gmap: '' },
-      ]
-    },
-    {
-      id: 'd15', label: 'Day 15', date: '25 Jun', city: 'transit',
-      rows: [
-        { id: 'r039', time: 'Afternoon', duration: '', travel: '', activity: 'Arrive BLR Terminal 2', location: 'Bengaluru (BLR)', price: '', hours: '14:15', status: 'Booked', notes: 'Layover AUH 07:05–08:40', gmap: '' },
-      ]
-    },
-  ]
-};
+    };
 
-let DATA = null;
-let BIN_REAL_ID = '6a3d906de41b4d34e402a46c';
-let saveTimer = null;
-let currentFilter = 'all';
+    let DATA = null;
+    let saveTimer = null;
+    let currentFilter = 'all';
+    let isSaving = false;
 
-const JSONBIN_REAL_KEY = '$2a$10$g5NisBs8yQWHrCHHY9cPce5bW1Wh9hlfpPVm2jj5nkUDkMo0N9fRa';
+    /* ── FIREBASE SYNC ── */
+    async function loadData() {
+      setSyncState('syncing', 'Connecting…');
+      try {
+        const res = await fetch(FB_URL, { cache: 'no-store' });
+        if (!res.ok) throw new Error('fetch failed');
+        const remote = await res.json();
+        if (remote && remote.days && remote.days.length > 0) {
+          DATA = remote;
+        } else {
+          DATA = DEFAULT_DATA;
+          await pushToFirebase();
+        }
+        setSyncState('ok', 'Synced — anyone with this link can edit');
+      } catch (e) {
+        console.warn('Firebase load failed:', e);
+        DATA = DEFAULT_DATA;
+        setSyncState('error', 'Offline — showing default data');
+      }
+      render();
+    }
 
-async function loadData() {
-  setSyncState('syncing', 'Connecting…');
-  try {
-    const res = await fetch(`${JSONBIN_URL}/${BIN_REAL_ID}/latest?meta=false&nocache=${Date.now()}`, {
-      headers: { 'X-Master-Key': JSONBIN_REAL_KEY }
-    });
-    if (!res.ok) throw new Error('Fetch failed');
-    DATA = await res.json();
-    setSyncState('ok', 'Synced · anyone with this link can edit');
-    render();
-  } catch(e) {
-    console.warn('JSONBin failed, using local:', e);
-    const local = localStorage.getItem('spainTrip2026_local');
-    DATA = local ? JSON.parse(local) : DEFAULT_DATA;
-    setSyncState('error', 'Offline mode — data saved locally');
-    render();
-  }
-}
+    async function pushToFirebase() {
+      try {
+        await fetch(FB_URL, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(DATA)
+        });
+        setSyncState('ok', 'Saved · ' + new Date().toLocaleTimeString());
+        showBanner('Saved ✓');
+      } catch (e) {
+        setSyncState('error', 'Save failed');
+        showBanner('Save failed ✗');
+      }
+    }
 
-async function saveData() {
-  localStorage.setItem('spainTrip2026_local', JSON.stringify(DATA));
-  showBanner('Saving…');
-  try {
-    setSyncState('syncing', 'Saving…');
-    const res = await fetch(`${JSONBIN_URL}/${BIN_REAL_ID}?meta=false&nocache=${Date.now()}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Master-Key': JSONBIN_REAL_KEY
-      },
-      body: JSON.stringify(DATA)
-    });
-    if (!res.ok) throw new Error('Save failed');
-    setSyncState('ok', 'Saved · ' + new Date().toLocaleTimeString());
-    showBanner('Saved ✓');
-  } catch(e) {
-    setSyncState('error', 'Save failed — data kept locally');
-    showBanner('Saved locally ✓');
-  }
-}
+    function scheduleSave() {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(pushToFirebase, 1000);
+    }
 
-function scheduleSave() {
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(saveData, 1200);
-}
+    function setSyncState(state, msg) {
+      const dot = document.getElementById('sync-dot');
+      const lbl = document.getElementById('sync-label');
+      dot.className = 'sync-dot' + (state === 'syncing' ? ' syncing' : state === 'error' ? ' error' : '');
+      lbl.textContent = msg;
+    }
 
-function setSyncState(state, msg) {
-  const dot = document.getElementById('sync-dot');
-  const label = document.getElementById('sync-label');
-  dot.className = 'sync-dot' + (state === 'syncing' ? ' syncing' : state === 'error' ? ' error' : '');
-  label.textContent = msg;
-}
+    function showBanner(msg) {
+      const b = document.getElementById('save-banner');
+      b.textContent = msg; b.classList.add('show');
+      clearTimeout(b._t); b._t = setTimeout(() => b.classList.remove('show'), 2000);
+    }
 
-function showBanner(msg) {
-  const b = document.getElementById('save-banner');
-  b.textContent = msg;
-  b.classList.add('show');
-  clearTimeout(b._t);
-  b._t = setTimeout(() => b.classList.remove('show'), 2000);
-}
+    /* ── RENDER ── */
+    function cityClass(c) { return 'city-' + c; }
+    function cityLabel(c) { return { bcn: 'Barcelona', rom: 'Rome', ven: 'Venice', tra: 'Flight / Transit' }[c] || c; }
+    function sBadge(s) {
+      const cls = s === 'Booked' ? 's-booked' : s === 'Not Booked' ? 's-not' : s === 'Free' ? 's-free' : 's-dash';
+      return `<span class="sbadge ${cls}">${s}</span>`;
+    }
+    function esc(s) { return String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    function uid() { return 'r' + Math.random().toString(36).slice(2, 9); }
 
-function uid() { return 'r' + Math.random().toString(36).slice(2, 9); }
+    function filterMatches(d) {
+      if (currentFilter === 'all') return true;
+      return d.city === currentFilter;
+    }
 
-function statusClass(s) {
-  if (s === 'Booked') return 's-booked';
-  if (s === 'Not Booked') return 's-not';
-  if (s === 'Free') return 's-free';
-  return 's-dash';
-}
+    function render() {
+      updateStats();
+      const root = document.getElementById('root');
+      root.innerHTML = '';
+      const days = DATA.days.filter(filterMatches);
+      if (!days.length) { root.innerHTML = '<div class="no-rows">No days match this filter.</div>'; return; }
+      days.forEach(day => root.appendChild(buildDay(day)));
+    }
 
-function cityClass(c) {
-  if (c === 'Barcelona') return 'city-barcelona';
-  if (c === 'Rome') return 'city-rome';
-  if (c === 'Venice') return 'city-venice';
-  return 'city-transit';
-}
+    function buildDay(day) {
+      const sec = document.createElement('div');
+      sec.className = 'day-section';
 
-function cityLabel(c) {
-  if (c === 'Barcelona') return 'Barcelona';
-  if (c === 'Rome') return 'Rome';
-  if (c === 'Venice') return 'Venice';
-  return 'Flight / Transit';
-}
+      /* header */
+      const hdr = document.createElement('div');
+      hdr.className = 'day-header';
+      hdr.innerHTML = `
+    <span class="day-badge">${day.label}</span>
+    <span class="day-date">${day.date}</span>
+    <span class="day-city ${cityClass(day.city)}">${cityLabel(day.city)}</span>`;
+      sec.appendChild(hdr);
 
-function filterMatches(day) {
-  if (currentFilter === 'all') return true;
-  if (currentFilter === 'transit') return day.city === 'transit';
-  return day.city === currentFilter;
-}
+      /* desktop table */
+      const wrap = document.createElement('div');
+      wrap.className = 'tbl-wrap';
+      const tbl = document.createElement('table');
+      tbl.innerHTML = `<thead><tr>
+    <th class="ch-time">Time</th>
+    <th class="ch-act">Activity</th>
+    <th class="ch-loc">Location</th>
+    <th class="ch-price">Price (₹)</th>
+    <th class="ch-hrs">Opening hrs</th>
+    <th class="ch-dur">Duration</th>
+    <th class="ch-status">Status</th>
+    <th class="ch-notes">Notes</th>
+    <th class="ch-del"></th>
+  </tr></thead>`;
+      const tbody = document.createElement('tbody');
+      tbody.id = 'tb-' + day.id;
+      tbl.appendChild(tbody);
+      wrap.appendChild(tbl);
+      sec.appendChild(wrap);
 
-function render() {
-  updateStats();
-  const root = document.getElementById('itinerary-root');
-  root.innerHTML = '';
+      /* mobile cards container */
+      const mCards = document.createElement('div');
+      mCards.className = 'mobile-cards';
+      mCards.id = 'mc-' + day.id;
+      sec.appendChild(mCards);
 
-  const days = DATA.days.filter(filterMatches);
-  if (days.length === 0) {
-    root.innerHTML = '<div class="no-rows">No days match this filter.</div>';
-    return;
-  }
+      /* add button */
+      const addBtn = document.createElement('button');
+      addBtn.className = 'add-btn';
+      addBtn.textContent = '+ Add activity';
+      addBtn.onclick = () => addRow(day.id);
+      sec.appendChild(addBtn);
 
-  days.forEach(day => {
-    const sec = document.createElement('div');
-    sec.className = 'day-section';
-    sec.dataset.dayId = day.id;
+      renderRows(day);
+      return sec;
+    }
 
-    sec.innerHTML = `
-      <div class="day-header">
-        <span class="day-badge">${day.label}</span>
-        <span class="day-date">${day.date}</span>
-        <span class="day-city ${cityClass(day.city)}">${cityLabel(day.city)}</span>
+    function renderRows(day) {
+      /* desktop */
+      const tbody = document.getElementById('tb-' + day.id);
+      if (tbody) { tbody.innerHTML = ''; day.rows.forEach(r => tbody.appendChild(buildDesktopRow(day, r))); }
+      /* mobile */
+      const mc = document.getElementById('mc-' + day.id);
+      if (mc) { mc.innerHTML = ''; day.rows.forEach(r => mc.appendChild(buildMobileCard(day, r))); }
+    }
+
+    function makeInp(val, field, dayId, rowId, placeholder) {
+      const inp = document.createElement('input');
+      inp.className = 'cell-inp'; inp.value = val || ''; inp.placeholder = placeholder || '';
+      inp.addEventListener('input', () => { updateField(dayId, rowId, field, inp.value); });
+      return inp;
+    }
+
+    function makeSel(val, dayId, rowId) {
+      const sel = document.createElement('select');
+      sel.className = 'cell-sel';
+      ['Booked', 'Not Booked', 'Free', '-'].forEach(s => {
+        const o = document.createElement('option'); o.value = s; o.textContent = s;
+        if (s === val) o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', () => { updateField(dayId, rowId, 'status', sel.value); });
+      return sel;
+    }
+
+    function buildDesktopRow(day, row) {
+      const tr = document.createElement('tr');
+      tr.className = 'entry';
+      const fields = [
+        ['ch-time', 'time', 'Morning'], ['ch-act', 'act', 'Activity'], ['ch-loc', 'loc', 'Location'],
+        ['ch-price', 'price', '0'], ['ch-hrs', 'hrs', '9am–5pm'], ['ch-dur', 'dur', '2 hrs'],
+      ];
+      fields.forEach(([cls, f, ph]) => {
+        const td = document.createElement('td'); td.className = cls;
+        td.appendChild(makeInp(row[f], f, day.id, row.id, ph));
+        tr.appendChild(td);
+      });
+      /* status */
+      const stTd = document.createElement('td'); stTd.className = 'ch-status';
+      stTd.appendChild(makeSel(row.status, day.id, row.id));
+      tr.appendChild(stTd);
+      /* notes */
+      const nTd = document.createElement('td'); nTd.className = 'ch-notes';
+      nTd.appendChild(makeInp(row.notes, 'notes', day.id, row.id, 'Notes…'));
+      tr.appendChild(nTd);
+      /* del */
+      const dTd = document.createElement('td'); dTd.className = 'ch-del';
+      const delBtn = document.createElement('button'); delBtn.className = 'del-btn'; delBtn.textContent = '×';
+      delBtn.onclick = () => deleteRow(day.id, row.id);
+      dTd.appendChild(delBtn); tr.appendChild(dTd);
+      return tr;
+    }
+
+    function buildMobileCard(day, row) {
+      const card = document.createElement('div');
+      card.className = 'm-card';
+
+      const sClass = row.status === 'Booked' ? 's-booked' : row.status === 'Not Booked' ? 's-not' : row.status === 'Free' ? 's-free' : 's-dash';
+
+      card.innerHTML = `
+    <button class="m-del" onclick="deleteRow('${day.id}','${row.id}')">×</button>
+    <div class="m-time-badge">${esc(row.time) || '—'}</div>
+    <div class="m-card-top">
+      <input class="m-activity" value="${esc(row.act)}" placeholder="Activity" data-field="act">
+    </div>
+    <div class="m-meta">
+      <div class="m-field">
+        <span class="m-label">Location</span>
+        <input class="m-val" value="${esc(row.loc)}" placeholder="Location" data-field="loc">
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th class="col-time">Time</th>
-            <th class="col-dur">Duration</th>
-            <th class="col-travel">Travel time</th>
-            <th class="col-act">Activity</th>
-            <th class="col-loc">Location</th>
-            <th class="col-price">Price (₹)</th>
-            <th class="col-hours">Opening hrs</th>
-            <th class="col-status">Status</th>
-            <th class="col-gmap">Map</th>
-            <th class="col-notes">Notes</th>
-            <th class="col-del"></th>
-          </tr>
-        </thead>
-        <tbody id="tbody-${day.id}"></tbody>
-      </table>
-      <button class="add-row-btn" onclick="addRow('${day.id}')">+ Add activity</button>
-    `;
-    root.appendChild(sec);
-    renderRows(day);
-  });
-}
-
-function renderRows(day) {
-  const tbody = document.getElementById(`tbody-${day.id}`);
-  tbody.innerHTML = '';
-  day.rows.forEach(row => {
-    const tr = document.createElement('tr');
-    tr.className = 'entry';
-    tr.dataset.rowId = row.id;
-    tr.dataset.dayId = day.id;
-
-    const statuses = ['Booked', 'Not Booked', 'Free', '-'];
-    const statusOpts = statuses.map(s =>
-      `<option value="${s}" ${row.status === s ? 'selected' : ''}>${s}</option>`
-    ).join('');
-
-    tr.innerHTML = `
-      <td class="col-time"><input class="cell-input" value="${esc(row.time)}" data-field="time" placeholder="Morning"></td>
-      <td class="col-dur"><input class="cell-input" value="${esc(row.duration)}" data-field="duration" placeholder="—"></td>
-      <td class="col-travel"><input class="cell-input" value="${esc(row.travel)}" data-field="travel" placeholder="—"></td>
-      <td>
-        ${row.time ? `<span class="mobile-badge" style="display:none;" id="mb-time-${row.id}">${esc(row.time)}</span>` : ''}
-        <input class="cell-input" value="${esc(row.activity)}" data-field="activity" placeholder="Activity">
-        ${row.gmap && row.gmap.startsWith('http') ? `<a href="${row.gmap}" target="_blank" class="mobile-badge" style="display:none; text-decoration:none; margin-top:0;" id="mb-map-${row.id}">📍 Map</a>` : ''}
-        <style>
-          @media (max-width: 600px) {
-            #mb-time-${row.id}, #mb-map-${row.id} { display: inline-block !important; }
-          }
-        </style>
-      </td>
-      <td><input class="cell-input" value="${esc(row.location)}" data-field="location" placeholder="Location"></td>
-      <td><input class="cell-input" value="${esc(row.price)}" data-field="price" placeholder="0" type="text"></td>
-      <td class="col-hours"><input class="cell-input" value="${esc(row.hours)}" data-field="hours" placeholder="—"></td>
-      <td>
-        <select class="cell-input status-select" data-field="status" style="color: inherit;">
-          ${statusOpts}
+      <div class="m-field">
+        <span class="m-label">Duration</span>
+        <input class="m-val" value="${esc(row.dur)}" placeholder="—" data-field="dur">
+      </div>
+      <div class="m-field">
+        <span class="m-label">Opening hrs</span>
+        <input class="m-val" value="${esc(row.hrs)}" placeholder="—" data-field="hrs">
+      </div>
+      <div class="m-field">
+        <span class="m-label">Status</span>
+        <select class="m-sel" data-field="status">
+          ${['Booked', 'Not Booked', 'Free', '-'].map(s => `<option value="${s}"${s === row.status ? ' selected' : ''}>${s}</option>`).join('')}
         </select>
-      </td>
-      <td class="col-gmap">
-        <input class="cell-input" value="${esc(row.gmap)}" data-field="gmap" placeholder="Paste link...">
-        ${row.gmap && row.gmap.startsWith('http') ? `<a href="${row.gmap}" target="_blank" style="font-size:11px; color:var(--accent); text-decoration:none; display:block; margin-top:2px;">📍 View Map</a>` : ''}
-      </td>
-      <td><input class="cell-input" value="${esc(row.notes)}" data-field="notes" placeholder="Notes"></td>
-      <td><button class="del-btn" title="Delete row" onclick="deleteRow('${day.id}','${row.id}')">×</button></td>
-    `;
+      </div>
+    </div>
+    <div class="m-notes-row">
+      <input class="m-notes" value="${esc(row.notes)}" placeholder="Notes…" data-field="notes">
+    </div>
+    <div class="m-status-row">
+      <span class="sbadge ${sClass}" id="mbadge-${row.id}">${row.status}</span>
+      <span class="m-price-inline">₹&nbsp;<input class="m-price-inp" value="${esc(row.price)}" placeholder="0" data-field="price"></span>
+    </div>`;
 
-    tr.querySelectorAll('.cell-input').forEach(inp => {
-      inp.addEventListener('input', () => {
-        updateField(day.id, row.id, inp.dataset.field, inp.value);
+      /* bind all inputs */
+      card.querySelectorAll('[data-field]').forEach(el => {
+        const field = el.dataset.field;
+        el.addEventListener('input', () => { updateField(day.id, row.id, field, el.value); });
+        el.addEventListener('change', () => { updateField(day.id, row.id, field, el.value); });
       });
-      inp.addEventListener('change', () => {
-        updateField(day.id, row.id, inp.dataset.field, inp.value);
-      });
-    });
 
-    tbody.appendChild(tr);
-  });
-}
+      return card;
+    }
 
-function esc(s) {
-  if (!s) return '';
-  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+    function updateField(dayId, rowId, field, value) {
+      const day = DATA.days.find(d => d.id === dayId);
+      if (!day) return;
+      const row = day.rows.find(r => r.id === rowId);
+      if (!row) return;
+      row[field] = value;
+      if (field === 'price' || field === 'status') updateStats();
+      scheduleSave();
+    }
 
-function updateField(dayId, rowId, field, value) {
-  const day = DATA.days.find(d => d.id === dayId);
-  if (!day) return;
-  const row = day.rows.find(r => r.id === rowId);
-  if (!row) return;
-  row[field] = value;
-  if (field === 'price') updateStats();
-  scheduleSave();
-}
+    function addRow(dayId) {
+      const day = DATA.days.find(d => d.id === dayId);
+      if (!day) return;
+      const newRow = { id: uid(), time: '', dur: '', act: '', loc: '', price: '', hrs: '', status: '-', notes: '' };
+      day.rows.push(newRow);
+      renderRows(day);
+      updateStats();
+      scheduleSave();
+      /* focus first input of new mobile card */
+      const mc = document.getElementById('mc-' + dayId);
+      if (mc) { const inp = mc.lastElementChild && mc.lastElementChild.querySelector('input'); if (inp) inp.focus(); }
+    }
 
-function addRow(dayId) {
-  const day = DATA.days.find(d => d.id === dayId);
-  if (!day) return;
-  day.rows.push({ id: uid(), time: '', duration: '', travel: '', activity: '', location: '', price: '', hours: '', status: '-', notes: '', gmap: '' });
-  renderRows(day);
-  updateStats();
-  scheduleSave();
-  const tbody = document.getElementById(`tbody-${dayId}`);
-  const lastRow = tbody.lastElementChild;
-  if (lastRow) lastRow.querySelector('input').focus();
-}
+    function deleteRow(dayId, rowId) {
+      const day = DATA.days.find(d => d.id === dayId);
+      if (!day) return;
+      if (day.rows.length <= 1) { alert('A day needs at least one entry.'); return; }
+      day.rows = day.rows.filter(r => r.id !== rowId);
+      renderRows(day);
+      updateStats();
+      scheduleSave();
+    }
 
-function deleteRow(dayId, rowId) {
-  const day = DATA.days.find(d => d.id === dayId);
-  if (!day) return;
-  if (day.rows.length <= 1) { alert('A day must have at least one entry.'); return; }
-  day.rows = day.rows.filter(r => r.id !== rowId);
-  renderRows(day);
-  updateStats();
-  scheduleSave();
-}
+    function updateStats() {
+      if (!DATA) return;
+      let total = 0, acts = 0, booked = 0, nb = 0;
+      DATA.days.forEach(d => d.rows.forEach(r => {
+        acts++;
+        const p = parseFloat(r.price); if (!isNaN(p) && p > 0) total += p;
+        if (r.status === 'Booked') booked++;
+        if (r.status === 'Not Booked') nb++;
+      }));
+      document.getElementById('total-cost').textContent = '₹' + total.toLocaleString('en-IN');
+      document.getElementById('total-acts').textContent = acts;
+      document.getElementById('total-booked').textContent = booked;
+      document.getElementById('total-nb').textContent = nb;
+    }
 
-function updateStats() {
-  if (!DATA) return;
-  let total = 0, acts = 0, booked = 0, notBooked = 0;
-  DATA.days.forEach(d => d.rows.forEach(r => {
-    acts++;
-    const p = parseFloat(r.price);
-    if (!isNaN(p) && p > 0) total += p;
-    if (r.status === 'Booked') booked++;
-    if (r.status === 'Not Booked') notBooked++;
-  }));
-  document.getElementById('total-cost').textContent = '₹' + total.toLocaleString('en-IN');
-  document.getElementById('total-acts').textContent = acts;
-  document.getElementById('total-booked').textContent = booked;
-  document.getElementById('total-notbooked').textContent = notBooked;
-}
+    function filterBy(city, btn) {
+      currentFilter = city;
+      document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    }
 
-function filterBy(city, btn) {
-  currentFilter = city;
-  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  render();
-}
+    function exportCSV() {
+      const rows = [['Day', 'Date', 'City', 'Time', 'Activity', 'Location', 'Price (INR)', 'Opening Hrs', 'Duration', 'Status', 'Notes']];
+      DATA.days.forEach(d => d.rows.forEach(r => {
+        rows.push([d.label, d.date, cityLabel(d.city), r.time, r.act, r.loc, r.price, r.hrs, r.dur, r.status, r.notes]);
+      }));
+      const csv = rows.map(r => r.map(c => `"${String(c || '').replace(/"/g, '""')}"`).join(',')).join('\n');
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+      a.download = 'spain-trip-2026.csv'; a.click();
+    }
 
-function exportCSV() {
-  const rows = [['Day','Date','City','Time','Duration','Travel Time','Activity','Location','Price (INR)','Opening Hours','Status','Map Link','Notes']];
-  DATA.days.forEach(d => {
-    d.rows.forEach(r => {
-      rows.push([d.label, d.date, cityLabel(d.city), r.time, r.duration, r.travel, r.activity, r.location, r.price, r.hours, r.status, r.gmap, r.notes]);
-    });
-  });
-  const csv = rows.map(r => r.map(c => `"${String(c||'').replace(/"/g,'""')}"`).join(',')).join('\n');
-  const blob = new Blob([csv], { type: 'text/csv' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'spain-trip-2026.csv';
-  a.click();
-}
+    loadData();
 
-loadData();
-</script>
+    /* ── Poll every 30s so other devices see edits ── */
+    setInterval(async () => {
+      if (document.hidden) return;
+      try {
+        const res = await fetch(FB_URL, { cache: 'no-store' });
+        if (!res.ok) return;
+        const remote = await res.json();
+        if (remote && remote.days) {
+          DATA = remote; render();
+          setSyncState('ok', 'Synced · ' + new Date().toLocaleTimeString());
+        }
+      } catch (e) { }
+    }, 30000);
+  </script>
 </body>
+
 </html>
