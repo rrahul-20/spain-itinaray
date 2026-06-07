@@ -820,6 +820,7 @@
 
   <script>
     const FB_URL = 'https://spain-trip-2026-rahul-default-rtdb.europe-west1.firebasedatabase.app/itinerary.json';
+    const isReadOnly = new URLSearchParams(window.location.search).get('view') === 'only';
 
     const DEFAULT_DATA = {
       days: [
@@ -1042,6 +1043,10 @@
     function render() {
       updateStats();
 
+      const addButtons = document.querySelectorAll('.add-btn');
+      addButtons.forEach(btn => btn.style.display = isReadOnly ? 'none' : 'block');
+      if (isReadOnly) setSyncState('ok', 'View Only Mode · Changes cannot be made');
+
       const subBar = document.getElementById('sub-filter-tabs');
       if (mainFilter === 'all') {
         subBar.style.display = 'none';
@@ -1231,6 +1236,12 @@
       dTd.appendChild(delBtn);
       tr.appendChild(dTd);
 
+      if (isReadOnly) {
+        tr.querySelectorAll('input, select').forEach(el => el.disabled = true);
+        delBtn.style.display = 'none';
+        document.querySelectorAll('.ch-del').forEach(th => th.style.display = 'none');
+      }
+
       return tr;
     }
 
@@ -1288,6 +1299,13 @@
         el.addEventListener('input', () => updateField(day.id, row.id, el.dataset.field, el.value));
         el.addEventListener('change', () => updateField(day.id, row.id, el.dataset.field, el.value));
       });
+
+      if (isReadOnly) {
+        card.querySelectorAll('input, select').forEach(el => el.disabled = true);
+        const del = card.querySelector('.m-del'); if (del) del.style.display = 'none';
+        const reo = card.querySelector('.m-reorder-actions'); if (reo) reo.style.display = 'none';
+      }
+
       return card;
     }
 
