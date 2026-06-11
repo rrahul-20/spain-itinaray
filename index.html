@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spain Trip 2026 — Rahul</title>
+  <title>Switzerland Trip 2026 — Rahul</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -40,10 +40,14 @@
       --tag-dash: #5f5e5a;
       --bcn-bg: #e6f1fb;
       --bcn-fg: #185fa5;
-      --rom-bg: #fff0e8;
-      --rom-fg: #993c1d;
-      --ven-bg: #edf7ed;
-      --ven-fg: #3b6d11;
+      --luz-bg: #edf7ed;
+      --luz-fg: #3b6d11;
+      --grw-bg: #eeedfe;
+      --grw-fg: #534ab7;
+      --gva-bg: #fff0e8;
+      --gva-fg: #993c1d;
+      --mrt-bg: #fef3e2;
+      --mrt-fg: #7a4f00;
       --tra-bg: #f5f0fa;
       --tra-fg: #534ab7;
       --radius: 10px;
@@ -71,10 +75,14 @@
         --tag-dash: #b4b2a9;
         --bcn-bg: #0c1a2a;
         --bcn-fg: #85b7eb;
-        --rom-bg: #2a1a0a;
-        --rom-fg: #f0997b;
-        --ven-bg: #0a1e0a;
-        --ven-fg: #97c459;
+        --luz-bg: #0a1e0a;
+        --luz-fg: #97c459;
+        --grw-bg: #1a1236;
+        --grw-fg: #afa9ec;
+        --gva-bg: #2a1a0a;
+        --gva-fg: #f0997b;
+        --mrt-bg: #2a1e00;
+        --mrt-fg: #f0c97b;
         --tra-bg: #1a1224;
         --tra-fg: #afa9ec;
       }
@@ -313,14 +321,24 @@
       color: var(--bcn-fg);
     }
 
-    .city-rom {
-      background: var(--rom-bg);
-      color: var(--rom-fg);
+    .city-luz {
+      background: var(--luz-bg);
+      color: var(--luz-fg);
     }
 
-    .city-ven {
-      background: var(--ven-bg);
-      color: var(--ven-fg);
+    .city-grw {
+      background: var(--grw-bg);
+      color: var(--grw-fg);
+    }
+
+    .city-gva {
+      background: var(--gva-bg);
+      color: var(--gva-fg);
+    }
+
+    .city-mrt {
+      background: var(--mrt-bg);
+      color: var(--mrt-fg);
     }
 
     .city-tra {
@@ -774,8 +792,9 @@
 
   <div class="hero">
     <div class="hero-inner">
-      <h1>✈ Spain Trip 2026</h1>
-      <div class="hero-sub">Jun 11 – Jun 25 &nbsp;·&nbsp; BLR → BCN → Rome → Venice → BCN → BLR</div>
+      <h1>🏔 Switzerland Trip 2026</h1>
+      <div class="hero-sub">Jun 20 – Jun 23 &nbsp;·&nbsp; BCN → ZRH → Lucerne → Grindelwald → Martigny → Geneva → BCN
+      </div>
       <div class="cost-strip">
         <div class="cost-card">
           <div class="label">Total (INR)</div>
@@ -803,7 +822,8 @@
 
   <div class="main">
     <div class="toolbar" style="flex-direction: column; align-items: flex-start; gap: 0.75rem;">
-      <div style="display: flex; width: 100%; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+      <div
+        style="display: flex; width: 100%; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
         <div class="filter-tabs" id="main-filter-tabs">
           <button class="ftab active" onclick="setMainFilter('all', this)">All</button>
           <button class="ftab" onclick="setMainFilter('place', this)">📍 Places</button>
@@ -811,7 +831,8 @@
         </div>
         <button class="export-btn" onclick="exportCSV()">Export CSV</button>
       </div>
-      <div class="sub-toolbar" id="sub-filter-tabs" style="border-top: none; padding-top: 0; margin-top: 0; display: none;"></div>
+      <div class="sub-toolbar" id="sub-filter-tabs"
+        style="border-top: none; padding-top: 0; margin-top: 0; display: none;"></div>
     </div>
     <div id="root"></div>
   </div>
@@ -819,121 +840,114 @@
   <div class="save-banner" id="save-banner">Saving…</div>
 
   <script>
-    const FB_URL = 'https://spain-trip-2026-rahul-default-rtdb.europe-west1.firebasedatabase.app/itinerary.json';
+    const FB_URL = 'https://spain-trip-2026-rahul-default-rtdb.europe-west1.firebasedatabase.app/switzerland.json';
     const isReadOnly = new URLSearchParams(window.location.search).get('view') === 'only';
 
     const DEFAULT_DATA = {
       days: [
         {
-          id: 'd01', label: 'Day 1', date: '11 Jun', city: 'tra', rows: [
-            { id: 'r001', time: 'Evening', dur: '', act: 'Depart BLR Terminal 2', loc: 'Bengaluru (BLR)', price: '', hrs: '22:15', status: 'Booked', type: 'flight', map: '', notes: 'Etihad via AUH. Terminal 2' },
-            { id: 'r002', time: 'Late Night', dur: '9h 20m total', act: 'Layover — Abu Dhabi (AUH)', loc: 'Abu Dhabi (AUH)', price: '', hrs: '00:35–02:30', status: 'Booked', type: 'flight', map: '', notes: '~1h 55m layover' },
+          id: 'd01', label: 'Day 1 — Flight', date: '20 Jun', city: 'tra', rows: [
+            { id: 'r001', time: 'Morning', dur: '2h', act: 'Flight BCN → Zurich (VY6246)', loc: 'BCN → ZRH', price: '', hrs: '06:45 dep → 08:45 arr', status: 'Booked', type: 'flight', map: '', notes: 'Vueling, direct. Arrives ZRH 08:45.' },
           ]
         },
         {
-          id: 'd02', label: 'Day 2', date: '12 Jun', city: 'bcn', rows: [
-            { id: 'r003', time: 'Morning', dur: '', act: 'Arrive BCN Terminal 1', loc: 'Barcelona (BCN)', price: '', hrs: '07:35', status: 'Booked', type: 'flight', map: 'https://maps.app.goo.gl/barcelona-airport', notes: 'Check in to accommodation' },
-            { id: 'r004', time: 'Afternoon', dur: '', act: 'Rest / explore neighbourhood', loc: 'Barcelona', price: '', hrs: '-', status: '-', type: 'place', map: '', notes: '' },
+          id: 'd02', label: 'Day 1 — Zurich', date: '20 Jun', city: 'bcn', rows: [
+            { id: 'r002', time: 'Morning', dur: '', act: 'Land ZRH, clear immigration', loc: 'Zurich Airport', price: '', hrs: '08:45', status: 'Booked', type: 'flight', map: '', notes: 'EU queue — fast. Follow signs underground to train station. ~30 min to get out.' },
+            { id: 'r003', time: 'Morning', dur: '', act: 'Buy Swiss Travel Pass at ticket machine', loc: 'ZRH Airport Train Station', price: '18000', hrs: '09:15', status: 'Not Booked', type: 'place', map: '', notes: '3-day pass. Covers all SBB trains + 50% off mountain rides (Grindelwald First, Mürren cable car). Worth it.' },
+            { id: 'r004', time: 'Morning', dur: '1h 5m', act: '🚂 Train ZRH Airport → Luzern (IR70, direct)', loc: 'ZRH → Luzern', price: '', hrs: '09:38 dep → 10:43 arr', status: 'Not Booked', type: 'train', map: '', notes: 'Direct IR70. No change. Runs every 30 min. Sit back.' },
           ]
         },
         {
-          id: 'd03', label: 'Day 3', date: '13 Jun', city: 'bcn', rows: [
-            { id: 'r005', time: 'Morning', dur: '3 hrs', act: 'La Sagrada Família', loc: 'Barcelona', price: '3500', hrs: '9am–7pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/SagradaFamilia', notes: 'Book tickets online in advance' },
-            { id: 'r006', time: 'Afternoon', dur: '2 hrs', act: 'Park Güell', loc: 'Barcelona', price: '1500', hrs: '8am–8pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/ParkGuell', notes: '' },
-            { id: 'r007', time: 'Evening', dur: '', act: 'Las Ramblas & Gothic Quarter', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/LasRamblas', notes: '' },
+          id: 'd03', label: 'Day 1 — Lucerne', date: '20 Jun', city: 'luz', rows: [
+            { id: 'r005', time: 'Morning', dur: '', act: 'Drop bags at left luggage (Gepäck)', loc: 'Luzern HB Station', price: '600', hrs: '10:45', status: '-', type: 'place', map: '', notes: 'CHF 5–8. Lockers inside main entrance. ⚠️ Bellpark check-in is 16:00–22:00 — explore freely until then.' },
+            { id: 'r006', time: 'Morning', dur: '25 min', act: 'Chapel Bridge (Kapellbrücke)', loc: 'Lucerne', price: '', hrs: '10:50', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/LucerneChapelBridge', notes: '5 min walk from station. Medieval wooden bridge with painted panels. Walk across and back.' },
+            { id: 'r007', time: 'Morning', dur: '45 min', act: 'Old Town stroll — Weinmarkt square', loc: 'Lucerne Old Town', price: '', hrs: '11:20', status: 'Free', type: 'place', map: '', notes: 'Painted facades, fountains, cobblestone lanes. Just wander — no plan needed.' },
+            { id: 'r008', time: 'Afternoon', dur: '1 hr', act: 'Lunch by the Reuss River', loc: 'Lucerne', price: '2500', hrs: '12:15', status: '-', type: 'place', map: '', notes: 'CHF 20–30. Many riverside restaurants. Take your time.' },
+            { id: 'r009', time: 'Afternoon', dur: '20 min', act: 'Lion Monument (Löwendenkmal)', loc: 'Lucerne', price: '', hrs: '13:30', status: 'Free', type: 'place', map: '', notes: '10 min walk from bridge. Carved lion in rock face. Free. Genuinely moving.' },
+            { id: 'r010', time: 'Afternoon', dur: '1.5 hrs', act: 'Lake Lucerne waterfront walk', loc: 'Lake Lucerne promenade', price: '', hrs: '14:00', status: 'Free', type: 'place', map: '', notes: 'Swans, mountain views, boats. Best light in afternoon. Just wander.' },
+            { id: 'r011', time: 'Afternoon', dur: '', act: 'Coffee & collect bags from lockers', loc: 'Luzern HB Station', price: '500', hrs: '15:45', status: '-', type: 'place', map: '', notes: 'Head back toward station. Grab a snack for the train journey ahead.' },
+            { id: 'r012', time: 'Evening', dur: '', act: '🏨 Check in — Bellpark Hostel, Lucerne', loc: 'Kriens, Lucerne', price: '19115', hrs: '16:00 – 22:00', status: 'Booked', type: 'place', map: '', notes: 'Bus 10 from Luzern HB (~15 min). Free guest pass covers the ride. Reception CLOSES 22:00 — don\'t miss it!' },
+            { id: 'r013', time: 'Evening', dur: '', act: 'Dinner near hostel', loc: 'Kriens / Lucerne', price: '2000', hrs: '19:00', status: '-', type: 'place', map: '', notes: 'Lidl supermarket next door for cheap eats. Or take Bus 10 back to old town. Early night — big mountain day tomorrow.' },
           ]
         },
         {
-          id: 'd04', label: 'Day 4', date: '14 Jun', city: 'bcn', rows: [
-            { id: 'r008', time: 'Morning', dur: '2 hrs', act: 'Camp Nou Stadium Tour', loc: 'Barcelona', price: '2800', hrs: '9:30am–6:30pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/CampNou', notes: '' },
-            { id: 'r009', time: 'Afternoon', dur: '', act: 'Barceloneta Beach', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/Barceloneta', notes: '' },
+          id: 'd04', label: 'Day 2 — To Grindelwald', date: '21 Jun', city: 'tra', rows: [
+            { id: 'r014', time: 'Morning', dur: '', act: 'Wake up, pack, check out by 10:00', loc: 'Bellpark Hostel', price: '', hrs: '07:00', status: '-', type: 'place', map: '', notes: 'Grab breakfast at hostel or nearby café. Take Bus 10 back to Luzern HB.' },
+            { id: 'r015', time: 'Morning', dur: '1h 57m', act: '🚂 Train Luzern → Interlaken Ost (direct, scenic)', loc: 'Luzern → Interlaken Ost', price: '', hrs: '08:06 dep → 10:03 arr', status: 'Not Booked', type: 'train', map: '', notes: 'Luzern-Interlaken Express. SCENIC — sit right side for lake views. No change.' },
+            { id: 'r016', time: 'Morning', dur: '35 min', act: '🚂 ⚠️ Change → BOB train to Grindelwald', loc: 'Interlaken Ost → Grindelwald', price: '', hrs: '10:14 dep → 10:49 arr', status: 'Not Booked', type: 'train', map: '', notes: 'Follow signs at Interlaken Ost. 10 min connection. Eiger appears as you climb.' },
+            { id: 'r017', time: 'Morning', dur: '', act: '🏨 Check in — Youth Hostel Grindelwald', loc: 'Grindelwald', price: '20525', hrs: '~11:00', status: 'Booked', type: 'place', map: '', notes: 'Uphill walk from station with luggage — manageable. Eiger North Face views from balcony. Hot tub!' },
           ]
         },
         {
-          id: 'd05', label: 'Day 5', date: '15 Jun', city: 'bcn', rows: [
-            { id: 'r010', time: 'All day', dur: '', act: 'Montserrat monastery & mountain', loc: 'Montserrat', price: '2500', hrs: '9am–6pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/Montserrat', notes: 'Train from Plaça Espanya' },
+          id: 'd05', label: 'Day 2 — Mountains', date: '21 Jun', city: 'grw', rows: [
+            { id: 'r018', time: 'Morning', dur: '', act: '⚠️ Check weather on meteoblue.com the night before', loc: 'Grindelwald', price: '', hrs: 'Night before', status: '-', type: 'place', map: 'https://www.meteoblue.com/en/weather/week/grindelwald', notes: 'Clear sky = Jungfraujoch. Overcast = Grindelwald First. Both are incredible.' },
+            { id: 'r019', time: 'Morning', dur: '35 min', act: 'Option A ☀️ Train → Kleine Scheidegg', loc: 'Grindelwald → Kleine Scheidegg', price: '', hrs: '08:00 dep', status: 'Not Booked', type: 'train', map: '', notes: 'For Jungfraujoch. Change at Kleine Scheidegg for Jungfrau Railway.' },
+            { id: 'r020', time: 'Morning', dur: '50 min', act: 'Option A ☀️ Jungfrau Railway → Jungfraujoch (3454m)', loc: 'Kleine Scheidegg → Jungfraujoch', price: '8000', hrs: '08:35 dep → 09:25 arr', status: 'Not Booked', type: 'train', map: '', notes: 'Highest railway station in Europe. Book at jungfrau.ch — SELLS OUT in summer.' },
+            { id: 'r021', time: 'Morning', dur: '2-3 hrs', act: 'Option A ☀️ Jungfraujoch — glacier, ice palace, Sphinx', loc: 'Jungfraujoch (3454m)', price: '', hrs: '09:25 – 12:00', status: 'Not Booked', type: 'place', map: '', notes: 'Aletsch glacier, Sphinx Observatory, ice palace. Bring warm layers — very cold up there.' },
+            { id: 'r022', time: 'Afternoon', dur: '', act: 'Option A ☀️ Lunch at Kleine Scheidegg + descent', loc: 'Kleine Scheidegg', price: '2000', hrs: '12:00 – 14:30', status: '-', type: 'place', map: '', notes: 'Lunch with direct Eiger North Face view. Back in Grindelwald by 15:00.' },
+            { id: 'r023', time: 'Morning', dur: '25 min', act: 'Option B ⛅ Gondola up to Grindelwald First (2168m)', loc: 'Grindelwald First', price: '3000', hrs: '08:30 dep', status: 'Not Booked', type: 'place', map: '', notes: 'Swiss Pass = 50% off. 10 min walk from village to gondola station.' },
+            { id: 'r024', time: 'Morning', dur: '1 hr', act: 'Option B ⛅ Cliff Walk — suspended walkway', loc: 'Grindelwald First', price: '', hrs: '09:00 – 10:00', status: 'Free', type: 'place', map: '', notes: 'Walkway bolted to cliff face. Eiger directly above. Included with gondola.' },
+            { id: 'r025', time: 'Morning', dur: '1 hr', act: 'Option B ⛅ Hike to Bachalpsee lake', loc: 'First → Bachalpsee', price: '', hrs: '11:00 – 12:00', status: 'Free', type: 'place', map: '', notes: 'Easy 1hr walk each way. Turquoise alpine lake reflecting the peaks. Unmissable.' },
+            { id: 'r026', time: 'Afternoon', dur: '', act: 'Option B ⛅ Lunch at First mountain restaurant', loc: 'Grindelwald First', price: '2000', hrs: '13:00', status: '-', type: 'place', map: '', notes: 'Gondola down by 14:30. Afternoon free in village.' },
+            { id: 'r027', time: 'Evening', dur: '', act: 'Dinner in Grindelwald village', loc: 'Grindelwald', price: '2500', hrs: '19:00', status: '-', type: 'place', map: '', notes: 'Sit outside if weather allows. Eiger right above you. Check meteoblue for tomorrow.' },
           ]
         },
         {
-          id: 'd06', label: 'Day 6', date: '16 Jun', city: 'bcn', rows: [
-            { id: 'r011', time: 'Morning', dur: '2 hrs', act: 'Picasso Museum', loc: 'Barcelona', price: '1400', hrs: '10am–7pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/PicassoMuseum', notes: '' },
-            { id: 'r012', time: 'Afternoon', dur: '', act: 'El Born & Santa Maria del Mar', loc: 'Barcelona', price: '', hrs: '-', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/ElBorn', notes: '' },
-            { id: 'r013', time: 'Evening', dur: '', act: 'Tapas on Carrer del Parlament', loc: 'Barcelona', price: '2000', hrs: '-', status: '-', type: 'place', map: 'https://maps.app.goo.gl/Parlament', notes: '' },
+          id: 'd06', label: 'Day 3 — Lauterbrunnen', date: '22 Jun', city: 'grw', rows: [
+            { id: 'r028', time: 'Morning', dur: '', act: 'Wake up, pack all bags, check out', loc: 'Youth Hostel Grindelwald', price: '', hrs: '07:30', status: '-', type: 'place', map: '', notes: 'Check out by 10:00. Leave big bag at reception if needed, collect before train.' },
+            { id: 'r029', time: 'Morning', dur: '35 min', act: '🚂 Train Grindelwald → Lauterbrunnen', loc: 'Grindelwald → Lauterbrunnen', price: '', hrs: '08:15 dep → 08:50 arr', status: 'Not Booked', type: 'train', map: '', notes: '1 change at Zweilütschinen. ~35 min total. Leave main bag in Lauterbrunnen station locker.' },
+            { id: 'r030', time: 'Morning', dur: '30 min', act: 'Staubbach Falls — 300m waterfall into valley', loc: 'Lauterbrunnen', price: '', hrs: '08:50 – 09:20', status: 'Free', type: 'place', map: '', notes: 'Right at the village entrance. Walk up close. Free. Nothing else looks like this.' },
+            { id: 'r031', time: 'Morning', dur: '20 min', act: 'Cable car up to Mürren', loc: 'Lauterbrunnen → Mürren', price: '1500', hrs: '09:30 dep', status: 'Not Booked', type: 'place', map: '', notes: 'Swiss Pass = 50% off. Car-free village high above the valley. 20 min ride.' },
+            { id: 'r032', time: 'Morning', dur: '2 hrs', act: 'Walk Mürren — Eiger/Mönch/Jungfrau panorama', loc: 'Mürren', price: '', hrs: '10:00 – 12:00', status: 'Free', type: 'place', map: '', notes: 'Best panoramic view in Switzerland. Flat village walk. No crowds vs Interlaken.' },
+            { id: 'r033', time: 'Afternoon', dur: '', act: 'Lunch in Mürren — order rösti', loc: 'Mürren', price: '2000', hrs: '12:00', status: '-', type: 'place', map: '', notes: 'Sit outside. Three peaks directly in front of you. Cable car down by 13:00.' },
+            { id: 'r034', time: 'Afternoon', dur: '45 min', act: 'Valley floor walk — 72 waterfalls, meadows', loc: 'Lauterbrunnen Valley', price: '', hrs: '13:15 – 14:00', status: 'Free', type: 'place', map: '', notes: 'Walk the flat valley floor. Waterfalls cascade off 300m cliffs on both sides. Cows. Zero cars.' },
           ]
         },
         {
-          id: 'd07', label: 'Day 7', date: '17 Jun', city: 'bcn', rows: [
-            { id: 'r014', time: 'Morning', dur: '2 hrs', act: 'Casa Batlló / Casa Milà (La Pedrera)', loc: 'Barcelona', price: '3000', hrs: '9am–9pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/CasaBatllo', notes: 'Pick one or both, Passeig de Gràcia' },
-            { id: 'r015', time: 'Afternoon', dur: '', act: 'Palau de la Música Catalana', loc: 'Barcelona', price: '2000', hrs: '10am–6pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/PalauMusica', notes: '' },
+          id: 'd07', label: 'Day 3 — To Martigny', date: '22 Jun', city: 'tra', rows: [
+            { id: 'r035', time: 'Afternoon', dur: '~40 min', act: '🚂 Train Lauterbrunnen → Spiez', loc: 'Lauterbrunnen → Spiez', price: '', hrs: '14:00 dep → 14:40 arr', status: 'Not Booked', type: 'train', map: '', notes: 'Via Interlaken Ost or direct. Lake Thun views.' },
+            { id: 'r036', time: 'Afternoon', dur: '30 min', act: '🚂 Train Spiez → Visp', loc: 'Spiez → Visp', price: '', hrs: '14:55 dep → 15:25 arr', status: 'Not Booked', type: 'train', map: '', notes: 'Through the Rhône valley. Scenic.' },
+            { id: 'r037', time: 'Afternoon', dur: '40 min', act: '🚂 Train Visp → Martigny (direct)', loc: 'Visp → Martigny', price: '', hrs: '15:30 dep → 16:10 arr', status: 'Not Booked', type: 'train', map: '', notes: 'Direct. Cleanest route — avoids the 6hr Golden Pass alternative.' },
           ]
         },
         {
-          id: 'd08', label: 'Day 8', date: '18 Jun', city: 'bcn', rows: [
-            { id: 'r016', time: 'All day', dur: '', act: 'Business / work day', loc: 'Barcelona', price: '', hrs: '-', status: 'Booked', type: 'place', map: '', notes: 'Work commitments' },
+          id: 'd08', label: 'Day 3 — Martigny', date: '22 Jun', city: 'mrt', rows: [
+            { id: 'r038', time: 'Afternoon', dur: '', act: '🏨 Check in — Hotel de la Poste, Martigny', loc: 'Martigny', price: '13050', hrs: '16:15', status: 'Booked', type: 'place', map: '', notes: '5 min walk from Martigny station. Basic but central. French-speaking Switzerland from here.' },
+            { id: 'r039', time: 'Evening', dur: '1 hr', act: 'Château de la Bâtiaz — 13th century castle', loc: 'Martigny', price: '', hrs: '17:00', status: 'Free', type: 'place', map: '', notes: '0.4 mi walk from hotel. Hilltop castle with Rhône valley views. Great evening walk.' },
+            { id: 'r040', time: 'Evening', dur: '', act: 'Dinner in Martigny — French-Swiss cuisine', loc: 'Martigny', price: '2000', hrs: '19:30', status: '-', type: 'place', map: '', notes: 'French-speaking Switzerland — food quality noticeably better. Try a local brasserie. Early night.' },
           ]
         },
         {
-          id: 'd09', label: 'Day 9', date: '19 Jun', city: 'bcn', rows: [
-            { id: 'r017', time: 'Morning', dur: '', act: 'Tibidabo Amusement Park & views', loc: 'Barcelona', price: '3500', hrs: '10am–8pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/Tibidabo', notes: '' },
-            { id: 'r018', time: 'Evening', dur: '', act: 'Pack & prep for Rome departure', loc: 'Barcelona', price: '', hrs: '-', status: '-', type: 'place', map: '', notes: '' },
-            { id: 'r019', time: 'Night', dur: '1h 55m', act: 'Flight BCN → Rome FCO', loc: 'BCN → FCO', price: '4506', hrs: '21:45 depart', status: 'Not Booked', type: 'flight', map: '', notes: 'Arrive FCO 23:40' },
+          id: 'd09', label: 'Day 4 — To Geneva', date: '23 Jun', city: 'tra', rows: [
+            { id: 'r041', time: 'Morning', dur: '', act: 'Wake up, breakfast, check out by 11:00', loc: 'Hotel de la Poste', price: '', hrs: '08:00', status: '-', type: 'place', map: '', notes: 'Supermarket 66 feet from hotel if breakfast not included. Morning stroll in Martigny optional.' },
+            { id: 'r042', time: 'Morning', dur: '', act: 'Pierre Gianadda Foundation (optional)', loc: 'Martigny', price: '1500', hrs: '09:00 – 11:00', status: 'Not Booked', type: 'place', map: '', notes: 'World-class art + archaeology museum. 1.4km from hotel. Only if you have time and interest.' },
+            { id: 'r043', time: 'Morning', dur: '1h 48m', act: '🚂 Train Martigny → Geneva Airport (direct!)', loc: 'Martigny → GVA Airport', price: '', hrs: '11:17 dep → 13:05 arr', status: 'Not Booked', type: 'train', map: '', notes: '⭐ Direct SBB train straight to Geneva Airport. No changes. Runs every 30 min. Swiss Pass covers this.' },
           ]
         },
         {
-          id: 'd10', label: 'Day 10', date: '20 Jun', city: 'rom', rows: [
-            { id: 'r020', time: 'Late Night', dur: '', act: 'Arrive Rome FCO & transfer to hotel', loc: 'Rome', price: '', hrs: '23:40 arrival', status: 'Not Booked', type: 'flight', map: 'https://maps.app.goo.gl/RomeFCO', notes: 'Check in / drop bags' },
-            { id: 'r021', time: 'Morning', dur: '3 hrs', act: 'Colosseum & Roman Forum', loc: 'Rome', price: '3500', hrs: '9am–7pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/Colosseum', notes: 'Book skip-the-line tickets' },
-            { id: 'r022', time: 'Afternoon', dur: '2 hrs', act: 'Palatine Hill', loc: 'Rome', price: '', hrs: '-', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/PalatineHill', notes: 'Included with Colosseum ticket' },
-            { id: 'r023', time: 'Evening', dur: '', act: 'Trastevere neighbourhood dinner', loc: 'Rome', price: '2000', hrs: '-', status: '-', type: 'place', map: 'https://maps.app.goo.gl/Trastevere', notes: '' },
+          id: 'd10', label: 'Day 4 — Geneva', date: '23 Jun', city: 'gva', rows: [
+            { id: 'r044', time: 'Afternoon', dur: '', act: 'Arrive GVA Airport. Drop bags at left luggage.', loc: 'Geneva Airport', price: '500', hrs: '13:05', status: '-', type: 'place', map: '', notes: 'You have 5+ hours before bag drop opens. Take the 7-min train into the city.' },
+            { id: 'r045', time: 'Afternoon', dur: '7 min', act: '🚂 Train GVA Airport → Geneva Cornavin', loc: 'Geneva Airport → Cornavin', price: '', hrs: '13:15 dep', status: '-', type: 'train', map: '', notes: 'Trains every 10 min. 7 min ride. Free with Swiss Pass.' },
+            { id: 'r046', time: 'Afternoon', dur: '30 min', act: 'Jet d\'Eau — 140m fountain on Lake Geneva', loc: 'Geneva Lakefront', price: '', hrs: '13:30 – 14:00', status: 'Free', type: 'place', map: '', notes: '15 min tram/walk from Cornavin. Walk right up to it. You will get slightly wet — embrace it.' },
+            { id: 'r047', time: 'Afternoon', dur: '1 hr', act: 'Lakeside promenade + Old Town walk', loc: 'Geneva', price: '', hrs: '14:15 – 15:15', status: 'Free', type: 'place', map: '', notes: 'Walk back along the lake toward Old Town. St. Pierre Cathedral area. Easy, flat stroll.' },
+            { id: 'r048', time: 'Afternoon', dur: '', act: 'Late lunch / last Swiss coffee', loc: 'Geneva', price: '2000', hrs: '15:30', status: '-', type: 'place', map: '', notes: 'Sit down properly. Last meal in Switzerland.' },
+            { id: 'r049', time: 'Afternoon', dur: '7 min', act: '🚂 Train Geneva Cornavin → Airport', loc: 'Cornavin → GVA Airport', price: '', hrs: '16:45 dep', status: '-', type: 'train', map: '', notes: 'Arrive airport ~16:55. Collect bags from left luggage.' },
+            { id: 'r050', time: 'Evening', dur: '', act: 'Airport dinner before flight', loc: 'Geneva Airport T1', price: '1500', hrs: '17:00 – 18:30', status: '-', type: 'place', map: '', notes: 'Bag drop opens 18:40. Eat properly — you have almost 2 hours.' },
+            { id: 'r051', time: 'Evening', dur: '', act: '⚠️ Bag drop EJU7110 — closes 19:50!', loc: 'Geneva Airport T1', price: '', hrs: '18:40 – 19:50', status: 'Booked', type: 'flight', map: '', notes: 'Be done by 19:30. Check-in closes 50 min before departure. T1 departures.' },
+            { id: 'r052', time: 'Night', dur: '1h 25m', act: '✈️ Flight Geneva → Barcelona (EJU7110)', loc: 'GVA T1 → BCN T2C', price: '', hrs: '20:40 dep → 22:05 arr', status: 'Booked', type: 'flight', map: '', notes: 'easyJet. Arrives Barcelona Terminal 2C at 22:05. Switzerland done. 🏔' },
           ]
         },
-        {
-          id: 'd11', label: 'Day 11', date: '21 Jun', city: 'rom', rows: [
-            { id: 'r024', time: 'Morning', dur: '3 hrs', act: 'Vatican Museums & Sistine Chapel', loc: 'Vatican City', price: '3000', hrs: '9am–6pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/VaticanMuseums', notes: 'Book months ahead — very busy' },
-            { id: 'r025', time: 'Afternoon', dur: '1 hr', act: "St. Peter's Basilica & Square", loc: 'Vatican City', price: '', hrs: '7am–7pm', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/StPeters', notes: '' },
-            { id: 'r026', time: 'Evening', dur: '', act: 'Piazza Navona & Pantheon stroll', loc: 'Rome', price: '', hrs: '-', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/PiazzaNavona', notes: '' },
-          ]
-        },
-        {
-          id: 'd12', label: 'Day 12', date: '22 Jun', city: 'rom', rows: [
-            { id: 'r027', time: 'Morning', dur: '', act: 'Trevi Fountain & Spanish Steps', loc: 'Rome', price: '', hrs: '24hrs', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/TreviFountain', notes: 'Go early to avoid crowds' },
-            { id: 'r028', time: 'Afternoon', dur: '', act: 'Borghese Gallery', loc: 'Rome', price: '2500', hrs: '9am–7pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/BorgheseGallery', notes: 'Strictly timed entry — must pre-book' },
-            { id: 'r029', time: 'Night', dur: '7h 45m overnight', act: 'Overnight train Rome → Venice', loc: 'Rome → Venice', price: '4246', hrs: '22:35 depart', status: 'Not Booked', type: 'train', map: '', notes: 'Arrives Venice 06:20' },
-          ]
-        },
-        {
-          id: 'd13', label: 'Day 13', date: '23 Jun', city: 'ven', rows: [
-            { id: 'r030', time: 'Early Morning', dur: '', act: 'Arrive Venice Santa Lucia & drop bags', loc: 'Venice', price: '', hrs: '06:20 arrival', status: '-', type: 'train', map: 'https://maps.app.goo.gl/VeniceSantaLucia', notes: '' },
-            { id: 'r031', time: 'Morning', dur: '2 hrs', act: "St. Mark's Basilica & Doge's Palace", loc: "St. Mark's Square", price: '2500', hrs: '9am–5pm', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/StMarksBasilica', notes: 'Book online to skip queues' },
-            { id: 'r032', time: 'Afternoon', dur: '1.5 hrs', act: 'Gondola ride through canals', loc: 'Venice', price: '5000', hrs: '-', status: 'Not Booked', type: 'place', map: 'https://maps.app.goo.gl/VeniceGondola', notes: '~80 EUR shared gondola, 30 min' },
-            { id: 'r033', time: 'Late Afternoon', dur: '', act: 'Rialto Bridge & market area', loc: 'Venice', price: '', hrs: '-', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/RialtoBridge', notes: '' },
-            { id: 'r034', time: 'Evening', dur: '', act: 'Sunset from Punta della Dogana', loc: 'Venice', price: '', hrs: '-', status: 'Free', type: 'place', map: 'https://maps.app.goo.gl/PuntaDellaDogana', notes: 'Best sunset spot in Venice' },
-            { id: 'r035', time: 'Night', dur: '', act: 'Last dinner — seafood risotto', loc: 'Venice', price: '2500', hrs: '-', status: '-', type: 'place', map: '', notes: '' },
-          ]
-        },
-        {
-          id: 'd14', label: 'Day 14', date: '24 Jun', city: 'tra', rows: [
-            { id: 'r036', time: 'Morning', dur: '2h', act: 'Flight VCE → BCN', loc: 'Venice → Barcelona', price: '1388', hrs: '09:10 depart', status: 'Not Booked', type: 'flight', map: '', notes: 'Arrives BCN 11:10' },
-            { id: 'r037', time: 'Afternoon', dur: '', act: 'BCN layover — rest / explore', loc: 'Barcelona', price: '', hrs: '-', status: '-', type: 'place', map: '', notes: 'Return flight at 22:30' },
-            { id: 'r038', time: 'Night', dur: '', act: 'Depart BCN → AUH → BLR (Etihad)', loc: 'BCN → BLR', price: '', hrs: '22:30 depart', status: 'Booked', type: 'flight', map: '', notes: 'Terminal 1. Arrives BLR 25 Jun 14:15' },
-          ]
-        },
-        {
-          id: 'd15', label: 'Day 15', date: '25 Jun', city: 'tra', rows: [
-            { id: 'r039', time: 'Afternoon', dur: '', act: 'Arrive BLR Terminal 2', loc: 'Bengaluru (BLR)', price: '', hrs: '14:15', status: 'Booked', type: 'flight', map: '', notes: 'Layover AUH 07:05–08:40' },
-          ]
-        },
-
       ]
     };
 
     let DATA = null;
     let saveTimer = null;
-    let mainFilter = 'all';     // 'all', 'place', 'travel'
-    let subFilter = 'all';      // 'all', 'bcn', 'rom', 'ven', 'flight', 'train', 'bus'
+    let mainFilter = 'all';
+    let subFilter = 'all';
 
     const TIME_OPTIONS = ['Early Morning', 'Morning', 'Afternoon', 'Late Afternoon', 'Evening', 'Night', 'Late Night', 'All day', '—'];
     const TYPE_OPTIONS = ['place', 'flight', 'train', 'bus'];
+
 
     function moveRow(dayId, rowId, direction) {
       const day = DATA.days.find(d => d.id === dayId);
@@ -1034,7 +1048,7 @@
 
     /* ── HELPERS ── */
     function cityClass(c) { return 'city-' + c; }
-    function cityLabel(c) { return { bcn: 'Barcelona', rom: 'Rome', ven: 'Venice', tra: 'Flight / Transit' }[c] || c; }
+    function cityLabel(c) { return { bcn: 'Zurich', luz: 'Lucerne', grw: 'Grindelwald', mrt: 'Martigny', gva: 'Geneva', tra: 'Flight / Transit' }[c] || c; }
     function esc(s) { return String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
     function uid() { return 'r' + Math.random().toString(36).slice(2, 9); }
     function filterMatches(d) { return currentFilter === 'all' || d.city === currentFilter; }
@@ -1055,7 +1069,7 @@
         subBar.style.display = 'flex';
         let html = '';
         if (mainFilter === 'place') {
-          const places = [{ id: 'all', l: 'All' }, { id: 'bcn', l: 'Barcelona' }, { id: 'rom', l: 'Rome' }, { id: 'ven', l: 'Venice' }];
+          const places = [{ id: 'all', l: 'All' }, { id: 'bcn', l: 'Zurich' }, { id: 'luz', l: 'Lucerne' }, { id: 'grw', l: 'Grindelwald' }, { id: 'mrt', l: 'Martigny' }, { id: 'gva', l: 'Geneva' }];
           html = places.map(p => `<button class="ftab-sub ${subFilter === p.id ? 'active' : ''}" onclick="setSubFilter('${p.id}')">${p.l}</button>`).join('');
         } else if (mainFilter === 'travel') {
           const transits = [{ id: 'all', l: 'All' }, { id: 'flight', l: '✈️ Flight' }, { id: 'train', l: '🚂 Train' }, { id: 'bus', l: '🚌 Bus/Taxi' }];
@@ -1389,7 +1403,7 @@
       const csv = rows.map(r => r.map(c => `"${String(c || '').replace(/"/g, '""')}"`).join(',')).join('\n');
       const a = document.createElement('a');
       a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
-      a.download = 'spain-trip-2026.csv'; a.click();
+      a.download = 'switzerland-trip-2026.csv'; a.click();
     }
 
     loadData();
